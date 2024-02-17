@@ -1,3 +1,84 @@
 {
-  "testField": "WDS_template"
+  "logoName": "AM",
+  "navLinks": [
+    {
+      "href": "autochemistry",
+      "name": "Автохімія"
+    },
+    {
+      "href": "autoparts",
+      "name": "Автозапчастини"
+    },
+    {
+      "href": "batteries",
+      "name": "Акумулятори"
+    },
+    {
+      "href": "accessories",
+      "name": "Аксесуари"
+    }
+  ],
+  "contacts": {
+    "phone": {
+      "lifecell": "+380936259999",
+      "kyivstar": "+380972909397",
+      "lifecellText": "+38 (093) 625-99-99",
+      "kyivstarText": "+38 (097) 290-93-97"
+    },
+    "telegram": "@NovychenkoA",
+    "viber": "+380639993570"
+  },
+  "workSchedule": {
+    "label": "Режим роботи",
+    "businessDays": "Пн-Пт: 10:00-20:00",
+    "saturday": "Сб: 10:00-20:00",
+    "weekends": "Нд - вихідний"
+  },
+  "searchInput": {
+    "placeholder": "Введіть номер запчастини",
+    "ariaLabelBtn": "Кнопка для пошуку товарів",
+    "ariaLabelIcon": "лупа пошуку"
+  },
+  "cart": {
+    "alt": "кошик товарів"
+  },
+  "assistance": {
+    "label": "Потрібна допомога?",
+    "textTG": "Написати в Telegram",
+    "textViber": "Написати в Viber",
+    "textReCall": "Замовити зворотній дзвінок"
+  },
+  "vinRequestForm": {
+    "vinCode": {
+      "label": "VIN-код, 17символів",
+      "placeholder": "WVWZZZX0123456789",
+      "required": true
+    },
+    "brand": {
+      "label": "Марка авто",
+      "placeholder": "Volkswagen",
+      "required": false
+    },
+    "model": {
+      "label": "Модель",
+      "placeholder": "Passat B7",
+      "required": false
+    },
+    "engine": {
+      "label": "Обʼєм двигуна",
+      "placeholder": "2.0",
+      "required": false
+    },
+    "fuel": {
+      "label": "Вид палива",
+      "placeholder": "Бензин",
+      "required": false
+    },
+    "year": {
+      "label": "Рік випуску",
+      "placeholder": "2011",
+      "required": false
+    },
+    "submitBtn": "Відправити VIN-запит"
+  }
 }

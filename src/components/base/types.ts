@@ -6,7 +6,6 @@ export interface Product {
   description: string;
   brandGroup: string;
   brandArticle: string;
-  priceIn: number;
-  priceOut: number;
+  price: string;
   availability: string;
 }

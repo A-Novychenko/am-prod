@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "65d0b91e889119a69bd19f58",
+    "code": "478847",
+    "category": "CASTROL",
+    "article": "15F097",
+    "name": "MAGNATEC 10W-40 A/B 12X1L",
+    "description": "ACEA A3/B4\nAPI SP\nMeets - Fiat 9.55535-D2\nMB-Approval 229.3\nVW 501 01/ 505 00",
+    "brandGroup": "CASTROL",
+    "brandArticle": "15F097",
+    "price": "384.88",
+    "availability": ">10"
+  },
+  {
+    "_id": "65d0b91e889119a69bd19f76",
+    "code": "116598",
+    "category": "CASTROL",
+    "article": "15C9D0",
+    "name": "MAGNATEC 5W-40 A3/B4 12X1L",
+    "description": "ACEA A3/B4, API SN/CF, BMW Longlife-01, MB-Approval 229.3, Renault RN 0700 / RN 0710, VW 502 00/ 505 00",
+    "brandGroup": "CASTROL",
+    "brandArticle": "N4-MAG54A3-12X1",
+    "price": "430.94",
+    "availability": ">10"
+  },
+  {
+    "_id": "65d0b91e889119a69bd19f7d",
+    "code": "19169",
+    "category": "CASTROL",
+    "article": "15CA2A",
+    "name": "MAGNATEC DIESEL 10W-40 B4 12X1L",
+    "description": "ACEA A3/B3, A3/B4\nAPI SN\nMeets Fiat 9.55535-D2\nMB-Approval 226.5\nRenault RN 0700 / RN 0710\nVW 501 01 / 505 00",
+    "brandGroup": "CASTROL",
+    "brandArticle": "RU-MAGDB4-12X1S",
+    "price": "349.69",
+    "availability": ">10"
+  },
+  {
+    "_id": "65d0b91e889119a69bd19f94",
+    "code": "28964",
+    "category": "CASTROL",
+    "article": "15581E",
+    "name": "MAGNATEC 5W-30 A3/B4 12X1L",
+    "description": "ACEA A3/B3, A3/B4\nAPI SL/CF\nVW 502 00 / 505 00\nRenault RN 0710 / RN 0700\nMB-Approval 229.3\nBMW Longlife-01",
+    "brandGroup": "CASTROL",
+    "brandArticle": "R1-MAG53A3-X1S",
+    "price": "448.20",
+    "availability": ">10"
+  },
+  {
+    "_id": "65d0b91e889119a69bd19f96",
+    "code": "38719",
+    "category": "CASTROL",
+    "article": "1502B8",
+    "name": "MAGNATEC DIESEL 5W-40 DPF 12X1L",
+    "description": "ACEA C3  API SN/CF, Meets Fiat 9.55535-S2, Meets Ford WSS-M2C-917A, GMdexos2™*, MB-Approval 229.31  VW 505 00/505 01",
+    "brandGroup": "CASTROL",
+    "brandArticle": "R1-MD5DPF-12X1N",
+    "price": "415.70",
+    "availability": ">10"
+  },
+  {
+    "_id": "65d0b91e889119a69bd19fa5",
+    "code": "33898",
+    "category": "CASTROL",
+    "article": "15665F",
+    "name": "EDGE 5W-30 LL 12X1L",
+    "description": "ACEA C3\nBMW Longlife-04\nMB-Approval 229.31/ 229.51\nPorsche C30\nVW 504 00/ 507 00",
+    "brandGroup": "CASTROL",
+    "brandArticle": "RB-EDG53L-12X1L",
+    "price": "529.53",
+    "availability": ">10"
+  }
+]

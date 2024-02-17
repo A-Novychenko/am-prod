@@ -30,15 +30,18 @@ const config: Config = {
       fontFamily: {
         raleway: ['var(--font-raleway)'],
         geologica: ['var(--font-geologica)'],
+        lora: ['var(--font-lora)'],
       },
 
       colors: {
-        white: '#FFFFFF',
-        accent: '#0052F2',
+        lightBg: '#FFFFFF',
+        darkBg: '#101340',
+        accent: '#00EA90',
+
+        primaryText: '#FFFFFF',
+        secondaryText: '#101340',
+
         red: '#FF0000',
-        darkBg: '#030712',
-        primaryText: '#33343C',
-        secondaryText: 'rgba(51, 52, 60, 0.70)',
         greyText: '#8E8E93',
         darkBlue: '#0045CB',
       },

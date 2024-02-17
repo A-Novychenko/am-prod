@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { Raleway, Geologica } from 'next/font/google';
+import { Raleway, Geologica, Lora } from 'next/font/google';
 
 import meta from '@/data/meta';
 
 import './globals.css';
+import { Header } from './layout/Header';
 
 const raleway = Raleway({
   subsets: ['cyrillic', 'latin'],
@@ -19,6 +20,13 @@ const geologica = Geologica({
   display: 'swap',
   adjustFontFallback: false,
 });
+const lora = Lora({
+  subsets: ['cyrillic'],
+  weight: ['400', '500', '700'],
+  variable: '--font-lora',
+  display: 'swap',
+  adjustFontFallback: false,
+});
 
 export const metadata: Metadata = meta;
 
@@ -29,7 +37,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk" className="scroll-smooth">
-      <body className={`${raleway.variable} ${geologica.variable}`}>
+      <body
+        className={`${raleway.variable} ${geologica.variable} ${lora.variable}`}
+      >
+        <Header />
         <main>{children}</main>
       </body>
     </html>
