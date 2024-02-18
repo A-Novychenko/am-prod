@@ -36,6 +36,7 @@ const config: Config = {
       colors: {
         lightBg: '#FFFFFF',
         darkBg: '#101340',
+        mediumBg: '#E5EEF6',
         accent: '#00EA90',
 
         primaryText: '#FFFFFF',

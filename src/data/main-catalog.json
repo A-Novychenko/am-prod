@@ -1,0 +1,38 @@
+[
+  {
+    "name": "oil",
+    "title": "Мастильні матеріали"
+  },
+  {
+    "name": "fluids",
+    "title": "Експлуатаційні рідини"
+  },
+  {
+    "name": "chemistry",
+    "title": "Автохімія"
+  },
+  {
+    "name": "filters",
+    "title": "Фільтри"
+  },
+  {
+    "name": "parts",
+    "title": "Запчастини"
+  },
+  {
+    "name": "accessories",
+    "title": "Аксесуари"
+  },
+  {
+    "name": "batteries",
+    "title": "Акумуляторні батареї"
+  },
+  {
+    "name": "paints",
+    "title": "Фарби, матеріали"
+  },
+  {
+    "name": "sale",
+    "title": "Розпродаж"
+  }
+]

@@ -11,3 +11,4 @@ export * from './VinRequestFormRequiredInput';
 export * from './VinRequestFormInput';
 export * from './VinRequestFormSelect';
 export * from './FormPhoneInput';
+export * from './CatalogCard';
