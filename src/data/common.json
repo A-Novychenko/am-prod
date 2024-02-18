@@ -1,5 +1,8 @@
 {
   "logoName": "AM",
+  "mail": "avto-magaz@i.ua",
+  "site": "http://avto-magaz.com.ua",
+  "siteName": "avto-magaz.com.ua",
   "navLinks": [
     {
       "href": "autochemistry",
@@ -18,6 +21,17 @@
       "name": "Аксесуари"
     }
   ],
+  "footerLinks": [
+    { "href": "about", "name": "Про нас" },
+    { "href": "delivery", "name": "Доставка" },
+    { "href": "payment", "name": "Оплата" },
+    { "href": "returns", "name": "Повернення" },
+    { "href": "autoservice", "name": "СТО" },
+    { "href": "news", "name": "Акції/Новини" },
+    { "href": "agreement", "name": "Угода користувача" },
+    { "href": "brands", "name": "Бренди" },
+    { "href": "contacts", "name": "Контакти" }
+  ],
   "contacts": {
     "phone": {
       "lifecell": "+380936259999",
@@ -27,6 +41,20 @@
     },
     "telegram": "@NovychenkoA",
     "viber": "+380639993570"
+  },
+  "socials": {
+    "title": "Ми в соцмережах",
+    "links": [
+      { "name": "telegram", "path": "@NovychenkoA" },
+      {
+        "name": "instagram",
+        "path": "https://www.instagram.com/avtomagazcomua?igsh=MXVhdnozb2dpNG4x"
+      },
+      {
+        "name": "facebook",
+        "path": "https://www.facebook.com/profile.php?id=100060918610122"
+      }
+    ]
   },
   "workSchedule": {
     "label": "Режим роботи",

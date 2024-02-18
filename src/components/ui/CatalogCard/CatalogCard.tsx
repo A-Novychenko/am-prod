@@ -9,46 +9,53 @@ import PaintsIcon from '~/icons/catalog/paints-icon.svg';
 import SaleIcon from '~/icons/catalog/sale-icon.svg';
 
 import { CatalogCardProps } from './types';
+import Link from 'next/link';
 
 export const CatalogCard: React.FC<CatalogCardProps> = ({ title, name }) => {
   return (
-    <div className="flex h-[380px] w-[378.67px] flex-col items-center justify-between gap-6 rounded-[16px] bg-lightBg p-8">
-      {name === 'oil' && (
-        <OilIcon width={180} height={180} className="shrink-0 fill-green-700" />
-      )}
-      {name === 'fluids' && (
-        <FluidIcon width={180} height={180} className="shrink-0" />
-      )}
-      {name === 'chemistry' && (
-        <ChemistryIcon
-          width={180}
-          height={180}
-          className="shrink-0 fill-emerald-500"
-        />
-      )}
-      {name === 'filters' && (
-        <FilterIcon width={180} height={180} className="shrink-0" />
-      )}
-      {name === 'parts' && (
-        <PartsIcon
-          width={180}
-          height={180}
-          className="shrink-0 fill-slate-500"
-        />
-      )}
-      {name === 'accessories' && (
-        <AccessoriesIcon width={180} height={180} className="shrink-0" />
-      )}
-      {name === 'batteries' && (
-        <BatteriesIcon width={180} height={180} className="shrink-0" />
-      )}
-      {name === 'paints' && (
-        <PaintsIcon width={180} height={180} className="shrink-0" />
-      )}
-      {name === 'sale' && (
-        <SaleIcon width={180} height={180} className="shrink-0" />
-      )}
-      <p className="pb-10 text-[24px]">{title}</p>
-    </div>
+    <Link href="/">
+      <div className="flex h-[380px] w-[378.67px] flex-col items-center justify-between gap-6 rounded-[16px] bg-lightBg p-8">
+        {name === 'oil' && (
+          <OilIcon
+            width={180}
+            height={180}
+            className="shrink-0 fill-green-700"
+          />
+        )}
+        {name === 'fluids' && (
+          <FluidIcon width={180} height={180} className="shrink-0" />
+        )}
+        {name === 'chemistry' && (
+          <ChemistryIcon
+            width={180}
+            height={180}
+            className="shrink-0 fill-emerald-500"
+          />
+        )}
+        {name === 'filters' && (
+          <FilterIcon width={180} height={180} className="shrink-0" />
+        )}
+        {name === 'parts' && (
+          <PartsIcon
+            width={180}
+            height={180}
+            className="shrink-0 fill-slate-500"
+          />
+        )}
+        {name === 'accessories' && (
+          <AccessoriesIcon width={180} height={180} className="shrink-0" />
+        )}
+        {name === 'batteries' && (
+          <BatteriesIcon width={180} height={180} className="shrink-0" />
+        )}
+        {name === 'paints' && (
+          <PaintsIcon width={180} height={180} className="shrink-0" />
+        )}
+        {name === 'sale' && (
+          <SaleIcon width={180} height={180} className="shrink-0" />
+        )}
+        <p className="pb-10 text-[24px]">{title}</p>
+      </div>
+    </Link>
   );
 };

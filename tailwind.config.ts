@@ -37,16 +37,17 @@ const config: Config = {
         lightBg: '#FFFFFF',
         darkBg: '#101340',
         mediumBg: '#E5EEF6',
+        darkBlueBg: '#0045CB',
         accent: '#00EA90',
 
         primaryText: '#FFFFFF',
         secondaryText: '#101340',
+        darkBlueText: '#0045CB',
 
         red: '#FF0000',
         error: '#FF0000',
         //
         greyText: '#8E8E93',
-        darkBlue: '#0045CB',
       },
       transitionDuration: {
         DEFAULT: '300ms',

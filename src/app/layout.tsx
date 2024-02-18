@@ -4,7 +4,8 @@ import { Raleway, Geologica, Lora } from 'next/font/google';
 import meta from '@/data/meta';
 
 import './globals.css';
-import { Header } from './layout/Header';
+import { Header } from '../layout/Header';
+import { Footer } from '@/layout/Footer';
 
 const raleway = Raleway({
   subsets: ['cyrillic', 'latin'],
@@ -42,6 +43,7 @@ export default function RootLayout({
       >
         <Header />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

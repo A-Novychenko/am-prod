@@ -5,9 +5,17 @@ export const WorkSchedule: React.FC = () => {
   return (
     <div>
       <p className="text-[22px] font-semibold">{label}</p>
-      <p>{businessDays}</p>
-      <p>{saturday}</p>
-      <p>{weekends}</p>
+      <ul>
+        <li>
+          <p>{businessDays}</p>
+        </li>
+        <li>
+          <p>{saturday}</p>
+        </li>
+        <li>
+          <p>{weekends}</p>
+        </li>
+      </ul>
     </div>
   );
 };

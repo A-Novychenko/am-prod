@@ -9,11 +9,21 @@ export const Contacts: React.FC = () => {
   return (
     <ul className="flex flex-col gap-4 text-[24px] text-primaryText">
       <li>
-        <Link href={`tel:${lifecell}`}>{lifecellText}</Link>
+        <Link
+          href={`tel:${lifecell}`}
+          className="cursor-pointer transition-all hover:text-accent focus:text-accent"
+        >
+          {lifecellText}
+        </Link>
       </li>
 
       <li>
-        <Link href={`tel:${kyivstar}`}>{kyivstarText}</Link>
+        <Link
+          href={`tel:${kyivstar}`}
+          className="cursor-pointer transition-all hover:text-accent focus:text-accent"
+        >
+          {kyivstarText}
+        </Link>
       </li>
     </ul>
   );
