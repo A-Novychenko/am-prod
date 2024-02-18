@@ -7,4 +7,7 @@ export * from './NavLinks';
 export * from './SearchBar';
 export * from './Slider';
 export * from './WorkSchedule';
+export * from './VinRequestFormRequiredInput';
 export * from './VinRequestFormInput';
+export * from './VinRequestFormSelect';
+export * from './FormPhoneInput';

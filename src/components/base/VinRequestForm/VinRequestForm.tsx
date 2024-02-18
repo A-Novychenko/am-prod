@@ -2,80 +2,88 @@
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import staticData from '@/data/common.json';
-import { VinRequestFormInput } from '@/components/ui';
+import {
+  FormPhoneInput,
+  VinRequestFormInput,
+  VinRequestFormRequiredInput,
+  VinRequestFormSelect,
+} from '@/components/ui';
 
-type Inputs = {
-  vinCode: string;
-  brand: string;
-  model: string;
-  engine: string;
-  fuel: string;
-  year: string;
-};
+import staticData from '@/data/common.json';
+
+import { VinRequestFormInputs } from './types';
 
 export const VinRequestForm: React.FC = () => {
   const {
     register,
     handleSubmit,
     watch,
+    trigger,
+    control,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<VinRequestFormInputs>();
 
-  //   const { submitBtn, vinCode, brand, model, engine, fuel, year } =
-  const { submitBtn, vinCode } = staticData.vinRequestForm;
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
-
-  console.log(watch('vinCode'));
+  const { submitBtn, vinCode, brand, model, engine, fuel, year, phone } =
+    staticData.vinRequestForm;
+  const onSubmit: SubmitHandler<VinRequestFormInputs> = data =>
+    console.log(data);
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-[400px] flex-col gap-4 rounded-[8px] bg-darkBg p-10 text-[20px]"
+      className="flex h-[600px] w-[500px] flex-col gap-4 rounded-[16px] bg-darkBg p-10 text-[16px]"
     >
-      <VinRequestFormInput config={vinCode} register={register} />
+      <VinRequestFormRequiredInput
+        config={vinCode}
+        register={register}
+        errors={errors}
+        trigger={trigger}
+        watch={watch}
+      />
 
-      {/* // */}
+      <VinRequestFormInput
+        config={brand}
+        register={register}
+        errors={errors}
+        trigger={trigger}
+      />
 
-      {/* // */}
+      <VinRequestFormInput
+        config={model}
+        register={register}
+        errors={errors}
+        trigger={trigger}
+      />
 
-      {/* // */}
-      <label>
-        <input
-          {...register('brand', { required: true })}
-          className="w-full rounded-md p-2 pr-10 text-[20px] text-primaryText"
+      <div className="flex gap-x-6">
+        <VinRequestFormInput
+          config={engine}
+          register={register}
+          errors={errors}
+          trigger={trigger}
+          inputClassName="w-[120px]"
         />
-      </label>
-      <label>
-        <input
-          {...register('model', { required: true })}
-          className="w-full rounded-md p-2 pr-10 text-[20px] text-primaryText"
-        />
-      </label>
-      <label>
-        <input
-          {...register('engine', { required: true })}
-          className="w-full rounded-md p-2 pr-10 text-[20px] text-primaryText"
-        />
-      </label>
-      <label>
-        <input
-          {...register('fuel', { required: true })}
-          className="w-full rounded-md p-2 pr-10 text-[20px] text-primaryText"
-        />
-      </label>
-      <label>
-        <input
-          {...register('year', { required: true })}
-          className="w-full rounded-md p-2 pr-10 text-[20px] text-primaryText"
-        />
-      </label>
 
-      {errors.vinCode && <span>This field is required</span>}
+        <VinRequestFormSelect
+          config={fuel}
+          register={register}
+          inputClassName="w-[140px] "
+        />
+
+        <VinRequestFormInput
+          config={year}
+          register={register}
+          errors={errors}
+          trigger={trigger}
+          inputType="number"
+        />
+      </div>
+
+      <FormPhoneInput config={phone} control={control} errors={errors} />
 
       <button
         type="submit"
-        className="w-full rounded-md bg-accent p-2 pr-10 text-[20px]"
+        className="w-full rounded-md bg-accent p-3 pr-10 text-[20px] font-medium"
       >
         {submitBtn}
       </button>

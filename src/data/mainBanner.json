@@ -9,7 +9,8 @@
     "brandGroup": "CASTROL",
     "brandArticle": "15F097",
     "price": "384.88",
-    "availability": ">10"
+    "availability": ">10",
+    "img": "https://hotline.ua/img/tx/677/677789315.jpg"
   },
   {
     "_id": "65d0b91e889119a69bd19f76",
@@ -21,7 +22,8 @@
     "brandGroup": "CASTROL",
     "brandArticle": "N4-MAG54A3-12X1",
     "price": "430.94",
-    "availability": ">10"
+    "availability": ">10",
+    "img": "https://izap.com.ua/media/files/products/inside-placeholder-5361.jpg"
   },
   {
     "_id": "65d0b91e889119a69bd19f7d",
@@ -33,7 +35,8 @@
     "brandGroup": "CASTROL",
     "brandArticle": "RU-MAGDB4-12X1S",
     "price": "349.69",
-    "availability": ">10"
+    "availability": ">10",
+    "img": "https://i.ebayimg.com/images/g/IsYAAOSws-9lU18Q/s-l1600.png"
   },
   {
     "_id": "65d0b91e889119a69bd19f94",
@@ -45,7 +48,8 @@
     "brandGroup": "CASTROL",
     "brandArticle": "R1-MAG53A3-X1S",
     "price": "448.20",
-    "availability": ">10"
+    "availability": ">10",
+    "img": "https://adam.ua/images/thumbnails/1358/1111/detailed/43/castrol-magnatec-stop-start-5w-30-a3-b4-ua.jpg"
   },
   {
     "_id": "65d0b91e889119a69bd19f96",
@@ -57,7 +61,8 @@
     "brandGroup": "CASTROL",
     "brandArticle": "R1-MD5DPF-12X1N",
     "price": "415.70",
-    "availability": ">10"
+    "availability": ">10",
+    "img": "https://cdn.27.ua/sc--media--prod/default/73/11/b2/7311b270-9448-4a01-90fc-02868a7f9dfc.jpg"
   },
   {
     "_id": "65d0b91e889119a69bd19fa5",
@@ -69,6 +74,7 @@
     "brandGroup": "CASTROL",
     "brandArticle": "RB-EDG53L-12X1L",
     "price": "529.53",
-    "availability": ">10"
+    "availability": ">10",
+    "img": "https://cdn.27.ua/sc--media--prod/default/e5/e3/a1/e5e3a191-c434-4fba-86ce-23bae0003a3b.jpg"
   }
 ]

@@ -9,4 +9,5 @@ export type MainBannerCardProps = {
   brandArticle?: string;
   price: string;
   availability: string;
+  img: string;
 };

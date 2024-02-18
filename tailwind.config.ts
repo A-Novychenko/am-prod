@@ -42,6 +42,8 @@ const config: Config = {
         secondaryText: '#101340',
 
         red: '#FF0000',
+        error: '#FF0000',
+        //
         greyText: '#8E8E93',
         darkBlue: '#0045CB',
       },

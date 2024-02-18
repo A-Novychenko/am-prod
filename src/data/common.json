@@ -50,34 +50,98 @@
   },
   "vinRequestForm": {
     "vinCode": {
+      "name": "vinCode",
       "label": "VIN-код, 17символів",
       "placeholder": "WVWZZZX0123456789",
-      "required": true
+      "validationOptions": {
+        "required": {
+          "value": true,
+          "message": "Поле обовʼязкове"
+        },
+        "pattern": {
+          "value": "^[a-zA-Z0-9]+$",
+          "message": "Може містити тільки латинські символи і цифри"
+        },
+        "minLength": {
+          "value": 17,
+          "message": "Повинно бути 17 символів"
+        },
+        "maxLength": {
+          "value": 17,
+          "message": "Повинно бути 17 символів"
+        }
+      }
     },
     "brand": {
+      "name": "brand",
       "label": "Марка авто",
       "placeholder": "Volkswagen",
-      "required": false
+      "validationOptions": {
+        "maxLength": {
+          "value": 20,
+          "message": "Повинно бути не більше 20 символів"
+        }
+      }
     },
     "model": {
+      "name": "model",
       "label": "Модель",
       "placeholder": "Passat B7",
-      "required": false
+      "validationOptions": {
+        "maxLength": {
+          "value": 20,
+          "message": "Повинно бути не більше 20 символів"
+        }
+      }
     },
     "engine": {
+      "name": "engine",
       "label": "Обʼєм двигуна",
       "placeholder": "2.0",
-      "required": false
+      "validationOptions": {
+        "maxLength": {
+          "value": 4,
+          "message": "Макс. 4 символи"
+        }
+      }
     },
     "fuel": {
+      "name": "fuel",
       "label": "Вид палива",
-      "placeholder": "Бензин",
-      "required": false
+      "options": [
+        { "value": "", "text": "Бензин" },
+        { "value": "", "text": "Дизель" },
+        { "value": "", "text": "Газ" },
+        { "value": "", "text": "Газ/бензин" },
+        { "value": "", "text": "Електро" }
+      ]
     },
+
     "year": {
+      "name": "year",
       "label": "Рік випуску",
       "placeholder": "2011",
-      "required": false
+      "validationOptions": {
+        "maxLength": {
+          "value": 4,
+          "message": "Макс. 4 цифри"
+        }
+      }
+    },
+    "phone": {
+      "name": "phone",
+      "label": "Телефон",
+      "placeholder": "+380936259999",
+      "validationOptions": {
+        "required": {
+          "value": true,
+          "message": "Поле обовʼязкове"
+        },
+        "pattern": {
+          "value": "^[+()-0-9]+$",
+          "message": "Може містити +,(, ), цифри, пробіл"
+        }
+      }
     },
     "submitBtn": "Відправити VIN-запит"
   }

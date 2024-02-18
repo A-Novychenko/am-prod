@@ -20,7 +20,7 @@ export const Slider: React.FC<SliderProps> = ({
       spaceBetween={50}
       slidesPerView={1}
       //   onSwiper={swiper => console.log(swiper)}
-      autoplay={{ delay: 7000 }}
+      autoplay={{ delay: 10000 }}
       className={wrapClassName}
     >
       {slidesData &&

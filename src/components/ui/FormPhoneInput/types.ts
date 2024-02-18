@@ -1,15 +1,15 @@
-import { FieldErrors, UseFormRegister, UseFormTrigger } from 'react-hook-form';
+import { FieldValues, FieldErrors, Control } from 'react-hook-form';
 
-export type VinRequestFormInputProps = {
+export type FormPhoneInputProps = {
   config: {
     name: string;
     label: string;
     placeholder: string;
     validationOptions: validationOptionsInput;
   };
-  register: UseFormRegister<VinRequestFormInputs>;
-  trigger: UseFormTrigger<VinRequestFormInputs>;
+
   errors: FieldErrors<VinRequestFormInputs>;
+  control: Control<FieldValues>;
   inputType?: string;
   inputClassName?: string;
   wrapClassName?: string;
@@ -20,8 +20,14 @@ export type VinRequestFormInputs = {
 };
 
 type validationOptionsInput = {
+  required?: validationOptionsRequired;
   maxLength?: validationOptionsMaxLength;
   minLength?: validationOptionsMinLength;
+};
+
+type validationOptionsRequired = {
+  value: boolean;
+  message: string;
 };
 
 type validationOptionsMaxLength = {
