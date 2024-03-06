@@ -1,12 +1,17 @@
-import { Catalog } from '@/components/base';
+import { getMainCategories } from '@/actions/servicesAPI/getMainCategories';
 
-export const CatalogSection: React.FC = () => {
+import { CategoryList } from '@/components/base';
+
+export const CatalogSection: React.FC = async () => {
+  const mainCategories = await getMainCategories();
+
   return (
-    // <div className="section bg-mediumBg">
-    <div className="section bg-darkBg">
-      <div className="container">
-        <Catalog />
-      </div>
-    </div>
+    mainCategories && (
+      <section className="section bg-darkBg">
+        <div className="container">
+          <CategoryList data={mainCategories} path="categories" />
+        </div>
+      </section>
+    )
   );
 };

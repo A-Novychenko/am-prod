@@ -15,15 +15,15 @@ export const MainBannerCard: React.FC<MainBannerCardProps> = ({
 
   return (
     <div className="flex h-[600px] w-full flex-col items-center justify-between rounded-2xl p-10">
-      <div className="size-[300px] bg-slate-600">
-        <div className="size-[300px] bg-cover">
+      <div className="size-[300px]">
+        <div className="size-[300px]">
           <Image
             src={img}
-            width={400}
-            height={300}
+            width={300}
+            height={400}
             alt={name}
             priority
-            className="size-full flex-shrink-0"
+            className="block size-full shrink-0 object-contain"
           />
         </div>
       </div>

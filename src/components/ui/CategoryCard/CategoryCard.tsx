@@ -8,53 +8,55 @@ import BatteriesIcon from '~/icons/catalog/batteries-icon.svg';
 import PaintsIcon from '~/icons/catalog/paints-icon.svg';
 import SaleIcon from '~/icons/catalog/sale-icon.svg';
 
-import { CatalogCardProps } from './types';
+import { CategoryCardProps } from './types';
 import Link from 'next/link';
 
-export const CatalogCard: React.FC<CatalogCardProps> = ({ title, name }) => {
+export const CategoryCard: React.FC<CategoryCardProps> = ({
+  id,
+  name,
+  link,
+}) => {
   return (
-    <Link href="/">
+    <Link href={link}>
       <div className="flex h-[380px] w-[378.67px] flex-col items-center justify-between gap-6 rounded-[16px] bg-lightBg p-8">
-        {name === 'oil' && (
+        {id === 1 && (
           <OilIcon
             width={180}
             height={180}
             className="shrink-0 fill-green-700"
           />
         )}
-        {name === 'fluids' && (
+        {id === 2 && (
           <FluidIcon width={180} height={180} className="shrink-0" />
         )}
-        {name === 'chemistry' && (
+        {id === 3 && (
           <ChemistryIcon
             width={180}
             height={180}
             className="shrink-0 fill-emerald-500"
           />
         )}
-        {name === 'filters' && (
+        {id === 4 && (
           <FilterIcon width={180} height={180} className="shrink-0" />
         )}
-        {name === 'parts' && (
+        {id === 5 && (
           <PartsIcon
             width={180}
             height={180}
             className="shrink-0 fill-slate-500"
           />
         )}
-        {name === 'accessories' && (
+        {id === 6 && (
           <AccessoriesIcon width={180} height={180} className="shrink-0" />
         )}
-        {name === 'batteries' && (
+        {id === 7 && (
           <BatteriesIcon width={180} height={180} className="shrink-0" />
         )}
-        {name === 'paints' && (
+        {id === 8 && (
           <PaintsIcon width={180} height={180} className="shrink-0" />
         )}
-        {name === 'sale' && (
-          <SaleIcon width={180} height={180} className="shrink-0" />
-        )}
-        <p className="pb-10 text-[24px]">{title}</p>
+        {id === 9 && <SaleIcon width={180} height={180} className="shrink-0" />}
+        <p className="pb-10 text-[24px]">{name}</p>
       </div>
     </Link>
   );

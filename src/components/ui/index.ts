@@ -11,7 +11,7 @@ export * from './VinRequestFormRequiredInput';
 export * from './VinRequestFormInput';
 export * from './VinRequestFormSelect';
 export * from './FormPhoneInput';
-export * from './CatalogCard';
+export * from './CategoryCard';
 export * from './ShowCaseCard';
 export * from './FooterLinks';
 export * from './Socials';

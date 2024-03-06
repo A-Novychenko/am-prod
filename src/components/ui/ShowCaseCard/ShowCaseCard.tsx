@@ -1,22 +1,49 @@
 import Image from 'next/image';
 import React from 'react';
 import { ShowCaseCardProps } from './types';
+import { notFound } from 'next/navigation';
 
-export const ShowCaseCard: React.FC<ShowCaseCardProps> = ({
+async function getData(id: string) {
+  if (!id) return;
+
+  const res = await fetch('https://online.asg.ua/api/product-images', {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization:
+        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL29ubGluZS5hc2cudWEvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MDg0MTQzMjMsImV4cCI6MTcwODUwMDcyMywibmJmIjoxNzA4NDE0MzIzLCJqdGkiOiJKOGZ6dW1RYVJKRmtpTjhsIiwic3ViIjo3ODcxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.TfrDirG5rDqwnIHNFU0__dHjQtVjchxKcLpMpJcUQ1U',
+    },
+
+    body: JSON.stringify({ product_ids: [id] }),
+    redirect: 'follow',
+  });
+  if (!res.ok) return notFound();
+  return res.json();
+}
+
+export const ShowCaseCard: React.FC<ShowCaseCardProps> = async ({
   img,
   name,
   description,
   price,
+  id = '1',
 }) => {
+  const data = await getData(id);
+
+  const imgCDN = data?.data[0]?.images[0];
+
+  const image = imgCDN ? imgCDN : img;
+
   return (
     <div className="flex h-[546px] w-[286px] flex-col items-center overflow-hidden rounded-[16px] bg-lightBg">
       <div className="mt-6 size-[234px] p-6">
         <Image
-          src={img}
+          src={image}
           width={1064}
           height={1064}
           alt={name}
-          className="block size-full bg-cover"
+          className="block size-full object-contain"
         />
       </div>
       <div className="p-6">
