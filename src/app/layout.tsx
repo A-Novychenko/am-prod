@@ -42,7 +42,9 @@ export default function RootLayout({
         className={`${raleway.variable} ${geologica.variable} ${lora.variable}`}
       >
         <Header />
+
         <main>{children}</main>
+
         <Footer />
       </body>
     </html>

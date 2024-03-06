@@ -5,7 +5,7 @@ import {
   ShowCaseSection,
 } from '@/sections';
 
-export default async function Home() {
+export default async function HomePage() {
   return (
     <>
       <HeroSection />

@@ -1,5 +1,5 @@
-const API_URL = 'http://localhost:3005/api';
-// const API_URL = 'http://localhost:3009/api';
+// const API_URL = 'http://localhost:3005/api';
+const API_URL = 'https://autoparts-backend.onrender.com/api';
 
 export const getProducts = async (id: string) => {
   try {
