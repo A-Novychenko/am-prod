@@ -15,4 +15,4 @@ export * from './CategoryCard';
 export * from './ShowCaseCard';
 export * from './FooterLinks';
 export * from './Socials';
-export * from './ProductCard';
+// export * from './ProductCard';

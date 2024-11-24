@@ -1,8 +1,8 @@
-export const dynamic = 'force-dynamic';
+import dynamic from 'next/dynamic';
 
 import { getProducts } from '@/actions/servicesAPI';
 // import { CategoryList } from '@/components/base';
-import { ProductCard } from '@/components/ui';
+// import { ProductCard } from '@/components/ui';
 
 // type Category = {
 //   id: string;
@@ -29,27 +29,34 @@ type Product = {
   updatedAt: string;
 };
 
-// export async function generateStaticParams() {
-export async function generateStaticParams({
-  params: { category },
-}: {
-  params: { category: string };
-}) {
-  console.log('category--generateStaticParams', category);
-  // const categories = await getProducts(category);
+// // export async function generateStaticParams() {
+// export async function generateStaticParams({
+//   params: { category },
+// }: {
+//   params: { category: string };
+// }) {
+//   console.log('category--generateStaticParams', category);
+//   // const categories = await getProducts(category);
 
-  // const staticParams =
-  //   categories?.map((product: Category) => {
-  //     return {
-  //       product: product.id?.toString(),
-  //     };
-  //   }) || [];
+//   // const staticParams =
+//   //   categories?.map((product: Category) => {
+//   //     return {
+//   //       product: product.id?.toString(),
+//   //     };
+//   //   }) || [];
 
-  // console.log('staticParams', staticParams);
+//   // console.log('staticParams', staticParams);
 
-  // return staticParams;
-  return [];
-}
+//   // return staticParams;
+//   return [];
+// }
+
+const ProductCard = dynamic(
+  () => import('../../../../components/ui/ProductCard/ProductCard'),
+  {
+    loading: () => <p>Завантаження...</p>, // Плейсхолдер
+  },
+);
 
 export default async function ProductPage({
   params: { product },

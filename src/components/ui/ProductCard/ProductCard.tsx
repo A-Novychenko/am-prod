@@ -6,7 +6,7 @@ import { ProductCardProps } from './types';
 const IMG_DEFAULT =
   'https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph';
 
-export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
   const {
     // _id,
     // id,
@@ -59,3 +59,5 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
     </div>
   );
 };
+
+export default ProductCard;
