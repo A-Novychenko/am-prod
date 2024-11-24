@@ -1,3 +1,5 @@
+export const fetchCache = 'force-no-store';
+
 import { getCategories } from '@/actions/servicesAPI';
 import { CategoryList } from '@/components/base';
 
