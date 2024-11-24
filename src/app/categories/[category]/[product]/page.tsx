@@ -1,8 +1,8 @@
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
 import { getProducts } from '@/actions/servicesAPI';
 // import { CategoryList } from '@/components/base';
-// import { ProductCard } from '@/components/ui';
+import { ProductCard } from '@/components/ui';
 
 // type Category = {
 //   id: string;
@@ -51,12 +51,12 @@ type Product = {
 //   return [];
 // }
 
-const ProductCard = dynamic(
-  () => import('../../../../components/ui/ProductCard/ProductCard'),
-  {
-    loading: () => <p>Завантаження...</p>, // Плейсхолдер
-  },
-);
+// const ProductCard = dynamic(
+//   () => import('../../../../components/ui/ProductCard/ProductCard'),
+//   {
+//     loading: () => <p>Завантаження...</p>, // Плейсхолдер
+//   },
+// );
 
 export default async function ProductPage({
   params: { product },
