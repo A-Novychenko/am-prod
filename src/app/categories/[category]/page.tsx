@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 import { getCategories } from '@/actions/servicesAPI';
 import { CategoryList } from '@/components/base';
@@ -32,11 +32,14 @@ export default async function CategoryPage({
   // console.log('categories', categories);
   return (
     <>
-      <h1>SubCategories</h1>
+      <section className="section bg-slate-500">
+        <div className="container">
+          <h1 className="mb-10 text-[40px]">
+            {category === '1' ? 'Мастильні матеріали' : 'SubCategories'}
+          </h1>
 
-      <section className=" bg-slate-500">
-        {/* <CategoryList data={categories} path={`/category/${category}/products`} /> */}
-        <CategoryList data={categories} path={`${category}`} />
+          <CategoryList data={categories} path={`${category}`} />
+        </div>
       </section>
     </>
   );

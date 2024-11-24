@@ -29,59 +29,53 @@ type Product = {
   updatedAt: string;
 };
 
-// // export async function generateStaticParams() {
-// export async function generateStaticParams({
-//   params: { category },
-// }: {
-//   params: { category: string };
-// }) {
-//   console.log('category--generateStaticParams', category);
-//   // const categories = await getProducts(category);
+export async function generateStaticParams() {
+  // export async function generateStaticParams({
+  //   params: { category },
+  // }: {
+  //   params: { category: string };
+  // }) {
+  // console.log('category--generateStaticParams', category);
+  // const categories = await getProducts(category);
 
-//   // const staticParams =
-//   //   categories?.map((product: Category) => {
-//   //     return {
-//   //       product: product.id?.toString(),
-//   //     };
-//   //   }) || [];
+  // const staticParams =
+  //   categories?.map((product: Category) => {
+  //     return {
+  //       product: product.id?.toString(),
+  //     };
+  //   }) || [];
 
-//   // console.log('staticParams', staticParams);
+  // console.log('staticParams', staticParams);
 
-//   // return staticParams;
-//   return [];
-// }
-
-// const ProductCard = dynamic(
-//   () => import('../../../../components/ui/ProductCard/ProductCard'),
-//   {
-//     loading: () => <p>Завантаження...</p>, // Плейсхолдер
-//   },
-// );
+  // return staticParams;
+  return [];
+}
 
 export default async function ProductPage({
   params: { product },
 }: {
   params: { product: string };
 }) {
-  console.log('product', product);
+  // console.log('product', product);
   const products = await getProducts(product);
   // const products = [];
 
   // console.log('products[0]', products[0]);
   return (
     <>
-      <h1>SubCategory Products</h1>
+      <section className="section bg-slate-500">
+        <div className="container">
+          <h1 className="mb-10 text-[40px]">{products[0]?.category}</h1>
 
-      <section className=" bg-slate-500">
-        {/* <CategoryList data={products} path="/products" /> */}
-        <ul className="flex flex-wrap gap-6">
-          {products &&
-            products.map((product: Product) => (
-              <li key={product._id}>
-                <ProductCard product={product} />
-              </li>
-            ))}
-        </ul>
+          <ul className="flex flex-wrap gap-6">
+            {products &&
+              products.map((product: Product) => (
+                <li key={product._id}>
+                  <ProductCard product={product} />
+                </li>
+              ))}
+          </ul>
+        </div>
       </section>
     </>
   );
