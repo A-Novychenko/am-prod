@@ -3,6 +3,9 @@ import React from 'react';
 import { ProductCardProps } from './types';
 // import image from 'next/image';
 
+const IMG_DEFAULT =
+  'https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph';
+
 export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
   const {
     // _id,
@@ -21,6 +24,7 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
     // count_warehouse_3,
     // createdAt,
     // updatedAt,
+    img,
   } = product;
 
   return (
@@ -28,7 +32,7 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
       <div className="mt-6 size-[234px] p-6">
         <Image
           // src={image}
-          src="https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph"
+          src={img ? img : IMG_DEFAULT}
           width={1064}
           height={1064}
           alt={name}

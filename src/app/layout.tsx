@@ -6,6 +6,7 @@ import meta from '@/data/meta';
 import './globals.css';
 import { Header } from '../layout/Header';
 import { Footer } from '@/layout/Footer';
+import { getMainCategories } from '@/actions/servicesAPI';
 
 const raleway = Raleway({
   subsets: ['cyrillic', 'latin'],
@@ -30,6 +31,24 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = meta;
+
+type Category = {
+  id: string;
+  name: string;
+  parent_id: number;
+};
+
+export async function generateStaticParams() {
+  const categories = await getMainCategories();
+
+  return (
+    categories?.map((category: Category) => {
+      return {
+        category: category.id.toString(),
+      };
+    }) || []
+  );
+}
 
 export default function RootLayout({
   children,

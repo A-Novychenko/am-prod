@@ -1,5 +1,4 @@
-// const API_URL = 'http://localhost:3005/api';
-const API_URL = 'https://autoparts-backend.onrender.com/api';
+const API_URL = process.env.API_URL as string;
 
 export const getCategories = async (id: string) => {
   try {
@@ -8,6 +7,8 @@ export const getCategories = async (id: string) => {
       headers: {
         'Content-Type': 'application/json',
       },
+      // cache: 'no-cache',
+      next: { revalidate: 60 },
     });
 
     const res = await result.json();

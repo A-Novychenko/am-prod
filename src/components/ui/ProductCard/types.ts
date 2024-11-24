@@ -16,5 +16,6 @@ export type ProductCardProps = {
     count_warehouse_3: string;
     createdAt: string;
     updatedAt: string;
+    img?: string;
   };
 };
