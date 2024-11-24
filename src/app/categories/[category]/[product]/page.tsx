@@ -4,11 +4,11 @@ import { getProducts } from '@/actions/servicesAPI';
 // import { CategoryList } from '@/components/base';
 import { ProductCard } from '@/components/ui';
 
-// type Category = {
-//   id: string;
-//   name: string;
-//   parent_id: number;
-// };
+type Category = {
+  id: string;
+  name: string;
+  parent_id: number;
+};
 type Product = {
   _id: string;
   id: number;
@@ -30,23 +30,26 @@ type Product = {
 };
 
 // export async function generateStaticParams() {
-// export async function generateStaticParams({
-//   params: { category },
-// }: {
-//   params: { category: string };
-// }) {
-//   console.log('category--generateStaticParams', category);
-//   const categories = await getProducts(category);
+export async function generateStaticParams({
+  params: { category },
+}: {
+  params: { category: string };
+}) {
+  console.log('category--generateStaticParams', category);
+  const categories = await getProducts(category);
 
-//   const staticParams =
-//     categories?.map((product: Category) => {
-//       return {
-//         product: product.id?.toString(),
-//       };
-//     }) || [];
+  const staticParams =
+    categories?.map((product: Category) => {
+      return {
+        product: product.id?.toString(),
+      };
+    }) || [];
 
-//   return staticParams;
-// }
+  console.log('staticParams', staticParams);
+
+  // return staticParams;
+  return [];
+}
 
 export default async function ProductPage({
   params: { product },
