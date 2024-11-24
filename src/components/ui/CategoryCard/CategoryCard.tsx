@@ -37,7 +37,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
           />
         )}
         {id === 4 && (
-          <FilterIcon width={180} height={180} className="shrink-0" />
+          <BatteriesIcon width={180} height={180} className="shrink-0" />
         )}
         {id === 5 && (
           <PartsIcon
@@ -47,10 +47,10 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
           />
         )}
         {id === 6 && (
-          <AccessoriesIcon width={180} height={180} className="shrink-0" />
+          <FilterIcon width={180} height={180} className="shrink-0" />
         )}
         {id === 7 && (
-          <BatteriesIcon width={180} height={180} className="shrink-0" />
+          <AccessoriesIcon width={180} height={180} className="shrink-0" />
         )}
         {id === 8 && (
           <PaintsIcon width={180} height={180} className="shrink-0" />

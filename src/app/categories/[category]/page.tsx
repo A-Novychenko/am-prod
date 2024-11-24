@@ -2,6 +2,7 @@ export const dynamic = 'force-dynamic';
 
 import { getCategories } from '@/actions/servicesAPI';
 import { CategoryList } from '@/components/base';
+import Link from 'next/link';
 
 // type Category = {
 //   id: string;
@@ -34,6 +35,12 @@ export default async function CategoryPage({
     <>
       <section className="section bg-slate-500">
         <div className="container">
+          <Link
+            href="/#main-cat"
+            className="mb-10 inline-block bg-slate-50 p-4"
+          >
+            Назад
+          </Link>
           <h1 className="mb-10 text-[40px]">
             {category === '1' ? 'Мастильні матеріали' : 'SubCategories'}
           </h1>

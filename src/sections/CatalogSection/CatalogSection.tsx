@@ -7,7 +7,7 @@ export const CatalogSection: React.FC = async () => {
 
   return (
     mainCategories && (
-      <section className="section bg-darkBg">
+      <section className="section bg-darkBg" id="main-cat">
         <div className="container">
           <CategoryList data={mainCategories} path="categories" />
         </div>

@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 import { getProducts } from '@/actions/servicesAPI';
 // import { CategoryList } from '@/components/base';
 import { ProductCard } from '@/components/ui';
+import Link from 'next/link';
 
 // type Category = {
 //   id: string;
@@ -52,9 +53,9 @@ export async function generateStaticParams() {
 }
 
 export default async function ProductPage({
-  params: { product },
+  params: { product, category },
 }: {
-  params: { product: string };
+  params: { product: string; category: string };
 }) {
   // console.log('product', product);
   const products = await getProducts(product);
@@ -65,6 +66,12 @@ export default async function ProductPage({
     <>
       <section className="section bg-slate-500">
         <div className="container">
+          <Link
+            href={`/categories/${category}`}
+            className="mb-10 inline-block bg-slate-50 p-4"
+          >
+            Назад
+          </Link>
           {/* <h1 className="mb-10 text-[40px]">{products[0]?.category}</h1> */}
           <h1 className="mb-10 text-[40px]">Products</h1>
 
