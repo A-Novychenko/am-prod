@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getProducts } from '@/actions/servicesAPI';
 // import { CategoryList } from '@/components/base';
 import { ProductCard } from '@/components/ui';
