@@ -1,4 +1,4 @@
-// import dynamic from 'next/dynamic';
+export const dynamic = 'force-dynamic';
 
 import { getProducts } from '@/actions/servicesAPI';
 // import { CategoryList } from '@/components/base';
