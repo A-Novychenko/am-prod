@@ -65,7 +65,8 @@ export default async function ProductPage({
     <>
       <section className="section bg-slate-500">
         <div className="container">
-          <h1 className="mb-10 text-[40px]">{products[0]?.category}</h1>
+          {/* <h1 className="mb-10 text-[40px]">{products[0]?.category}</h1> */}
+          <h1 className="mb-10 text-[40px]">Products</h1>
 
           <ul className="flex flex-wrap gap-6">
             {products &&
