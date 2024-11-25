@@ -14,7 +14,7 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
     // category,
     // category_id,
     // brand,
-    // article,
+    article,
     // tecdoc_article,
     name,
     description,
@@ -30,8 +30,8 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
   // console.log('count_warehouse_3', count_warehouse_3);
 
   return (
-    <div className="flex h-[546px] w-[286px] flex-col items-center overflow-hidden rounded-[16px] bg-lightBg">
-      <div className="mt-6 size-[234px] p-6">
+    <div className="flex w-full flex-col items-center overflow-hidden rounded-[16px] bg-lightBg md:h-[546px] md:w-[286px]">
+      <div className="mt-2 h-[200px] p-5 md:size-[234px]">
         <Image
           // src={image}
           src={img ? img : IMG_DEFAULT}
@@ -41,14 +41,18 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
           className="block size-full object-contain"
         />
       </div>
-      <div className="p-6">
+
+      <div className="p-6 pt-0 smOnly:w-full">
         <h3 className="mb-2 line-clamp-1 overflow-hidden text-ellipsis text-[16px] font-semibold uppercase leading-[1.5] text-secondaryText">
           {name}
         </h3>
         <p className="mb-4 line-clamp-2 h-[48px] overflow-hidden text-ellipsis text-[16px] font-normal leading-[1.5] text-secondaryText">
           {description}
         </p>
-        <p className="mb-4 overflow-hidden text-ellipsis text-right text-[20px] font-bold uppercase leading-[1.6] text-darkBlueText">
+        <p className="line-clamp-2 overflow-hidden text-ellipsis text-[16px] font-normal leading-[1.5] text-secondaryText">
+          {`Артикул: ${article}`}
+        </p>
+        <p className="mb-1 overflow-hidden text-ellipsis text-right text-[20px] font-bold uppercase leading-[1.6] text-darkBlueText">
           {`${Number(Number(price_currency_980) * 1.1).toFixed(0)} грн`}
         </p>
         <p className="mb-4 overflow-hidden text-ellipsis text-right text-[12px] font-bold uppercase leading-[1.6]">
@@ -60,8 +64,9 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
           )}
         </p>
         <button
+          disabled={count_warehouse_3 === '0'}
           type="button"
-          className="mx-auto block h-[48px] w-[186px] rounded-[8px] bg-darkBlueBg text-[14px] font-bold uppercase leading-[1.7] text-primaryText transition-all hover:bg-darkBg/85"
+          className="mx-auto block h-[48px] w-[186px] rounded-[8px] bg-darkBlueBg text-[14px] font-bold uppercase leading-[1.7] text-primaryText transition-all hover:bg-darkBg/85 disabled:bg-slate-500"
         >
           Купити
         </button>

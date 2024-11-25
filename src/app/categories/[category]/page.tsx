@@ -1,51 +1,38 @@
 export const dynamic = 'force-dynamic';
 
-import { getCategories } from '@/actions/servicesAPI';
-import { CategoryList } from '@/components/base';
 import Link from 'next/link';
 
-// type Category = {
-//   id: string;
-//   name: string;
-//   parent_id: number;
-// };
+import { CategoryList } from '@/components/base';
 
-// export async function generateStaticParams() {
-//   const categories = await getMainCategories();
-
-//   return (
-//     categories?.map((category: Category) => {
-//       return {
-//         category: category.id.toString(),
-//       };
-//     }) || []
-//   );
-// }
+import { getCategories } from '@/actions/servicesAPI';
 
 export default async function CategoryPage({
   params: { category },
+  searchParams,
 }: {
-  params: { category: string };
+  params: { product: string; category: string };
+  searchParams: { page?: string; name: string };
 }) {
   console.log('categoryID', category);
   const categories = await getCategories(category);
 
-  // console.log('categories', categories);
   return (
     <>
       <section className="section bg-slate-500">
         <div className="container">
           <Link
             href="/#main-cat"
-            className="mb-10 inline-block bg-slate-50 p-4"
+            className="mb-10 inline-block  rounded-[8px] bg-slate-50 px-4 py-2"
           >
-            Назад
+            До всіх категорій
           </Link>
-          <h1 className="mb-10 text-[40px]">
-            {category === '1' ? 'Мастильні матеріали' : 'SubCategories'}
-          </h1>
+          <h1 className="mb-10 text-[40px]">{searchParams.name}</h1>
 
-          <CategoryList data={categories} path={`${category}`} />
+          <CategoryList
+            data={categories}
+            path={`${category}`}
+            nameCat={searchParams.name}
+          />
         </div>
       </section>
     </>

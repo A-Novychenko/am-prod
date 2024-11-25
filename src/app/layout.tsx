@@ -60,11 +60,13 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} ${geologica.variable} ${lora.variable}`}
       >
-        <Header />
+        <div className="flex min-h-screen flex-col">
+          <Header />
 
-        <main>{children}</main>
+          <main className="flex grow flex-col">{children}</main>
 
-        <Footer />
+          <Footer />
+        </div>
       </body>
     </html>
   );

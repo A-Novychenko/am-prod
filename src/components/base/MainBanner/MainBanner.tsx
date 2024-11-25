@@ -11,7 +11,7 @@ export const MainBanner: React.FC = () => {
         slidesData={mainBannerData}
         slideComponent={MainBannerCard}
         slideClassName=""
-        wrapClassName="w-[640px]"
+        wrapClassName="xl:w-[640px]"
       />
     </div>
   );

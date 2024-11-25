@@ -37,7 +37,7 @@ export const ShowCaseCard: React.FC<ShowCaseCardProps> = async ({
   const image = imgCDN ? imgCDN : img;
 
   return (
-    <div className="flex h-[546px] w-[286px] flex-col items-center overflow-hidden rounded-[16px] bg-lightBg">
+    <div className="flex h-[546px] flex-col items-center overflow-hidden rounded-[16px] bg-lightBg md:w-[286px] smOnly:w-full">
       <div className="mt-6 size-[234px] p-6">
         <Image
           src={image}
@@ -47,7 +47,8 @@ export const ShowCaseCard: React.FC<ShowCaseCardProps> = async ({
           className="block size-full object-contain"
         />
       </div>
-      <div className="p-6">
+
+      <div className="p-6 smOnly:w-full">
         <h3 className="mb-2 line-clamp-1 overflow-hidden text-ellipsis text-[16px] font-semibold uppercase leading-[1.5] text-secondaryText">
           {name}
         </h3>

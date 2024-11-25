@@ -31,7 +31,7 @@ export const VinRequestForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex h-[600px] w-[500px] flex-col gap-4 rounded-[16px] bg-darkBg p-10 text-[16px]"
+      className="flex flex-col gap-4 rounded-[16px] bg-darkBg p-3 text-[16px] md:h-[600px] md:w-[500px] md:p-10 smOnly:mb-10"
     >
       <VinRequestFormRequiredInput
         config={vinCode}
@@ -55,19 +55,19 @@ export const VinRequestForm: React.FC = () => {
         trigger={trigger}
       />
 
-      <div className="flex gap-x-6">
+      <div className="flex flex-col gap-6 md:flex-row">
         <VinRequestFormInput
           config={engine}
           register={register}
           errors={errors}
           trigger={trigger}
-          inputClassName="w-[120px]"
+          inputClassName="md:w-[120px]"
         />
 
         <VinRequestFormSelect
           config={fuel}
           register={register}
-          inputClassName="w-[140px] "
+          inputClassName="md:w-[140px] "
         />
 
         <VinRequestFormInput

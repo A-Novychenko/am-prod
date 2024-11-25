@@ -10,7 +10,7 @@ export const Assistance = () => {
   const { label, textTG, textViber, textReCall } = staticData.assistance;
 
   return (
-    <Popover className="relative w-full text-center">
+    <Popover className="relative w-full text-center smOnly:mt-2">
       <Popover.Button> {label}</Popover.Button>
 
       <Popover.Panel className="absolute z-10 bg-lightBg text-secondaryText">

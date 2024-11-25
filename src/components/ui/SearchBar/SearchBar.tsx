@@ -9,7 +9,7 @@ export const SearchBar = () => {
   return (
     <div className="relative">
       <input
-        className="w-[300px] rounded-md p-2 pr-10 text-[20px] text-secondaryText"
+        className="w-full rounded-md p-2 pr-10 text-secondaryText xl:w-[300px] xl:text-[20px]"
         placeholder={placeholder}
       />
 

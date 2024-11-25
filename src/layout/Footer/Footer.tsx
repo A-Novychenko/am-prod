@@ -16,23 +16,29 @@ export const Footer = () => {
     <footer className=" bg-darkBg text-primaryText">
       <div className="container">
         <FooterLinks />
-        <div className="flex items-center justify-between py-8">
-          <div className="flex w-[433px] items-center justify-between">
+
+        <div className="items-center justify-between py-8 xl:flex">
+          <div className="items-center justify-between xl:flex xl:w-[433px] smOnly:text-center">
             <WorkSchedule />
+
             <Socials />
           </div>
-          <Logo />
 
-          <div className="flex w-[433px] gap-8 text-[20px] text-primaryText">
-            <ul className="flex h-[74px] flex-col items-center justify-between">
+          <div className="smOnly:mb-4 smOnly:flex smOnly:justify-center ">
+            <Logo />
+          </div>
+
+          <div className="gap-8 text-[20px] text-primaryText xl:flex xl:w-[433px] smOnly:text-center">
+            <ul className="h-[74px] flex-col items-center justify-between xl:flex">
               <li>
                 <Link
                   href={`mailto:${mail}`}
-                  className="cursor-pointer transition-all hover:text-accent focus:text-accent"
+                  className="cursor-pointer transition-all hover:text-accent focus:text-accent smOnly:mb-2 smOnly:inline-block"
                 >
                   {mail}
                 </Link>
               </li>
+
               <li>
                 <Link
                   href={site}

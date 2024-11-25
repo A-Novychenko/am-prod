@@ -10,15 +10,16 @@ export const Socials: React.FC = () => {
   const { title, links } = staticData.socials;
 
   return (
-    <div>
-      <p className="text-[22px] font-semibold">{title}</p>
-      <ul>
+    <div className="smOnly:mb-4">
+      <p className="text-[22px] font-semibold smOnly:mb-2">{title}</p>
+
+      <ul className="smOnly:flex smOnly:flex-col smOnly:items-center">
         {links &&
           links.map(({ name, path }, idx) => (
             <li key={idx}>
               <Link
                 href={path}
-                className="flex cursor-pointer gap-2  transition-all hover:stroke-accent hover:text-accent focus:stroke-accent focus:text-accent"
+                className="flex cursor-pointer gap-2  transition-all hover:stroke-accent hover:text-accent focus:stroke-accent focus:text-accent smOnly:mb-2"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >

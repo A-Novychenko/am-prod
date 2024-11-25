@@ -7,7 +7,7 @@ export const FooterLinks: React.FC = () => {
 
   return (
     <nav>
-      <ul className="flex justify-between border-b border-white/30">
+      <ul className="justify-between border-b border-white/30 xl:flex smOnly:text-center">
         {footerLinks &&
           footerLinks.map(({ name, href }, idx) => (
             <li key={idx} className="p-4">

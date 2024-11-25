@@ -14,9 +14,9 @@ export const MainBannerCard: React.FC<MainBannerCardProps> = ({
   const inStock = formatAv > 0;
 
   return (
-    <div className="flex h-[600px] w-full flex-col items-center justify-between rounded-2xl p-10">
-      <div className="size-[300px]">
-        <div className="size-[300px]">
+    <div className="flex h-[440px] w-full flex-col items-center justify-between rounded-2xl  p-4 xl:h-[600px] xl:p-10">
+      <div className="h-[150px] xl:size-[300px] smOnly:mb-4">
+        <div className="h-[150px] xl:size-[300px]">
           <Image
             src={img}
             width={300}
@@ -27,11 +27,13 @@ export const MainBannerCard: React.FC<MainBannerCardProps> = ({
           />
         </div>
       </div>
-      <div className="flex h-[180px] flex-col justify-between">
+
+      <div className="flex flex-col justify-between xl:h-[180px]">
         <div>
-          <p className="mb-4 text-[24px]">{`${category} ${name}`}</p>
+          <p className="mb-4 xl:text-[24px]">{`${category} ${name}`}</p>
           <p className="mb-4">{description}</p>
         </div>
+
         <div>
           <p className="mb-4 text-[24px] font-semibold">
             {`Ціна ${Number(Number(price) * 1.1).toFixed(0)} грн`}

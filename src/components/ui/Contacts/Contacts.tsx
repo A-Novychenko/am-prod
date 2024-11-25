@@ -1,13 +1,23 @@
 import Link from 'next/link';
 
+import { cn } from '@/utils/cn';
+
 import staticData from '@/data/common.json';
 
-export const Contacts: React.FC = () => {
+import { ContactsProps } from './types';
+
+export const Contacts: React.FC<ContactsProps> = ({ classNameWrap }) => {
   const {
     phone: { kyivstar, lifecell, lifecellText, kyivstarText },
   } = staticData.contacts;
+
   return (
-    <ul className="flex flex-col gap-4 text-[24px] text-primaryText">
+    <ul
+      className={cn(
+        'flex flex-col gap-4 text-primaryText xl:text-[24px]',
+        classNameWrap,
+      )}
+    >
       <li>
         <Link
           href={`tel:${lifecell}`}
