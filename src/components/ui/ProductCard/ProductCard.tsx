@@ -21,11 +21,13 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
     price_currency_980,
     // price_type_1_currency_980,
     // price_type_2_currency_980,
-    // count_warehouse_3,
+    count_warehouse_3,
     // createdAt,
     // updatedAt,
     img,
   } = product;
+
+  // console.log('count_warehouse_3', count_warehouse_3);
 
   return (
     <div className="flex h-[546px] w-[286px] flex-col items-center overflow-hidden rounded-[16px] bg-lightBg">
@@ -48,6 +50,14 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
         </p>
         <p className="mb-4 overflow-hidden text-ellipsis text-right text-[20px] font-bold uppercase leading-[1.6] text-darkBlueText">
           {`${Number(Number(price_currency_980) * 1.1).toFixed(0)} грн`}
+        </p>
+        <p className="mb-4 overflow-hidden text-ellipsis text-right text-[12px] font-bold uppercase leading-[1.6]">
+          {/* {`${Number(Number(count_warehouse_3)).toFixed(0)}`} */}
+          {count_warehouse_3 === '0' ? (
+            <span className="text-rose-800">Немає в наявності</span>
+          ) : (
+            <span className="text-[14px] text-green-500">В наявності</span>
+          )}
         </p>
         <button
           type="button"
