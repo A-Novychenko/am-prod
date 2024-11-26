@@ -7,6 +7,7 @@ import './globals.css';
 import { Header } from '../layout/Header';
 import { Footer } from '@/layout/Footer';
 import { getMainCategories } from '@/actions/servicesAPI';
+import { CartProvider } from '@/context';
 
 const raleway = Raleway({
   subsets: ['cyrillic', 'latin'],
@@ -60,13 +61,15 @@ export default function RootLayout({
       <body
         className={`${raleway.variable} ${geologica.variable} ${lora.variable}`}
       >
-        <div className="flex min-h-screen flex-col">
-          <Header />
+        <CartProvider>
+          <div className="flex min-h-screen flex-col">
+            <Header />
 
-          <main className="flex grow flex-col">{children}</main>
+            <main className="flex grow flex-col">{children}</main>
 
-          <Footer />
-        </div>
+            <Footer />
+          </div>
+        </CartProvider>
       </body>
     </html>
   );

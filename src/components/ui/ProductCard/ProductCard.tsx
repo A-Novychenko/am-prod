@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 import { ProductCardProps } from './types';
+import { BuyBtn } from '../BuyBtn';
+import { CartItem } from '@/context/CartProvider/types';
 // import image from 'next/image';
 
 const IMG_DEFAULT =
@@ -9,7 +11,7 @@ const IMG_DEFAULT =
 export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
   const {
     // _id,
-    // id,
+    id,
     // cid,
     // category,
     // category_id,
@@ -28,6 +30,14 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
   } = product;
 
   // console.log('count_warehouse_3', count_warehouse_3);
+
+  const cartItem: CartItem = {
+    id,
+    name,
+    price: Number((Number(price_currency_980) * 1.1).toFixed(0)),
+    quantity: 1,
+    img: img ? img : IMG_DEFAULT,
+  };
 
   return (
     <div className="flex w-full flex-col items-center overflow-hidden rounded-[16px] bg-lightBg md:h-[546px] md:w-[286px]">
@@ -63,13 +73,14 @@ export const ProductCard: React.FC<ProductCardProps> = async ({ product }) => {
             <span className="text-[14px] text-green-500">В наявності</span>
           )}
         </p>
-        <button
+        {/* <button
           disabled={count_warehouse_3 === '0'}
           type="button"
           className="mx-auto block h-[48px] w-[186px] rounded-[8px] bg-darkBlueBg text-[14px] font-bold uppercase leading-[1.7] text-primaryText transition-all hover:bg-darkBg/85 disabled:bg-slate-500"
         >
           Купити
-        </button>
+        </button> */}
+        <BuyBtn disabled={count_warehouse_3 === '0'} cartItem={cartItem} />
       </div>
     </div>
   );

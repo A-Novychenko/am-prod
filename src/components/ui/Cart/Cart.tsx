@@ -1,26 +1,94 @@
 'use client';
 
-import { cn } from '@/utils/cn';
+import { useState } from 'react';
 
-import CartIcon from '~/icons/shopping-cart.svg';
+import {
+  CartContactForm,
+  CartDeliveryForm,
+  CartProducts,
+} from '@/components/ui';
+import { useCart } from '@/context';
+import { DeliveryMethod } from './types';
 
-import staticData from '@/data/common.json';
+const Cart: React.FC = () => {
+  const { items } = useCart();
 
-export const Cart: React.FC = () => {
-  const { alt } = staticData.cart;
+  const [isVisible, setIsVisible] = useState(1);
 
-  const qty = 0;
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    comment: '',
+  });
+
+  const [deliveryMethod, setDeliveryMethod] =
+    useState<DeliveryMethod>('pickup');
+
+  const handleVisibleIncr = () => {
+    setIsVisible(pSt => pSt + 1);
+  };
+
+  const handleVisibleDecr = () => {
+    setIsVisible(pSt => pSt - 1);
+  };
+
+  const isEmptyCard = items.length === 0;
+
   return (
-    <div className="relative">
-      <CartIcon width={60} height={60} alt={alt} />
-      <span
-        className={cn(
-          'absolute left-[18%] top-[-30%] flex size-[32px] items-center justify-center rounded-full bg-slate-500 text-[20px]',
-          { 'bg-accent text-secondaryText': qty > 0 },
-        )}
-      >
-        {qty}
-      </span>
-    </div>
+    <>
+      {isEmptyCard ? (
+        <p>Немає товарів у кошику</p>
+      ) : (
+        <div className="flex flex-col">
+          {isVisible === 1 && <CartProducts />}
+
+          {isVisible === 2 && (
+            <CartContactForm formData={formData} setFormData={setFormData} />
+          )}
+
+          {isVisible === 3 && (
+            <div className="p-6">
+              <CartDeliveryForm
+                deliveryMethod={deliveryMethod}
+                setDeliveryMethod={setDeliveryMethod}
+              />
+            </div>
+          )}
+
+          <div className="mx-auto flex gap-10">
+            {isVisible === 1 ? null : (
+              <button
+                type="button"
+                className="mx-auto rounded bg-mediumBg p-2 text-center font-medium"
+                onClick={handleVisibleDecr}
+              >
+                Повернутись
+              </button>
+            )}
+
+            {isVisible === 3 ? (
+              <button
+                type="button"
+                className="mx-auto rounded bg-accent p-2 text-center font-medium"
+                onClick={handleVisibleIncr}
+              >
+                Замовити
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="mx-auto rounded bg-accent p-2 text-center font-medium"
+                onClick={handleVisibleIncr}
+              >
+                Продовжити
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
+
+export default Cart;

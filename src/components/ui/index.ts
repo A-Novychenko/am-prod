@@ -1,5 +1,5 @@
 export * from './Assistance';
-export * from './Cart';
+export * from './CartWidget';
 export * from './Contacts';
 export * from './Logo';
 export * from './MainBannerCard';
@@ -17,3 +17,7 @@ export * from './FooterLinks';
 export * from './Socials';
 export * from './ProductCard';
 export * from './Pagination';
+export * from './BuyBtn';
+export * from './CartProducts';
+export * from './CartContactForm';
+export * from './CartDeliveryForm';

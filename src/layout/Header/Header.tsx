@@ -1,6 +1,6 @@
 import {
   Assistance,
-  Cart,
+  CartWidget,
   Contacts,
   Logo,
   NavLinks,
@@ -28,7 +28,7 @@ export const Header = () => {
           <div className="flex items-center justify-between xl:gap-12 smOnly:order-2 smOnly:mb-4">
             <Contacts />
 
-            <Cart />
+            <CartWidget />
           </div>
         </div>
 
