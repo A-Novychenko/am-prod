@@ -31,7 +31,7 @@ export default async function ProductPage({
           <h1 className="mb-10 text-[40px]">{searchParams.name}</h1>
         </div>
 
-        <ProductList products={products} />
+        {products && <ProductList products={products} />}
 
         <Pagination
           totalPages={totalPages}

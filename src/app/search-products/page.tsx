@@ -25,9 +25,12 @@ const SearchProducts = dynamic(
 
 export default function SearchProductPage() {
   return (
-    <div>
-      <h1>My page</h1>
-      <SearchProducts />
-    </div>
+    <section className="section">
+      <div className="container">
+        <h1>Пошук товарів</h1>
+
+        <SearchProducts />
+      </div>
+    </section>
   );
 }
