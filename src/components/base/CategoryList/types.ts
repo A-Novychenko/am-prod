@@ -1,7 +1,6 @@
 export type CategoryListProps = {
   data: Category[];
   path: string;
-  nameCat?: string;
 };
 
 type Category = {

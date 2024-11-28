@@ -1,5 +1,8 @@
 export type ProductListProps = {
   products: Product[];
+  viewMode: string;
+  category: string;
+  categoryName: string;
 };
 
 export type Product = {
@@ -13,9 +16,7 @@ export type Product = {
   tecdoc_article: string;
   name: string;
   description: string;
-  price_currency_980: string;
-  price_type_1_currency_980: string;
-  price_type_2_currency_980: string;
+  price: string;
   count_warehouse_3: string;
   img?: string;
   createdAt: string;

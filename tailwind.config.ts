@@ -28,7 +28,7 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        raleway: ['var(--font-raleway)'],
+        nunito: ['var(--font-nunito)'],
         geologica: ['var(--font-geologica)'],
         lora: ['var(--font-lora)'],
       },

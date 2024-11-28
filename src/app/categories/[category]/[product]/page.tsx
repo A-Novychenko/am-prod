@@ -1,11 +1,9 @@
 export const dynamic = 'force-dynamic';
 
-import Link from 'next/link';
-
 import { ProductList } from '@/components/base';
 import { Pagination } from '@/components/ui';
 
-import { getProducts } from '@/actions/servicesAPI';
+import { getCategory, getProducts } from '@/actions/servicesAPI';
 
 export default async function ProductPage({
   params: { product, category },
@@ -17,28 +15,33 @@ export default async function ProductPage({
   const page = parseInt(searchParams.page || '1', 10);
   const { products, totalPages } = await getProducts(product, page);
 
+  const res = await getCategory(category);
+
+  const categoryName = products[0]?.category;
+  const prevCategoryName = res?.name ? res?.name : '';
+
+  const initialViewMode = 'gallery';
+
   return (
-    <section className="section flex grow bg-slate-500">
+    <section className="section flex grow bg-mediumBg">
       <div className="container flex  grow flex-col justify-between">
-        <div>
-          <Link
-            href={`/categories/${category}`}
-            className="mb-10 inline-block rounded-[8px] bg-slate-50 px-4 py-2"
-          >
-            {`Повернутись в ${searchParams.nameCat}`}
-          </Link>
+        <h1 className="mb-10 text-[40px]">{categoryName}</h1>
 
-          <h1 className="mb-10 text-[40px]">{searchParams.name}</h1>
-        </div>
-
-        {products && <ProductList products={products} />}
+        {products && (
+          <ProductList
+            viewMode={initialViewMode}
+            products={products}
+            category={category}
+            categoryName={prevCategoryName}
+          />
+        )}
 
         <Pagination
           totalPages={totalPages}
           product={product}
           category={category}
           page={page}
-          name={searchParams.name}
+          name={categoryName}
         />
       </div>
     </section>

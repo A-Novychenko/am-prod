@@ -13,12 +13,12 @@ export default async function CategoryPage({
   params: { product: string; category: string };
   searchParams: { page?: string; name: string };
 }) {
-  console.log('categoryID', category);
+  console.log('category', category);
   const categories = await getCategories(category);
 
   return (
     <>
-      <section className="section bg-slate-500">
+      <section className="section bg-mediumBg">
         <div className="container">
           <Link
             href="/#main-cat"
@@ -26,13 +26,10 @@ export default async function CategoryPage({
           >
             До всіх категорій
           </Link>
+
           <h1 className="mb-10 text-[40px]">{searchParams.name}</h1>
 
-          <CategoryList
-            data={categories}
-            path={`${category}`}
-            nameCat={searchParams.name}
-          />
+          <CategoryList data={categories} path={`${category}`} />
         </div>
       </section>
     </>

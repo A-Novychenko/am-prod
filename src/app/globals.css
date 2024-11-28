@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-lightBg font-raleway text-[16px] font-normal leading-[1.2];
+  @apply bg-lightBg font-nunito text-[16px] font-normal leading-[1.2];
 }
 
 .section {

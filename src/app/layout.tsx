@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Raleway, Geologica, Lora } from 'next/font/google';
+import { Geologica, Lora, Nunito } from 'next/font/google';
 
 import meta from '@/data/meta';
 
@@ -9,11 +9,12 @@ import { Footer } from '@/layout/Footer';
 import { getMainCategories } from '@/actions/servicesAPI';
 import { CartProvider } from '@/context';
 
-const raleway = Raleway({
+const nunito = Nunito({
   subsets: ['cyrillic', 'latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-raleway',
+  variable: '--font-nunito',
   display: 'swap',
+  adjustFontFallback: false,
 });
 
 const geologica = Geologica({
@@ -59,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="uk" className="scroll-smooth">
       <body
-        className={`${raleway.variable} ${geologica.variable} ${lora.variable}`}
+        className={`${nunito.variable} ${geologica.variable} ${lora.variable}`}
       >
         <CartProvider>
           <div className="flex min-h-screen flex-col">

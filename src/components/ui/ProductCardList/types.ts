@@ -1,4 +1,4 @@
-export type ProductCardProps = {
+export type ProductCardListProps = {
   product: {
     _id: string;
     id: number;
@@ -10,9 +10,7 @@ export type ProductCardProps = {
     tecdoc_article: string;
     name: string;
     description: string;
-    price_currency_980: string;
-    price_type_1_currency_980: string;
-    price_type_2_currency_980: string;
+    price: string;
     count_warehouse_3: string;
     createdAt: string;
     updatedAt: string;

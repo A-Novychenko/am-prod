@@ -2,11 +2,7 @@ import { CategoryCard } from '@/components/ui';
 
 import { CategoryListProps } from './types';
 
-export const CategoryList: React.FC<CategoryListProps> = ({
-  data,
-  path,
-  nameCat,
-}) => {
+export const CategoryList: React.FC<CategoryListProps> = ({ data, path }) => {
   return (
     <ul className="flex flex-col gap-10 xl:flex xl:flex-row xl:flex-wrap">
       {data &&
@@ -15,7 +11,7 @@ export const CategoryList: React.FC<CategoryListProps> = ({
             <CategoryCard
               id={id}
               name={name}
-              nameCat={nameCat}
+              nameCat={name}
               link={`${path}/${id}`}
             />
           </li>

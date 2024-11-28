@@ -1,26 +1,26 @@
-import { getCategories } from '@/actions/servicesAPI';
+// import { getCategories, getCategory } from '@/actions/servicesAPI';
 
-type Category = {
-  id: string;
-  name: string;
-  parent_id: number;
-};
+// type Category = {
+//   id: string;
+//   name: string;
+//   parent_id: number;
+// };
 
-export async function generateStaticParams({
-  params: { category },
-}: {
-  params: { category: string };
-}) {
-  const categories = await getCategories(category);
+// export async function generateStaticParams({
+//   params: { category },
+// }: {
+//   params: { category: string };
+// }) {
+//   const categories = await getCategories(category);
 
-  return (
-    categories?.map((category: Category) => {
-      return {
-        category: category.id.toString(),
-      };
-    }) || []
-  );
-}
+//   return (
+//     categories?.map((category: Category) => {
+//       return {
+//         category: category.id.toString(),
+//       };
+//     }) || []
+//   );
+// }
 
 export default async function CategoryLayout({
   // params: { category },
@@ -29,5 +29,17 @@ export default async function CategoryLayout({
   // params: { category: string };
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  // const { name } = await getCategory(category);
+  // console.log('name', name);
+  // console.log('namecategory', category);
+  return (
+    <>
+      {/* <section className="section">
+        <div className="container">
+          <h1>{name}</h1>
+        </div>
+      </section> */}
+      {children}
+    </>
+  );
 }
