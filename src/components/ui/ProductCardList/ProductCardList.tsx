@@ -29,7 +29,7 @@ const IMG_DEFAULT =
 //   ]
 // }
 
-const ProductCardList: React.FC<ProductCardListProps> = async ({ product }) => {
+const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
   const {
     // _id,
     id,
@@ -63,6 +63,10 @@ const ProductCardList: React.FC<ProductCardListProps> = async ({ product }) => {
     img: image,
   };
 
+  const handleErrorImage = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = IMG_DEFAULT;
+  };
+
   return (
     <div className="flex overflow-hidden rounded-[8px] bg-lightBg">
       <div className="h-[200px] shrink-0 p-2 md:h-[298px]">
@@ -74,6 +78,7 @@ const ProductCardList: React.FC<ProductCardListProps> = async ({ product }) => {
           className="block size-full object-contain"
           placeholder="blur"
           blurDataURL={IMG_DEFAULT}
+          onError={handleErrorImage}
         />
       </div>
 

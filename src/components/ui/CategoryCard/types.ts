@@ -3,4 +3,5 @@ export type CategoryCardProps = {
   name: string;
   link: string;
   nameCat?: string;
+  img?: string;
 };
