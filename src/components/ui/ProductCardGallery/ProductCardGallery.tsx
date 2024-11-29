@@ -65,7 +65,7 @@ const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
   };
 
   return (
-    <div className="flex w-full flex-col items-center overflow-hidden rounded-[8px] bg-lightBg md:h-[600px] md:w-[298px]">
+    <div className="flex w-full flex-col items-center overflow-hidden rounded-[8px] bg-lightBg  md:w-[298px]">
       <div className="h-[200px]  md:h-[298px]">
         <Image
           src={image}
@@ -78,12 +78,16 @@ const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
         />
       </div>
 
-      <div className="p-6 pt-0 smOnly:w-full">
+      <div className="w-full p-4 pt-0 text-[14px]/normal">
         <p>{brand}</p>
-        <h3 className="mb-2 line-clamp-1 overflow-hidden text-ellipsis text-[16px] font-semibold uppercase leading-[1.5] text-secondaryText">
+
+        <h3 className="mb-2 line-clamp-2 h-[42px] overflow-hidden text-ellipsis text-[14px]/normal font-semibold uppercase leading-[1.5] text-secondaryText">
           {name}
         </h3>
-        <p className="mb-4 line-clamp-2 h-[48px] overflow-hidden text-ellipsis text-[16px] font-normal leading-[1.5] text-secondaryText">
+
+        <p className="mb-4 line-clamp-3  h-[63px] overflow-hidden text-ellipsis  font-normal  text-secondaryText">
+          {description}
+          {description}
           {description}
         </p>
         <p className="line-clamp-2 overflow-hidden text-ellipsis text-[16px] font-normal leading-[1.5] text-secondaryText">

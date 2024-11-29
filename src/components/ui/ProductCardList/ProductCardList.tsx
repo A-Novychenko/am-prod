@@ -63,9 +63,9 @@ const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
     img: image,
   };
 
-  const handleErrorImage = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = IMG_DEFAULT;
-  };
+  // const handleErrorImage = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  //   e.currentTarget.src = IMG_DEFAULT;
+  // };
 
   return (
     <div className="flex overflow-hidden rounded-[8px] bg-lightBg">
@@ -78,7 +78,7 @@ const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
           className="block size-full object-contain"
           placeholder="blur"
           blurDataURL={IMG_DEFAULT}
-          onError={handleErrorImage}
+          // onError={handleErrorImage}
         />
       </div>
 

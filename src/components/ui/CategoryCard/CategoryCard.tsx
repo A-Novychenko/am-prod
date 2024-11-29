@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import OilIcon from '~/icons/catalog/engine-oil-icon.svg';
 import FluidIcon from '~/icons/catalog/technical-fluid-icon.svg';
@@ -11,7 +12,6 @@ import PaintsIcon from '~/icons/catalog/paints-icon.svg';
 import SaleIcon from '~/icons/catalog/sale-icon.svg';
 
 import { CategoryCardProps } from './types';
-import Image from 'next/image';
 
 const IMG_DEFAULT =
   'https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph';
@@ -40,11 +40,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 }) => {
   const IconData = iconsMap[id];
 
-  const handleErrorImage = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = IMG_DEFAULT;
-  };
-
-  const image = img && img?.length > 0 ? img[0] : IMG_DEFAULT;
+  const image = img && img?.length > 0 ? img : IMG_DEFAULT;
 
   return (
     <Link href={`${link}?name=${name}&nameCat=${nameCat}`}>
@@ -58,15 +54,19 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
         ) : (
           <>
             {img && (
-              <Image
-                src={image}
-                width={200}
-                height={200}
-                alt={nameCat ? nameCat : link}
-                placeholder="blur"
-                blurDataURL={IMG_DEFAULT}
-                onError={handleErrorImage}
-              />
+              <div className="size-full">
+                <div className="h-[223px]">
+                  <Image
+                    src={image}
+                    width={200}
+                    height={200}
+                    alt={nameCat ? nameCat : link}
+                    placeholder="blur"
+                    blurDataURL={IMG_DEFAULT}
+                    className="size-full object-contain"
+                  />
+                </div>
+              </div>
             )}
           </>
         )}
