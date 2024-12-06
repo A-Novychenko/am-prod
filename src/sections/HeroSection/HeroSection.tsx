@@ -3,7 +3,9 @@ import { MainBanner, VinRequestForm } from '@/components/base';
 import { getBannerProducts } from '@/actions/servicesAPI';
 
 export const HeroSection: React.FC = async () => {
-  const { products } = await getBannerProducts();
+  const res = await getBannerProducts();
+
+  const products = res ? res.products : [];
 
   return (
     <section className="section ">
