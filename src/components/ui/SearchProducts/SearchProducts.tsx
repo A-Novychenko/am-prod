@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import { BuyBtn } from '../BuyBtn';
 
 const IMG_DEFAULT =
   'https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph';
@@ -20,8 +21,6 @@ const SearchProducts = () => {
     }
   }, [searchParams]);
 
-  console.log('products', products);
-
   return (
     <>
       <h1>
@@ -35,17 +34,24 @@ const SearchProducts = () => {
           <ul>
             {products.map((product, index) => {
               const {
+                id,
                 article,
                 name,
+                price,
                 description,
-                price_currency_980,
                 count_warehouse_3,
                 img,
               } = product;
 
-              console.log('img', img);
-
               const image = img && Array.isArray(img) ? img[0] : IMG_DEFAULT;
+
+              const cartItem = {
+                id,
+                name,
+                price: Number((Number(price) * 1.1).toFixed(0)),
+                quantity: 1,
+                img: image,
+              };
 
               return (
                 <li key={index}>
@@ -71,8 +77,9 @@ const SearchProducts = () => {
                         {`Артикул: ${article}`}
                       </p>
                       <p className="mb-1 overflow-hidden text-ellipsis text-right text-[20px] font-bold uppercase leading-[1.6] text-darkBlueText">
-                        {`${Number(Number(price_currency_980) * 1.1).toFixed(0)} грн`}
+                        {price} грн
                       </p>
+
                       <p className="mb-4 overflow-hidden text-ellipsis text-right text-[12px] font-bold uppercase leading-[1.6]">
                         {count_warehouse_3 === '0' ? (
                           <span className="text-rose-800">
@@ -84,13 +91,11 @@ const SearchProducts = () => {
                           </span>
                         )}
                       </p>
-                      <button
+
+                      <BuyBtn
                         disabled={count_warehouse_3 === '0'}
-                        type="button"
-                        className="mx-auto block h-[48px] w-[186px] rounded-[8px] bg-darkBlueBg text-[14px] font-bold uppercase leading-[1.7] text-primaryText transition-all hover:bg-darkBg/85 disabled:bg-slate-500"
-                      >
-                        Купити
-                      </button>
+                        cartItem={cartItem}
+                      />
                     </div>
                   </div>
                 </li>
