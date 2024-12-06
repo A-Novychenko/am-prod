@@ -14,7 +14,9 @@ export const CategoryList: React.FC<CategoryListProps> = ({ data, path }) => {
           <li
             key={idx}
             className={cn(
-              'scale-100 transition-all hover:scale-105',
+              'order-3 scale-100 transition-all hover:scale-105',
+              { 'order-1': id === 1 },
+              { 'order-2': id === 5 },
               styles.card,
             )}
           >
