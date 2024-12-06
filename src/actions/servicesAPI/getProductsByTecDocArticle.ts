@@ -1,3 +1,5 @@
+const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL as string;
+
 export const getProductsByTecDocArticle = async (
   article: string,
   // page?: number,
@@ -5,7 +7,8 @@ export const getProductsByTecDocArticle = async (
   try {
     // const result = await fetch(`http://localhost:3005/api/catalog/search-products`, {
     const result = await fetch(
-      `https://autoparts-backend.onrender.com/api/catalog/search-products`,
+      // `https://autoparts-backend.onrender.com/api/catalog/search-products`,
+      `${NEXT_PUBLIC_API_URL}/catalog/search-products`,
       {
         method: 'POST',
         headers: {
