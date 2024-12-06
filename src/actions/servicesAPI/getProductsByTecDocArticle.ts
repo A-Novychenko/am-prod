@@ -5,7 +5,7 @@ export const getProductsByTecDocArticle = async (
   // page?: number,
 ) => {
   try {
-    const result = await fetch(`${API_URL}/api/catalog/search-products`, {
+    const result = await fetch(`${API_URL}/catalog/search-products`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
