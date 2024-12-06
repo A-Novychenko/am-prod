@@ -1,11 +1,11 @@
-// const API_URL = process.env.API_URL as string;
+const API_URL = process.env.API_URL as string;
 
 export const getProductsByTecDocArticle = async (
   article: string,
   // page?: number,
 ) => {
   try {
-    const result = await fetch(`{API_URL}/api/catalog/search-products`, {
+    const result = await fetch(`${API_URL}/api/catalog/search-products`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
