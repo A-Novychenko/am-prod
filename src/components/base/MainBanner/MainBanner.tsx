@@ -2,13 +2,13 @@
 
 import { MainBannerCard, Slider } from '@/components/ui';
 
-import mainBannerData from '@/data/mainBanner.json';
-
-export const MainBanner: React.FC = () => {
+export const MainBanner: React.FC<{ bannerProducts: IBannerProduct[] }> = ({
+  bannerProducts,
+}) => {
   return (
     <div>
       <Slider
-        slidesData={mainBannerData}
+        slidesData={bannerProducts}
         slideComponent={MainBannerCard}
         slideClassName=""
         wrapClassName="xl:w-[640px]"
