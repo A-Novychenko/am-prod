@@ -26,7 +26,7 @@ export const MainBannerCard: React.FC<IBannerProduct> = ({
 
   return (
     // <div className="flex h-[440px] w-full flex-col items-center justify-between rounded-2xl  p-4 xl:h-[640px] xl:p-10">
-    <div className="flex w-full flex-col items-center justify-between rounded-2xl  bg-lightBg p-4 xl:p-10">
+    <div className="flex size-full flex-col items-center justify-between  rounded-2xl bg-lightBg p-4 xl:p-10">
       <div className="h-[150px] xl:h-[250px] smOnly:mb-4">
         <div className="h-[150px] xl:size-[250px]">
           <Image
