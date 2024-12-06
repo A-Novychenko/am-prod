@@ -24,7 +24,7 @@ export const CartWidget: React.FC = () => {
         <span
           className={cn(
             'absolute left-[18%] top-[-30%] flex size-[32px] items-center justify-center rounded-full bg-slate-500 text-[20px]',
-            { 'bg-accent text-secondaryText': qty > 0 },
+            { 'bg-redApple text-primaryText': qty > 0 },
           )}
         >
           {qty}

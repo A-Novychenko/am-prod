@@ -29,6 +29,7 @@ const SearchProducts = () => {
           ? `Знайдено: ${products.length}`
           : 'Нічого не знайдено'}
       </h1>
+
       <div>
         {products && products.length > 0 ? (
           <ul>
@@ -41,12 +42,17 @@ const SearchProducts = () => {
                 count_warehouse_3,
                 img,
               } = product;
+
+              console.log('img', img);
+
+              const image = img && Array.isArray(img) ? img[0] : IMG_DEFAULT;
+
               return (
                 <li key={index}>
                   <div className="flex w-full flex-col items-center overflow-hidden rounded-[16px] bg-lightBg md:h-[546px] md:w-[286px]">
                     <div className="mt-2 h-[200px] p-5 md:size-[234px]">
                       <Image
-                        src={img ? img : IMG_DEFAULT}
+                        src={image}
                         width={1064}
                         height={1064}
                         alt={name}

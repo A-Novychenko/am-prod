@@ -39,6 +39,7 @@ const config: Config = {
         mediumBg: '#E5EEF6',
         darkBlueBg: '#0045CB',
         accent: '#00EA90',
+        redApple: '#FF3B30',
 
         primaryText: '#FFFFFF',
         secondaryText: '#101340',
