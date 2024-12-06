@@ -9,6 +9,7 @@ export const HeroSection: React.FC = async () => {
   const products = res ? res.products : [];
 
   return (
+    // <section className={cn(' py-4')}>
     <section className={cn('bg-mediumBg py-4')}>
       <div className="container">
         <div className="justify-between xl:flex">

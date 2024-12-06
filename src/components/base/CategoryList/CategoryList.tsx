@@ -14,11 +14,13 @@ export const CategoryList: React.FC<CategoryListProps> = ({ data, path }) => {
           <li
             key={idx}
             className={cn(
-              'order-3 scale-100 transition-all hover:scale-105',
+              'order-3 scale-100 rounded-[16px] shadow-custom transition-all hover:scale-105',
               { 'order-1': id === 1 },
               { 'order-2': id === 5 },
               styles.card,
             )}
+            // style={{ boxShadow: '2px 5px 15px rgba(0, 69, 203, 0.5)' }}
+            // style={{ boxShadow: '2px 5px 15px rgba(0, 0, 0, 0.5)' }}
           >
             <CategoryCard
               id={id}

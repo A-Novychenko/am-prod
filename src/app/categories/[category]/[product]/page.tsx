@@ -20,7 +20,7 @@ export default async function ProductPage({
   const categoryName = products[0]?.category;
   const prevCategoryName = res?.name ? res?.name : '';
 
-  const initialViewMode = 'gallery';
+  const initialViewMode = 'list';
 
   return (
     <section className="section flex grow bg-mediumBg">

@@ -5,9 +5,7 @@ export const getProductsByTecDocArticle = async (
   // page?: number,
 ) => {
   try {
-    // const result = await fetch(`http://localhost:3005/api/catalog/search-products`, {
     const result = await fetch(
-      // `https://autoparts-backend.onrender.com/api/catalog/search-products`,
       `${NEXT_PUBLIC_API_URL}/catalog/search-products`,
       {
         method: 'POST',

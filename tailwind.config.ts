@@ -56,6 +56,10 @@ const config: Config = {
       transitionTimingFunction: {
         DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
       },
+      boxShadow: {
+        custom: '2px 5px 15px rgba(0, 69, 203, 0.5)',
+        customLight: '2px 5px 15px rgba(0, 69, 203, 0.2)',
+      },
     },
   },
   plugins: [],

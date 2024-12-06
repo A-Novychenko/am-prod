@@ -29,7 +29,7 @@ export const ProductList: React.FC<ProductListProps> = ({
   category,
   categoryName,
 }) => {
-  const [viewMode, setViewMode] = useState('gallery'); // Початковий режим
+  const [viewMode, setViewMode] = useState('list'); // Початковий режим
 
   const handleSetGallery = () => {
     setViewMode('gallery');
