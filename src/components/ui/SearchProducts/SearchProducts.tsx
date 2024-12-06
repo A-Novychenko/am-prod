@@ -31,7 +31,7 @@ const SearchProducts = () => {
 
       <div>
         {products && products.length > 0 ? (
-          <ul>
+          <ul className="xl:flex">
             {products.map((product, index) => {
               const {
                 id,

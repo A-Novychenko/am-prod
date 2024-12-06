@@ -50,7 +50,7 @@ export const ProductList: React.FC<ProductListProps> = ({
           {categoryName}
         </Link>
 
-        <div className="flex gap-2">
+        <div className="hidden gap-2 xl:flex">
           <button onClick={handleSetGallery}>
             <RiGalleryView2
               size={24}
@@ -83,7 +83,14 @@ export const ProductList: React.FC<ProductListProps> = ({
               {viewMode === 'gallery' ? (
                 <ProductCardGallery product={product} />
               ) : (
-                <ProductCardList product={product} />
+                <>
+                  <div className="hidden xl:block">
+                    <ProductCardList product={product} />
+                  </div>
+                  <div className="block xl:hidden">
+                    <ProductCardGallery product={product} />
+                  </div>
+                </>
               )}
             </li>
           ))}
