@@ -86,7 +86,7 @@ export const SearchBar = () => {
   return (
     <form onSubmit={handleSubmit} className="relative">
       <input
-        className="w-full rounded-md p-2 pr-10 text-secondaryText xl:w-[300px] xl:text-[20px]"
+        className="w-full rounded-md p-2 pr-10 text-secondaryText xl:w-[400px] xl:text-[20px]"
         placeholder={placeholder}
         value={searchQuery}
         onChange={handleInputChange}

@@ -29,7 +29,7 @@ export const VinRequestFormInput: React.FC<VinRequestFormInputProps> = ({
   };
 
   return (
-    <label className={cn('relative pb-4 text-primaryText', wrapClassName)}>
+    <label className={cn('relative text-primaryText', wrapClassName)}>
       <p className="mb-1">{label}</p>
 
       <input

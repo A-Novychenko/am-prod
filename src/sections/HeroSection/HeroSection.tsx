@@ -1,6 +1,7 @@
 import { MainBanner, VinRequestForm } from '@/components/base';
 
 import { getBannerProducts } from '@/actions/servicesAPI';
+import { cn } from '@/utils/cn';
 
 export const HeroSection: React.FC = async () => {
   const res = await getBannerProducts();
@@ -8,7 +9,7 @@ export const HeroSection: React.FC = async () => {
   const products = res ? res.products : [];
 
   return (
-    <section className="section ">
+    <section className={cn('bg-mediumBg py-4')}>
       <div className="container">
         <div className="justify-between xl:flex">
           <VinRequestForm />

@@ -44,18 +44,18 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 
   return (
     <Link href={`${link}?name=${name}&nameCat=${nameCat}`}>
-      <div className="flex flex-col items-center justify-between gap-6 rounded-[16px] bg-lightBg p-8 xl:h-[380px] xl:w-[378.67px]">
+      <div className="flex flex-col items-center justify-between gap-4 rounded-[16px] bg-lightBg px-2 py-4 xl:h-[228px] ">
         {IconData ? (
           <IconData.Component
-            width={180}
-            height={180}
+            width={120}
+            height={120}
             className={`shrink-0 ${IconData.className || ''}`}
           />
         ) : (
           <>
             {img && (
               <div className="size-full">
-                <div className="h-[223px]">
+                <div className="h-[150px]">
                   <Image
                     src={image}
                     width={200}
@@ -71,7 +71,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
           </>
         )}
 
-        <p className="pb-10 text-[24px]">{name}</p>
+        <p className=" mt-auto text-center text-[20px]">{name}</p>
       </div>
     </Link>
   );

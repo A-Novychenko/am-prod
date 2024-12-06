@@ -44,7 +44,7 @@ export const VinRequestFormRequiredInput: React.FC<
   };
 
   return (
-    <label className="relative pb-4 text-primaryText">
+    <label className="relative text-primaryText">
       <p className="mb-1 flex">
         {isRequiredField ? (
           <span className="mr-1 block  text-[24px] leading-none text-red">

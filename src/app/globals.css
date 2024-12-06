@@ -7,5 +7,5 @@ body {
 }
 
 .section {
-  @apply py-[60px] md:py-[80px] xl:py-[80px];
+  @apply py-[60px] md:py-[80px] xl:py-[40px];
 }

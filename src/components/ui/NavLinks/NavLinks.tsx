@@ -10,10 +10,10 @@ export const NavLinks: React.FC = () => {
       <ul className="justify-between border-t border-white/30 xl:flex">
         {navLinks &&
           navLinks.map(({ name, href }, idx) => (
-            <li key={idx} className="p-4">
+            <li key={idx} className="py-1">
               <Link
                 href={`/${href}`}
-                className="cursor-pointer text-[20px] uppercase transition-all hover:text-accent"
+                className="cursor-pointer py-1 text-[16px] uppercase transition-all hover:text-accent"
               >
                 {name}
               </Link>
