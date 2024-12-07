@@ -13,6 +13,7 @@ export default async function ProductPage({
   searchParams: { page?: string; name: string; nameCat: string };
 }) {
   const page = parseInt(searchParams.page || '1', 10);
+
   const { products, totalPages } = await getProducts(product, page);
 
   const res = await getCategory(category);
