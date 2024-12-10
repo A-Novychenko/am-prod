@@ -53,6 +53,7 @@ export const MainBannerCard: React.FC<IBannerProduct> = ({
               <p className="mb-1 text-[18px] text-rose-800 line-through">
                 {price} грн
               </p>
+
               <p className="mb-1 text-[28px] font-bold text-green-700">
                 {price_sale} грн
               </p>
