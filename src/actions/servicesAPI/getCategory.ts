@@ -1,15 +1,17 @@
 const API_URL = process.env.API_URL as string;
 
 export const getCategory = async (id: string) => {
+  console.log('API_URL', API_URL);
   try {
-    const result = await fetch(`${API_URL}/catalog/category`, {
-      method: 'POST',
+    const result = await fetch(`${API_URL}/catalog/category/${id}`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
+
       // cache: 'no-cache',
-      next: { revalidate: 60 },
-      body: JSON.stringify({ id }),
+      next: { revalidate: 0 },
+      // body: JSON.stringify({ id }),
     });
 
     const res = await result.json();

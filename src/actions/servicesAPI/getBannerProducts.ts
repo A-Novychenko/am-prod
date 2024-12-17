@@ -2,7 +2,8 @@ const API_URL = process.env.API_URL as string;
 
 export const getBannerProducts = async () => {
   try {
-    const result = await fetch(`${API_URL}/catalog/banner`, {
+    // const result = await fetch(`${API_URL}/catalog/banner`, {
+    const result = await fetch(`${API_URL}/catalog/products?id=14`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -17,6 +18,6 @@ export const getBannerProducts = async () => {
 
     return res;
   } catch (e) {
-    console.log('e.getCategories', e);
+    console.log('e.getBannerProducts', e);
   }
 };

@@ -1,5 +1,9 @@
 import Image from 'next/image';
+
 import { BuyBtn } from '../BuyBtn';
+
+const IMG_DEFAULT =
+  'https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph';
 
 export const MainBannerCard: React.FC<IBannerProduct> = ({
   id,
@@ -24,13 +28,15 @@ export const MainBannerCard: React.FC<IBannerProduct> = ({
     img,
   };
 
+  const image = img ? img[0] : IMG_DEFAULT;
+
   return (
     // <div className="flex h-[440px] w-full flex-col items-center justify-between rounded-2xl  p-4 xl:h-[640px] xl:p-10">
     <div className="flex size-full flex-col items-center justify-between  rounded-2xl bg-lightBg p-4 xl:p-10">
       <div className="h-[150px] xl:h-[250px] smOnly:mb-4">
         <div className="h-[150px] xl:size-[250px]">
           <Image
-            src={img}
+            src={image}
             width={300}
             height={250}
             alt={name}
@@ -50,13 +56,20 @@ export const MainBannerCard: React.FC<IBannerProduct> = ({
         <div className="flex flex-col justify-between">
           <div className="mb-4 flex justify-between">
             <div className="flex gap-2">
-              <p className="mb-1 text-[18px] text-rose-800 line-through">
-                {price} грн
-              </p>
-
-              <p className="mb-1 text-[28px] font-bold text-green-700">
-                {price_sale} грн
-              </p>
+              {price_sale ? (
+                <>
+                  <p className="mb-1 text-[18px] text-rose-800 line-through">
+                    {price} грн
+                  </p>
+                  <p className="mb-1 text-[28px] font-bold text-green-700">
+                    {price_sale} грн
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p className="mb-1 text-[18px] text-green-700">{price} грн</p>
+                </>
+              )}
             </div>
 
             <p className="flex items-center overflow-hidden text-ellipsis text-right text-[12px] font-bold uppercase leading-[1.6]">

@@ -20,6 +20,6 @@ export const getProducts = async (id: string, page: number) => {
 
     return res;
   } catch (e) {
-    console.log('e.getCategories', e);
+    console.log('e.getProducts', e);
   }
 };

@@ -2,7 +2,7 @@ const API_URL = process.env.API_URL as string;
 
 export const getMainCategories = async () => {
   try {
-    const result = await fetch(`${API_URL}/catalog/`, {
+    const result = await fetch(`${API_URL}/catalog/main-categories`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ export const getMainCategories = async () => {
 
     return res.categories;
   } catch (e) {
-    console.log('e.getCategories', e);
+    console.log('e.getMainCategories', e);
     return null;
   }
 };
