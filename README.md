@@ -1,4 +1,4 @@
-# WDS_template 💻.
+# WDS_template 💻
 
 **[View live page](https://webdevsynergy.vercel.app/en)**
 
