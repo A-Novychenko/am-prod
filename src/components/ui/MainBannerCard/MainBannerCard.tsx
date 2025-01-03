@@ -28,7 +28,7 @@ export const MainBannerCard: React.FC<IBannerProduct> = ({
     img,
   };
 
-  const image = img ? img[0] : IMG_DEFAULT;
+  const image = img && img.length > 0 ? img[0] : IMG_DEFAULT;
 
   return (
     // <div className="flex h-[440px] w-full flex-col items-center justify-between rounded-2xl  p-4 xl:h-[640px] xl:p-10">
