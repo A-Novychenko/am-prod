@@ -1,44 +1,39 @@
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 import { RiArrowGoBackFill } from 'react-icons/ri';
 
-import { ProductTypeGallerySwitcher } from '@/components/ui';
+import {
+  ProductCardGallery,
+  ProductCardList,
+  ProductTypeGallerySwitcher,
+} from '@/components/ui';
 
 import { cn } from '@/utils/cn';
 
 import { ProductListProps } from './types';
-
-const ProductCardGallery = dynamic(
-  () => import('@/components/ui/ProductCardGallery'),
-  {
-    ssr: true,
-  },
-);
-const ProductCardList = dynamic(
-  () => import('@/components/ui/ProductCardList'),
-  {
-    ssr: true,
-  },
-);
 
 export const ProductList: React.FC<ProductListProps> = ({
   products,
   category,
   categoryName,
   viewMode,
+  backLink = true,
 }) => {
   return (
     <div className="h-full">
-      <ProductTypeGallerySwitcher>
-        <Link
-          href={`/categories/${category}`}
-          className="flex gap-2 rounded-[8px] bg-slate-50 px-4 py-2"
-        >
-          <RiArrowGoBackFill size={16} />
-          {categoryName}
-        </Link>
-      </ProductTypeGallerySwitcher>
+      <div className={cn({ 'flex justify-end': !backLink })}>
+        <ProductTypeGallerySwitcher>
+          {backLink && (
+            <Link
+              href={`/categories/${category}`}
+              className="flex gap-2 rounded-[8px] bg-slate-50 px-4 py-2"
+            >
+              <RiArrowGoBackFill size={16} />
+              {categoryName}
+            </Link>
+          )}
+        </ProductTypeGallerySwitcher>
+      </div>
 
       <ul
         className={cn(

@@ -19,8 +19,6 @@ export const CategoryList: React.FC<CategoryListProps> = ({ data, path }) => {
               { 'order-2': id === 5 },
               styles.card,
             )}
-            // style={{ boxShadow: '2px 5px 15px rgba(0, 69, 203, 0.5)' }}
-            // style={{ boxShadow: '2px 5px 15px rgba(0, 0, 0, 0.5)' }}
           >
             <CategoryCard
               id={id}

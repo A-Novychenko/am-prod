@@ -40,6 +40,7 @@ const config: Config = {
         darkBlueBg: '#0045CB',
         accent: '#00EA90',
         redApple: '#FF3B30',
+        saleBg: '#fff6a1',
 
         primaryText: '#FFFFFF',
         secondaryText: '#101340',
@@ -47,6 +48,7 @@ const config: Config = {
 
         red: '#FF0000',
         error: '#FF0000',
+
         //
         greyText: '#8E8E93',
       },

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+import staticData from '@/data/common.json';
+
 import OilIcon from '~/icons/catalog/engine-oil-icon.svg';
 import FluidIcon from '~/icons/catalog/technical-fluid-icon.svg';
 import ChemistryIcon from '~/icons/catalog/chemistry-icon.svg';
@@ -10,11 +12,9 @@ import AccessoriesIcon from '~/icons/catalog/accessories-icon.svg';
 import BatteriesIcon from '~/icons/catalog/batteries-icon.svg';
 import PaintsIcon from '~/icons/catalog/paints-icon.svg';
 import SaleIcon from '~/icons/catalog/sale-icon.svg';
+import EnergyIcon from '~/icons/catalog/energy.svg';
 
 import { CategoryCardProps } from './types';
-
-const IMG_DEFAULT =
-  'https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph';
 
 const iconsMap: Record<
   number,
@@ -29,6 +29,7 @@ const iconsMap: Record<
   7: { Component: AccessoriesIcon },
   8: { Component: PaintsIcon },
   9: { Component: SaleIcon },
+  561: { Component: EnergyIcon },
 };
 
 export const CategoryCard: React.FC<CategoryCardProps> = ({
@@ -40,7 +41,9 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 }) => {
   const IconData = iconsMap[id];
 
-  const image = img && img?.length > 0 ? img : IMG_DEFAULT;
+  const { noImage } = staticData;
+
+  const image = img && img?.length > 0 ? img : noImage;
 
   return (
     <Link
@@ -67,7 +70,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                     height={200}
                     alt={nameCat ? nameCat : link}
                     placeholder="blur"
-                    blurDataURL={IMG_DEFAULT}
+                    blurDataURL={noImage}
                     className="size-full object-contain"
                   />
                 </div>

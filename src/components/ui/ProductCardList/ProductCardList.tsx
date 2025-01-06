@@ -2,11 +2,12 @@ import Image from 'next/image';
 
 import { BuyBtn } from '@/components/ui';
 
+import { cn } from '@/utils/cn';
+
+import staticData from '@/data/common.json';
+
 import { CartItem } from '@/context/CartProvider/types';
 import { ProductCardListProps } from './types';
-
-const IMG_DEFAULT =
-  'https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph';
 
 // article: '216671';
 // banner: false;
@@ -29,7 +30,9 @@ const IMG_DEFAULT =
 // updatedAt: '2025-01-03T11:59:49.939Z';
 // _id: '65e77e4e5187d0e82e6b13e7';
 
-const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
+export const ProductCardList: React.FC<ProductCardListProps> = ({
+  product,
+}) => {
   const {
     id,
     brand,
@@ -37,11 +40,14 @@ const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
     name,
     description,
     price,
+    price_promo,
     count_warehouse_3,
     img,
   } = product;
 
-  const image = img && img?.length > 0 ? img[0] : IMG_DEFAULT;
+  const { noImage } = staticData;
+
+  const image = img && img?.length > 0 ? img[0] : noImage;
   const countWarehouse = count_warehouse_3 === '0' ? ' ' : count_warehouse_3;
 
   const cartItem: CartItem = {
@@ -53,7 +59,11 @@ const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
   };
 
   return (
-    <div className="flex overflow-hidden rounded-[8px] bg-lightBg">
+    <div
+      className={cn('flex overflow-hidden rounded-[8px] bg-lightBg', {
+        'bg-saleBg': price_promo,
+      })}
+    >
       <div className="h-[200px] shrink-0 p-2 md:h-[298px]">
         <Image
           src={image}
@@ -62,8 +72,7 @@ const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
           alt={name}
           className="block size-full object-contain"
           placeholder="blur"
-          blurDataURL={IMG_DEFAULT}
-          // onError={handleErrorImage}
+          blurDataURL={noImage}
         />
       </div>
 
@@ -81,13 +90,45 @@ const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
         </div>
 
         <div className="flex flex-col items-center">
-          <p className="mb-6 text-[16px] font-normal leading-[1.5] text-secondaryText">
+          <p
+            className={cn(
+              'mb-6 text-[16px] font-normal leading-[1.5] text-secondaryText',
+              { 'mb-0': price_promo },
+            )}
+          >
             {`Артикул: ${article}`}
           </p>
 
-          <p className="mb-1 overflow-hidden text-ellipsis text-right text-[24px] font-bold uppercase leading-[1.6] text-darkBlueText">
-            {price} грн
-          </p>
+          <div
+            className={cn('hidden h-[66px] w-[150px]', {
+              block: price_promo,
+            })}
+          >
+            <Image
+              src="/images/sale.webp"
+              width={500}
+              height={218}
+              alt="Акція"
+              className="size-full object-contain"
+            />
+          </div>
+
+          {!price_promo && (
+            <p className="mb-1 overflow-hidden text-ellipsis text-right text-[24px] font-bold uppercase leading-[1.6] text-darkBlueText">
+              {price} грн
+            </p>
+          )}
+
+          {price_promo && (
+            <>
+              <p className="mb-1 overflow-hidden text-ellipsis text-right text-[24px] font-bold uppercase leading-[1.6] text-red">
+                {price_promo} грн
+              </p>
+              <p className="mb-1 overflow-hidden text-ellipsis text-right text-[16px] font-bold uppercase leading-[1.6] text-darkBlueText line-through">
+                {price} грн
+              </p>
+            </>
+          )}
 
           <p className="mb-4 overflow-hidden text-ellipsis text-right text-[12px] font-bold uppercase leading-[1.6]">
             {count_warehouse_3 === '0' ? (
@@ -105,5 +146,3 @@ const ProductCardList: React.FC<ProductCardListProps> = ({ product }) => {
     </div>
   );
 };
-
-export default ProductCardList;

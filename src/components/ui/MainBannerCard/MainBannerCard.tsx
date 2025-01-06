@@ -2,8 +2,7 @@ import Image from 'next/image';
 
 import { BuyBtn } from '../BuyBtn';
 
-const IMG_DEFAULT =
-  'https://img.freepik.com/free-vector/illustration-of-gallery-icon_53876-27002.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1707868800&semt=sph';
+import staticData from '@/data/common.json';
 
 // article: '216671';
 // banner: false;
@@ -36,7 +35,9 @@ export const MainBannerCard: React.FC<ASGProduct> = ({
   count_warehouse_3,
   img,
 }) => {
-  const image = img && img.length > 0 ? img[0] : IMG_DEFAULT;
+  const { noImage } = staticData;
+
+  const image = img && img.length > 0 ? img[0] : noImage;
 
   const cartItem = {
     id,
@@ -57,6 +58,7 @@ export const MainBannerCard: React.FC<ASGProduct> = ({
             alt={name}
             priority
             className="block size-full shrink-0 object-contain"
+            blurDataURL={noImage}
           />
         </div>
       </div>

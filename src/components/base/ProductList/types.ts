@@ -3,4 +3,5 @@ export type ProductListProps = {
   viewMode: string;
   category: string;
   categoryName: string;
+  backLink?: boolean;
 };

@@ -1,19 +1,22 @@
-import dynamic from 'next/dynamic';
+import { SearchProducts } from '@/components/ui';
 
-const SearchProducts = dynamic(
-  () => import('@/components/ui/SearchProducts/SearchProducts'),
-  {
-    ssr: false,
-  },
-);
+import { getProductsByTecDocArticle } from '@/actions/servicesAPI/getProductsByTecDocArticle';
 
-export default function SearchProductPage() {
+export default async function SearchProductPage({
+  searchParams: { searchQuery, typeGallery },
+}: {
+  searchParams: { searchQuery: string; typeGallery: 'list' | 'gallery' };
+}) {
+  const { products } = await getProductsByTecDocArticle(searchQuery);
+
+  const initialViewMode = typeGallery ? typeGallery : 'list';
+
   return (
-    <section className="section">
+    <section className="section ">
       <div className="container">
-        <h1>Пошук товарів</h1>
+        <h1 className="mb-4 text-[24px]">Пошук товарів</h1>
 
-        <SearchProducts />
+        <SearchProducts products={products} viewMode={initialViewMode} />
       </div>
     </section>
   );

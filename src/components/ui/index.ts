@@ -21,3 +21,6 @@ export * from './CartProducts';
 export * from './CartContactForm';
 export * from './CartDeliveryForm';
 export * from './ProductTypeGallerySwitcher';
+export * from './SearchProducts';
+export * from './ProductCardGallery';
+export * from './ProductCardList';
