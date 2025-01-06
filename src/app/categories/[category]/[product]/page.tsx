@@ -10,7 +10,12 @@ export default async function ProductPage({
   searchParams,
 }: {
   params: { product: string; category: string };
-  searchParams: { page?: string; name: string; nameCat: string };
+  searchParams: {
+    page?: string;
+    name: string;
+    nameCat: string;
+    typeGallery: 'list' | 'gallery';
+  };
 }) {
   const page = parseInt(searchParams.page || '1', 10);
 
@@ -21,7 +26,9 @@ export default async function ProductPage({
   const categoryName = products[0]?.category;
   const prevCategoryName = res?.name ? res?.name : '';
 
-  const initialViewMode = 'list';
+  const initialViewMode = searchParams.typeGallery
+    ? searchParams.typeGallery
+    : 'list';
 
   return (
     <section className="section flex grow bg-mediumBg">

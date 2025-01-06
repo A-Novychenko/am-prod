@@ -1,15 +1,13 @@
-'use client';
-
-import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Product, ProductListProps } from './types';
 import Link from 'next/link';
-import {
-  RiArrowGoBackFill,
-  RiGalleryView2,
-  RiListCheck2,
-} from 'react-icons/ri';
+
+import { RiArrowGoBackFill } from 'react-icons/ri';
+
+import { ProductTypeGallerySwitcher } from '@/components/ui';
+
 import { cn } from '@/utils/cn';
+
+import { ProductListProps } from './types';
 
 const ProductCardGallery = dynamic(
   () => import('@/components/ui/ProductCardGallery'),
@@ -28,20 +26,11 @@ export const ProductList: React.FC<ProductListProps> = ({
   products,
   category,
   categoryName,
+  viewMode,
 }) => {
-  const [viewMode, setViewMode] = useState('list'); // Початковий режим
-
-  const handleSetGallery = () => {
-    setViewMode('gallery');
-  };
-
-  const handleSetList = () => {
-    setViewMode('list');
-  };
-
   return (
     <div className="h-full">
-      <div className="mb-6 flex items-center justify-between">
+      <ProductTypeGallerySwitcher>
         <Link
           href={`/categories/${category}`}
           className="flex gap-2 rounded-[8px] bg-slate-50 px-4 py-2"
@@ -49,23 +38,7 @@ export const ProductList: React.FC<ProductListProps> = ({
           <RiArrowGoBackFill size={16} />
           {categoryName}
         </Link>
-
-        <div className="hidden gap-2 xl:flex">
-          <button onClick={handleSetGallery}>
-            <RiGalleryView2
-              size={24}
-              color={viewMode === 'gallery' ? '#0045CB' : '#969696'}
-            />
-          </button>
-
-          <button onClick={handleSetList}>
-            <RiListCheck2
-              size={24}
-              color={viewMode === 'list' ? '#0045CB' : '#969696'}
-            />
-          </button>
-        </div>
-      </div>
+      </ProductTypeGallerySwitcher>
 
       <ul
         className={cn(
@@ -78,19 +51,20 @@ export const ProductList: React.FC<ProductListProps> = ({
         )}
       >
         {products &&
-          products.map((product: Product) => (
+          products.map((product: ASGProduct) => (
             <li key={product._id}>
-              {viewMode === 'gallery' ? (
-                <ProductCardGallery product={product} />
-              ) : (
+              {viewMode === 'list' ? (
                 <>
-                  <div className="hidden xl:block">
-                    <ProductCardList product={product} />
-                  </div>
                   <div className="block xl:hidden">
                     <ProductCardGallery product={product} />
                   </div>
+
+                  <div className="hidden xl:block">
+                    <ProductCardList product={product} />
+                  </div>
                 </>
+              ) : (
+                <ProductCardGallery product={product} />
               )}
             </li>
           ))}

@@ -2,7 +2,7 @@
 
 import { MainBannerCard, Slider } from '@/components/ui';
 
-export const MainBanner: React.FC<{ bannerProducts: IBannerProduct[] }> = ({
+export const MainBanner: React.FC<{ bannerProducts: ASGProduct[] }> = ({
   bannerProducts,
 }) => {
   return (

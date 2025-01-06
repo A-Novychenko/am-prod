@@ -20,3 +20,4 @@ export * from './BuyBtn';
 export * from './CartProducts';
 export * from './CartContactForm';
 export * from './CartDeliveryForm';
+export * from './ProductTypeGallerySwitcher';
