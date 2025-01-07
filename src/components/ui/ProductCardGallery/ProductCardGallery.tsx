@@ -56,6 +56,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
     id,
     name,
     price,
+    price_promo,
     quantity: 1,
     img: image,
   };

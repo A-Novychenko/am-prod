@@ -54,6 +54,7 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
     id,
     name,
     price,
+    price_promo,
     quantity: 1,
     img: image,
   };

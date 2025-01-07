@@ -20,7 +20,11 @@ export const CartProducts: React.FC = () => {
   };
 
   const decrement = (item: CartItem) => {
-    addItem({ ...item, quantity: item.quantity - 1 });
+    if (item.quantity > 1) {
+      addItem({ ...item, quantity: item.quantity - 1 });
+    } else {
+      removeItem(item.id); // Видаляємо товар, якщо кількість стає 0
+    }
   };
 
   return (
@@ -28,7 +32,9 @@ export const CartProducts: React.FC = () => {
       <ul className="mb-8">
         {items &&
           items.map(item => {
-            const { id, name, price, quantity, img } = item;
+            const { id, name, price, price_promo, quantity, img } = item;
+
+            const finalPrice = price_promo ? price_promo : price;
 
             return (
               <li
@@ -41,7 +47,7 @@ export const CartProducts: React.FC = () => {
                 </div>
 
                 <div className="items-center gap-10 md:flex smOnly:text-center">
-                  <p className="smOnly:mt-4">{price}грн</p>
+                  <p className="smOnly:mt-4">{finalPrice}грн</p>
 
                   <div className="flex items-center smOnly:justify-center">
                     <button
@@ -67,7 +73,7 @@ export const CartProducts: React.FC = () => {
                     </button>
                   </div>
 
-                  <p className="smOnly:mt-4">{price * quantity}грн</p>
+                  <p className="smOnly:mt-4">{finalPrice * quantity}грн</p>
 
                   <button
                     type="button"

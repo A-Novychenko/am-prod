@@ -44,7 +44,8 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
   const cartItem = {
     id,
     name,
-    price: Number((Number(price) * 1.1).toFixed(0)),
+    price,
+    price_promo,
     quantity: 1,
     img: image,
   };
