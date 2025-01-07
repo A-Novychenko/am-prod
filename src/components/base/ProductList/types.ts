@@ -1,5 +1,5 @@
 export type ProductListProps = {
-  products: ASGProduct[];
+  products: IASGProduct[];
   viewMode: string;
   category: string;
   categoryName: string;

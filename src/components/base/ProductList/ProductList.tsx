@@ -46,7 +46,7 @@ export const ProductList: React.FC<ProductListProps> = ({
         )}
       >
         {products &&
-          products.map((product: ASGProduct) => (
+          products.map((product: IASGProduct) => (
             <li key={product._id}>
               {viewMode === 'list' ? (
                 <>

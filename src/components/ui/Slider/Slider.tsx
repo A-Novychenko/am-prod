@@ -1,10 +1,12 @@
 'use client';
 
 import { SwiperSlide, Swiper } from 'swiper/react';
-import { Autoplay, A11y } from 'swiper/modules';
+
+import { makeSliderConfig } from '@/utils/makeSliderConfig';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 import { SliderProps } from './types';
 
@@ -12,27 +14,19 @@ export const Slider: React.FC<SliderProps> = ({
   slideClassName,
   slidesData,
   slideComponent: SlideComponent,
-  wrapClassName,
+  ...restProps
 }) => {
   return (
-    <Swiper
-      modules={[A11y, Autoplay]}
-      spaceBetween={50}
-      slidesPerView={1}
-      //   onSwiper={swiper => console.log(swiper)}
-      autoplay={{ delay: 10000 }}
-      className={wrapClassName}
-    >
-      {slidesData &&
-        slidesData.map((card, idx) => (
-          <SwiperSlide
-            tag="li"
-            className={slideClassName}
-            key={card.id ? card.id : idx}
-          >
-            <SlideComponent {...card} />
-          </SwiperSlide>
-        ))}
+    <Swiper {...makeSliderConfig(restProps)}>
+      {slidesData.map((card, idx) => (
+        <SwiperSlide
+          tag="li"
+          className={slideClassName}
+          key={card.id ? card.id : idx}
+        >
+          <SlideComponent {...card} />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };

@@ -1,4 +1,4 @@
-interface ASGProduct {
+interface IASGProduct {
   _id: string;
   id: number;
   cid: string;

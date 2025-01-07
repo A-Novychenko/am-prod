@@ -4,7 +4,7 @@ export const SearchProducts = ({
   products,
   viewMode,
 }: {
-  products: ASGProduct[];
+  products: IASGProduct[];
   viewMode: 'list' | 'gallery';
 }) => {
   return (

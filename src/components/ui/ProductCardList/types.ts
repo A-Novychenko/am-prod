@@ -1,3 +1,3 @@
 export type ProductCardListProps = {
-  product: ASGProduct;
+  product: IASGProduct;
 };

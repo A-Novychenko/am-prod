@@ -1,0 +1,3 @@
+.btn {
+  @apply text-secondaryText transition-all hover:text-darkBlueText focus:text-darkBlueText;
+}
