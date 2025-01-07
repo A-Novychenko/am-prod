@@ -16,7 +16,7 @@ export const makeSliderConfig = ({
   const spaceBetweenBase = 16;
 
   const autoplayBase =
-    section !== Sections.MAIN_BANNER
+    section === Sections.MAIN_BANNER
       ? { delay: 3000, disableOnInteraction: false }
       : false;
 

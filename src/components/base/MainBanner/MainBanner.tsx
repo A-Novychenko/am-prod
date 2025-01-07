@@ -17,7 +17,7 @@ export const MainBanner: React.FC<{ bannerProducts: IASGProduct[] }> = ({
 
       <SliderArrow
         section="main-banner"
-        wrapClassName="absolute bottom-12 left-0 z-[9999] w-full px-6 smOnly:bottom-1/2 mdOnly:bottom-8"
+        wrapClassName="absolute bottom-1/2 left-0 z-[999] w-full px-6 smOnly:bottom-1/2 mdOnly:bottom-8"
       />
     </div>
   );
