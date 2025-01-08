@@ -14,6 +14,8 @@ import { CartAction, CartContextProps, CartItem, CartState } from './types';
 const initialState: CartState = {
   items: [],
   totalAmount: 0,
+  totalDiscount: 0,
+  totalAmountWithDiscount: 0,
 };
 
 // Ред'юсер для оновлення стану
@@ -39,6 +41,19 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return {
         ...state,
         items: updatedItems,
+        totalAmountWithDiscount: updatedItems.reduce(
+          (sum, item) =>
+            sum +
+            (item.price_promo ? item.price_promo : item.price) * item.quantity,
+          0,
+        ),
+        totalDiscount: updatedItems.reduce(
+          (sum, item) =>
+            sum +
+            (item.price_promo ? item.price - item.price_promo : 0) *
+              item.quantity,
+          0,
+        ),
         totalAmount: updatedItems.reduce(
           (sum, item) => sum + item.price * item.quantity,
           0,
@@ -50,6 +65,19 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       const filteredItems = state.items.filter(
         item => item.id !== action.payload,
       );
+      const totalAmountWithDiscountAfterRemoval = filteredItems.reduce(
+        (sum, item) =>
+          sum +
+          (item.price_promo ? item.price_promo : item.price) * item.quantity,
+        0,
+      );
+      const totalDiscountAfterRemoval = filteredItems.reduce(
+        (sum, item) =>
+          sum +
+          (item.price_promo ? item.price - item.price_promo : 0) *
+            item.quantity,
+        0,
+      );
       const totalAmountAfterRemoval = filteredItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0,
@@ -58,7 +86,9 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       return {
         ...state,
         items: filteredItems,
-        totalAmount: totalAmountAfterRemoval,
+        totalAmount: totalAmountWithDiscountAfterRemoval,
+        totalDiscount: totalDiscountAfterRemoval,
+        totalAmountWithDiscount: totalAmountAfterRemoval,
       };
     }
 
@@ -114,6 +144,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       value={{
         items: state.items,
         totalAmount: state.totalAmount,
+        totalDiscount: state.totalDiscount,
+        totalAmountWithDiscount: state.totalAmountWithDiscount,
         addItem,
         removeItem,
         clearCart,

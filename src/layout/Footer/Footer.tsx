@@ -48,7 +48,7 @@ export const Footer = () => {
                 </Link>
               </li>
             </ul>
-            <Contacts />
+            <Contacts classNameWrap="xl:text-[18px]" />
           </div>
         </div>
       </div>

@@ -8,12 +8,20 @@ import { CartItem } from '@/context/CartProvider/types';
 //   id: number;
 //   name: string;
 //   price: number;
+//   price_promo: number;
 //   quantity: number;
 //   img: string;
 // };
 
 export const CartProducts: React.FC = () => {
-  const { items, totalAmount, addItem, removeItem } = useCart();
+  const {
+    items,
+    totalAmount,
+    totalDiscount,
+    totalAmountWithDiscount,
+    addItem,
+    removeItem,
+  } = useCart();
 
   const increment = (item: CartItem) => {
     addItem({ ...item, quantity: item.quantity + 1 });
@@ -23,7 +31,8 @@ export const CartProducts: React.FC = () => {
     if (item.quantity > 1) {
       addItem({ ...item, quantity: item.quantity - 1 });
     } else {
-      removeItem(item.id); // Видаляємо товар, якщо кількість стає 0
+      // removeItem(item.id); // Видаляємо товар, якщо кількість стає 0
+      return;
     }
   };
 
@@ -47,6 +56,9 @@ export const CartProducts: React.FC = () => {
                 </div>
 
                 <div className="items-center gap-10 md:flex smOnly:text-center">
+                  {price_promo && (
+                    <p className="line-through smOnly:mt-4">{price}грн</p>
+                  )}
                   <p className="smOnly:mt-4">{finalPrice}грн</p>
 
                   <div className="flex items-center smOnly:justify-center">
@@ -91,6 +103,16 @@ export const CartProducts: React.FC = () => {
       </ul>
 
       <p className="text-right font-bold">Сума: {totalAmount} грн</p>
+
+      {totalDiscount > 0 && (
+        <>
+          <p className="text-right font-bold">Знижка: {totalDiscount} грн</p>
+
+          <p className="text-right font-bold">
+            Сума зі знижкою: {totalAmountWithDiscount} грн
+          </p>
+        </>
+      )}
     </div>
   );
 };

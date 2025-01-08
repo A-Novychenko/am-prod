@@ -18,6 +18,8 @@ export type CartItem = {
 export type CartState = {
   items: CartItem[];
   totalAmount: number;
+  totalDiscount: number;
+  totalAmountWithDiscount: number;
 };
 
 // Типи дій для ред'юсера
@@ -30,6 +32,8 @@ export type CartAction =
 export type CartContextProps = {
   items: CartItem[];
   totalAmount: number;
+  totalDiscount: number;
+  totalAmountWithDiscount: number;
   addItem: (item: CartItem) => void;
   removeItem: (id: number) => void;
   clearCart: () => void;
