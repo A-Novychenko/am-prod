@@ -125,7 +125,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     if (typeof window !== 'undefined' && state.items.length > 0) {
       localStorage.setItem('cart', JSON.stringify(state));
     }
-  }, [state.items]);
+  }, [state, state.items]);
 
   const addItem = (item: CartItem) => {
     dispatch({ type: 'ADD_ITEM', payload: item });
