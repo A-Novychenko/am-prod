@@ -175,6 +175,7 @@ export const CartProducts: React.FC = () => {
                       <span className="inline-block xl:hidden">
                         Сумма:&nbsp;
                       </span>
+
                       {finalPriceTotalFormatted}
                     </p>
                   </div>
