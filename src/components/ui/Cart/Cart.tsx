@@ -1,17 +1,21 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
   CartContactForm,
   CartDeliveryForm,
   CartProducts,
 } from '@/components/ui';
+
 import { useCart } from '@/context';
+
+import { cn } from '@/utils';
+
 import { DeliveryMethod } from './types';
 
 const Cart: React.FC = () => {
-  const { items } = useCart();
+  const { items, syncCart } = useCart();
 
   const [isVisible, setIsVisible] = useState(1);
 
@@ -33,7 +37,18 @@ const Cart: React.FC = () => {
     setIsVisible(pSt => pSt - 1);
   };
 
+  useEffect(() => {
+    // Синхронізація кошика при завантаженні сторінки
+    const updCart = async () => {
+      syncCart();
+    };
+
+    updCart();
+  }, [syncCart]);
+
   const isEmptyCard = items.length === 0;
+
+  const hasUnavailableItem = items.some(item => item.availability === '0');
 
   return (
     <>
@@ -76,13 +91,26 @@ const Cart: React.FC = () => {
                 Замовити
               </button>
             ) : (
-              <button
-                type="button"
-                className="mx-auto rounded bg-accent p-2 text-center font-medium"
-                onClick={handleVisibleIncr}
-              >
-                Продовжити
-              </button>
+              <div className="text-center">
+                {hasUnavailableItem && (
+                  <p className="mb-4 text-red">
+                    Для того щоб продовжити приберіть товар якого немає в
+                    наявності
+                  </p>
+                )}
+
+                <button
+                  type="button"
+                  className={cn(
+                    'mx-auto cursor-pointer rounded bg-accent p-2 text-center font-medium ',
+                    'transition-colors hover:bg-darkBg hover:text-primaryText disabled:bg-slate-300 disabled:text-slate-500',
+                  )}
+                  onClick={handleVisibleIncr}
+                  disabled={hasUnavailableItem}
+                >
+                  Продовжити
+                </button>
+              </div>
             )}
           </div>
         </div>

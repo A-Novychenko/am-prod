@@ -1,7 +1,7 @@
 import { MainBanner, VinRequestForm } from '@/components/base';
 
 import { getBannerProducts } from '@/actions/servicesAPI';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 export const HeroSection: React.FC = async () => {
   const res = await getBannerProducts();

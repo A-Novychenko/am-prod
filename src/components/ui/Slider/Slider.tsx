@@ -2,7 +2,7 @@
 
 import { SwiperSlide, Swiper } from 'swiper/react';
 
-import { makeSliderConfig } from '@/utils/makeSliderConfig';
+import { makeSliderConfig } from '@/utils';
 
 import 'swiper/css';
 import 'swiper/css/navigation';

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import staticData from '@/data/common.json';
 

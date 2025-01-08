@@ -2,7 +2,7 @@
 
 import { useCart } from '@/context';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import { BuyBtnProps } from './types';
 

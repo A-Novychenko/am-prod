@@ -1,6 +1,6 @@
 import { CategoryCard } from '@/components/ui';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import { CategoryListProps } from './types';
 

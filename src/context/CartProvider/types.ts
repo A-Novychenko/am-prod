@@ -12,6 +12,8 @@ export type CartItem = {
   price_promo: number | null;
   quantity: number;
   img: string;
+  availability: string;
+  article: string;
 };
 
 // Тип для стану корзини
@@ -37,4 +39,7 @@ export type CartContextProps = {
   addItem: (item: CartItem) => void;
   removeItem: (id: number) => void;
   clearCart: () => void;
+  syncCart: () => Promise<void>;
 };
+
+export type idsType = number[];

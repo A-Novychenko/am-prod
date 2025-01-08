@@ -6,9 +6,11 @@ import React, {
   useReducer,
   ReactNode,
   useEffect,
+  useCallback,
 } from 'react';
 
 import { CartAction, CartContextProps, CartItem, CartState } from './types';
+import { getProductsForCartByIds } from '@/actions/servicesAPI';
 
 // Початковий стан
 const initialState: CartState = {
@@ -18,46 +20,43 @@ const initialState: CartState = {
   totalAmountWithDiscount: 0,
 };
 
+// Функція для обчислення сум
+const calculateTotals = (items: CartItem[]) => ({
+  totalAmountWithDiscount: items.reduce(
+    (sum, item) => sum + (item.price_promo || item.price) * item.quantity,
+    0,
+  ),
+  totalDiscount: items.reduce(
+    (sum, item) =>
+      sum +
+      (item.price_promo ? item.price - item.price_promo : 0) * item.quantity,
+    0,
+  ),
+  totalAmount: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+});
+
 // Ред'юсер для оновлення стану
 const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_ITEM': {
-      const updatedItems = [...state.items];
+      const updatedItems = state.items.slice();
       const existingItemIndex = updatedItems.findIndex(
         item => item.id === action.payload.id,
       );
 
       if (existingItemIndex >= 0) {
-        // Оновлення кількості існуючого товару
         updatedItems[existingItemIndex] = {
           ...updatedItems[existingItemIndex],
           quantity: action.payload.quantity, // Використовуємо нове значення
         };
       } else {
-        // Додавання нового товару
         updatedItems.push(action.payload);
       }
 
       return {
         ...state,
         items: updatedItems,
-        totalAmountWithDiscount: updatedItems.reduce(
-          (sum, item) =>
-            sum +
-            (item.price_promo ? item.price_promo : item.price) * item.quantity,
-          0,
-        ),
-        totalDiscount: updatedItems.reduce(
-          (sum, item) =>
-            sum +
-            (item.price_promo ? item.price - item.price_promo : 0) *
-              item.quantity,
-          0,
-        ),
-        totalAmount: updatedItems.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0,
-        ),
+        ...calculateTotals(updatedItems), // Викликаємо calculateTotals
       };
     }
 
@@ -65,30 +64,10 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       const filteredItems = state.items.filter(
         item => item.id !== action.payload,
       );
-      const totalAmountWithDiscountAfterRemoval = filteredItems.reduce(
-        (sum, item) =>
-          sum +
-          (item.price_promo ? item.price_promo : item.price) * item.quantity,
-        0,
-      );
-      const totalDiscountAfterRemoval = filteredItems.reduce(
-        (sum, item) =>
-          sum +
-          (item.price_promo ? item.price - item.price_promo : 0) *
-            item.quantity,
-        0,
-      );
-      const totalAmountAfterRemoval = filteredItems.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0,
-      );
-
       return {
         ...state,
         items: filteredItems,
-        totalAmount: totalAmountWithDiscountAfterRemoval,
-        totalDiscount: totalDiscountAfterRemoval,
-        totalAmountWithDiscount: totalAmountAfterRemoval,
+        ...calculateTotals(filteredItems), // Викликаємо calculateTotals
       };
     }
 
@@ -109,35 +88,99 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   // Завантаження кошика з localStorage
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
+    const fetchCartItems = async () => {
+      const storedCart = localStorage.getItem('cart');
+      if (!storedCart) return;
       const parsedCart: CartState = JSON.parse(storedCart);
-      // Оновлення стану, якщо є кошик в localStorage
-      dispatch({ type: 'CLEAR_CART' }); // Очищаємо кошик перед завантаженням
-      parsedCart.items.forEach(item =>
+      const ids = parsedCart?.items?.map((item: CartItem) => item.id) || [];
+      if (!ids.length) return;
+      const { products } = await getProductsForCartByIds(ids);
+      const updatedItems = products ?? [];
+      const updatedCartItems =
+        parsedCart.items?.map(item => {
+          const updatedProduct = updatedItems.find(
+            (product: IASGProduct) => product.id === item.id,
+          );
+          return {
+            ...item,
+            price: updatedProduct.price,
+            price_promo: updatedProduct.price_promo,
+          };
+        }) || [];
+      dispatch({ type: 'CLEAR_CART' });
+      updatedCartItems.forEach((item: CartItem) =>
         dispatch({ type: 'ADD_ITEM', payload: item }),
       );
-    }
+    };
+
+    fetchCartItems();
   }, []);
 
   // Оновлення localStorage при зміні стану кошика
-  useEffect(() => {
+  const updateLocalStorage = useCallback(() => {
     if (typeof window !== 'undefined' && state.items.length > 0) {
-      localStorage.setItem('cart', JSON.stringify(state));
+      // Додаємо значення для img до кожного товару, якщо його ще немає
+      const updatedItems = state.items.map(item => ({
+        ...item,
+        img: item.img || '/images/no-photo.png',
+      }));
+      localStorage.setItem(
+        'cart',
+        JSON.stringify({ ...state, items: updatedItems }),
+      );
     }
-  }, [state, state.items]);
+  }, [state]);
 
-  const addItem = (item: CartItem) => {
-    dispatch({ type: 'ADD_ITEM', payload: item });
-  };
+  useEffect(() => {
+    updateLocalStorage();
+  }, [updateLocalStorage]);
 
-  const removeItem = (id: number) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: id });
-  };
+  const addItem = useCallback(
+    (item: CartItem) => {
+      // Перевірка та додавання зображення, якщо воно не надано
+      const itemWithImage = {
+        ...item,
+        img: item.img || '/images/no-photo.png', // Задаємо зображення, якщо його немає
+      };
+      dispatch({ type: 'ADD_ITEM', payload: itemWithImage });
+    },
+    [dispatch],
+  );
 
-  const clearCart = () => {
+  const removeItem = useCallback(
+    (id: number) => {
+      dispatch({ type: 'REMOVE_ITEM', payload: id });
+    },
+    [dispatch],
+  );
+
+  const clearCart = useCallback(() => {
     dispatch({ type: 'CLEAR_CART' });
-  };
+  }, [dispatch]);
+
+  const syncCart = useCallback(async () => {
+    const storedCart = localStorage.getItem('cart');
+    if (!storedCart) return;
+    const parsedCart: CartState = JSON.parse(storedCart);
+    const ids = parsedCart.items.map((item: CartItem) => item.id);
+    if (ids.length) {
+      const { products } = await getProductsForCartByIds(ids);
+      const updatedItems = products.map((product: IASGProduct) => {
+        const cartItem = parsedCart.items.find(item => item.id === product.id);
+        return {
+          ...cartItem,
+          price: product.price,
+          price_promo: product.price_promo,
+          availability: product.count_warehouse_3,
+          article: product.article,
+        };
+      });
+      dispatch({ type: 'CLEAR_CART' });
+      updatedItems.forEach((item: CartItem) =>
+        dispatch({ type: 'ADD_ITEM', payload: item }),
+      );
+    }
+  }, [dispatch]);
 
   return (
     <CartContext.Provider
@@ -149,6 +192,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         addItem,
         removeItem,
         clearCart,
+        syncCart,
       }}
     >
       {children}

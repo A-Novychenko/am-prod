@@ -3,7 +3,7 @@
 import { PatternFormat } from 'react-number-format';
 import { Controller } from 'react-hook-form';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import { FormPhoneInputProps } from './types';
 

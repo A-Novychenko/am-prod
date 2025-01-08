@@ -8,7 +8,7 @@ import {
   ProductTypeGallerySwitcher,
 } from '@/components/ui';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import { ProductListProps } from './types';
 

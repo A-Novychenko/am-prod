@@ -4,6 +4,7 @@
   "site": "http://avto-magaz.com.ua",
   "siteName": "avto-magaz.com.ua",
   "noImage": "/images/no-photo.png",
+  "articleLabel": "Артикул:",
   "navLinks": [
     {
       "href": "autochemistry",

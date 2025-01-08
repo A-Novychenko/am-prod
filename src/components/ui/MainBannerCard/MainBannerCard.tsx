@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 import { BuyBtn } from '@/components/ui';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import staticData from '@/data/common.json';
 
@@ -36,6 +36,7 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
   price_promo,
   count_warehouse_3,
   img,
+  article,
 }) => {
   const { noImage } = staticData;
 
@@ -48,6 +49,8 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
     price_promo,
     quantity: 1,
     img: image,
+    article,
+    availability: count_warehouse_3,
   };
 
   return (

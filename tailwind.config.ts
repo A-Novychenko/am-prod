@@ -47,6 +47,7 @@ const config: Config = {
         darkBlueText: '#0045CB',
 
         red: '#FF0000',
+        darkRed: '#ba0202',
         error: '#FF0000',
 
         //

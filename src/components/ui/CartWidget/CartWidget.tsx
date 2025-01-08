@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { useCart } from '@/context';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 import staticData from '@/data/common.json';
 import CartIcon from '~/icons/shopping-cart.svg';
