@@ -171,7 +171,7 @@ export const CartProducts: React.FC = () => {
                       </button>
                     </div>
 
-                    <p className="xl:w-[112px] smOnly:mb-4 smOnly:mt-4 smOnly:font-bold">
+                    <p className="xl:w-[112px] smOnly:my-4 smOnly:font-bold">
                       <span className="inline-block xl:hidden">
                         Сумма:&nbsp;
                       </span>
