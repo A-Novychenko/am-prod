@@ -128,10 +128,18 @@
       "name": "engine",
       "label": "Обʼєм двигуна",
       "placeholder": "2.0",
+      "customErrors": {
+        "maxLength": "Макс. 5 символів",
+        "invalidValue": "Допустимі лише цифри, кома та крапка"
+      },
       "validationOptions": {
         "maxLength": {
-          "value": 4,
-          "message": "Макс. 4 символи"
+          "value": 5,
+          "message": "Макс. 5 символів"
+        },
+        "pattern": {
+          "value": "^[\\d,.]*$",
+          "message": "Допустимі лише цифри, кома та крапка"
         }
       }
     },
@@ -173,6 +181,19 @@
         }
       }
     },
-    "submitBtn": "Відправити VIN-запит"
+    "message": {
+      "name": "message",
+      "label": "Список запчастин",
+      "placeholder": "Моторне мастило, фільтр масляний...",
+      "validationOptions": {
+        "maxLength": {
+          "value": 1000,
+          "message": "Максимум 1000символів"
+        }
+      }
+    },
+    "submitBtn": "Відправити VIN-запит",
+    "reverseBtn": "Додати список запчастин",
+    "reverseBtnBack": "Повернутись"
   }
 }

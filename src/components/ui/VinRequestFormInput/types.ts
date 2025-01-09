@@ -22,6 +22,10 @@ export type VinRequestFormInputs = {
 type validationOptionsInput = {
   maxLength?: validationOptionsMaxLength;
   minLength?: validationOptionsMinLength;
+  pattern?: {
+    value: string;
+    message: string;
+  };
 };
 
 type validationOptionsMaxLength = {

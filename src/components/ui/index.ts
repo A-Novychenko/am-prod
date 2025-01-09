@@ -10,6 +10,7 @@ export * from './WorkSchedule';
 export * from './VinRequestFormRequiredInput';
 export * from './VinRequestFormInput';
 export * from './VinRequestFormSelect';
+export * from './VinRequestFormTextarea';
 export * from './FormPhoneInput';
 export * from './CategoryCard';
 export * from './ShowCaseCard';

@@ -38,7 +38,7 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
   img,
   article,
 }) => {
-  const { noImage } = staticData;
+  const { noImage, articleLabel } = staticData;
 
   const image = img && img.length > 0 ? img[0] : noImage;
 
@@ -61,8 +61,8 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
           { 'bg-saleBg': price_promo },
         )}
       >
-        <div className="mb-2 h-[150px] xl:h-[250px] smOnly:mb-4 smOnly:mt-10">
-          <div className="h-[200px] overflow-hidden rounded-[32px] xl:size-[250px] mdOnly:size-[300px]">
+        <div className="mb-2 h-[150px] xl:h-[250px] smOnly:mb-6 smOnly:mt-10">
+          <div className="h-[180px] overflow-hidden rounded-[32px] xl:size-[250px] mdOnly:size-[300px] ">
             <Image
               src={image}
               width={300}
@@ -81,15 +81,22 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
 
             <p className="mb-4 line-clamp-1">{description}</p>
 
-            <p className="mb-2 flex items-center overflow-hidden text-ellipsis text-right text-[12px] font-bold uppercase leading-[1.2]">
-              {count_warehouse_3 === '0' ? (
-                <span className="text-rose-800">Немає в наявності</span>
-              ) : (
-                <span className="text-[14px] text-green-500 ">
-                  В наявності {count_warehouse_3}шт
-                </span>
-              )}
-            </p>
+            <div className="mb-2 flex justify-between smOnly:flex-wrap">
+              <p className="flex items-center overflow-hidden text-ellipsis text-right text-[12px] font-bold uppercase leading-[1.2]">
+                {count_warehouse_3 === '0' ? (
+                  <span className="text-rose-800">Немає в наявності</span>
+                ) : (
+                  <span className="text-[14px] text-green-500 ">
+                    В наявності {count_warehouse_3}шт
+                  </span>
+                )}
+              </p>
+
+              <p className="mb-2 text-[14px]">
+                {articleLabel}&nbsp;
+                {article}
+              </p>
+            </div>
           </div>
 
           <div className="mx-auto flex max-w-[500px] items-center justify-end gap-4 ">

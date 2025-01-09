@@ -44,7 +44,7 @@ export const VinRequestFormRequiredInput: React.FC<
   };
 
   return (
-    <label className="relative text-primaryText">
+    <label className="relative pb-2 text-primaryText">
       <p className="mb-1 flex">
         {isRequiredField ? (
           <span className="mr-1 block  text-[24px] leading-none text-red">
@@ -63,18 +63,29 @@ export const VinRequestFormRequiredInput: React.FC<
         {...register(name, { ...registerOptions() })}
         type={inputType}
         className={cn(
-          'w-full rounded-md border border-transparent p-2 font-geologica text-[16px] text-secondaryText',
-          { 'text-error': errorMessage },
+          'mb-2 w-full rounded-md border border-transparent px-2 py-1 font-nunito text-[16px] text-secondaryText',
+          { 'border-error text-error': errorMessage },
           { 'bg-green-200': !errorMessage && !isEmptyValue },
+          { 'bg-rose-200': errorMessage },
         )}
         placeholder={placeholder}
+        onInput={e => {
+          if (name === 'vinCode') {
+            const input = e.target as HTMLInputElement;
+            if (input.value.length > 17) {
+              input.value = input.value.trim().slice(0, 17); // Обрізання до 17 символів
+            }
+          }
+        }}
       />
+
+      <p style={{ color: 'rgba(255, 148, 148, 0.2)' }}></p>
 
       {isError ? (
         <span
           role="alert"
           id={`errorMessage${name}`}
-          className="absolute bottom-0 left-0 text-[12px] text-error"
+          className="absolute -bottom-1.5 left-0 rounded-md border-error bg-rose-100 p-1 text-[12px] text-error"
         >
           {errorMessage}
         </span>

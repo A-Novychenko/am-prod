@@ -1,4 +1,10 @@
+'use client';
+
+import { useState } from 'react';
+
 import { cn } from '@/utils';
+
+import staticData from '@/data/common.json';
 
 import { VinRequestFormInputProps } from './types';
 
@@ -15,6 +21,9 @@ export const VinRequestFormInput: React.FC<VinRequestFormInputProps> = ({
 
   const errorMessage = errors?.[name]?.message;
 
+  const { customErrors } = staticData.vinRequestForm.engine;
+  const [engineInputError, setEngineInputError] = useState<string | null>(null);
+
   const registerOptions = () => {
     return {
       ...validationOptions,
@@ -25,11 +34,40 @@ export const VinRequestFormInput: React.FC<VinRequestFormInputProps> = ({
       onBlur: () => {
         trigger(name);
       },
+      pattern: {
+        value: validationOptions?.pattern
+          ? new RegExp(validationOptions.pattern.value)
+          : new RegExp(''),
+        message: validationOptions?.pattern
+          ? validationOptions?.pattern?.message
+          : '',
+      },
     };
   };
 
+  const handleEngineInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (name === 'engine') {
+      setEngineInputError(null);
+      const input = e.target;
+
+      if (/[^\d.,]/.test(input.value)) {
+        setEngineInputError(customErrors.invalidValue);
+      }
+
+      if (input.value.length > 5) {
+        setEngineInputError(customErrors.maxLength);
+      }
+
+      // Очищаємо значення
+      input.value = input.value
+        .replace(/[^\d.,]/g, '')
+        .trim()
+        .slice(0, 5);
+    }
+  };
+
   return (
-    <label className={cn('relative text-primaryText', wrapClassName)}>
+    <label className={cn('relative  pb-2 text-primaryText', wrapClassName)}>
       <p className="mb-1">{label}</p>
 
       <input
@@ -39,20 +77,22 @@ export const VinRequestFormInput: React.FC<VinRequestFormInputProps> = ({
         {...register(name, { ...registerOptions() })}
         type={inputType}
         className={cn(
-          'w-full rounded-md border border-transparent p-2  text-[16px] text-secondaryText',
-          { 'text-error': errorMessage },
+          'mb-2 w-full rounded-md border border-transparent px-2 py-1 text-[16px] text-secondaryText',
+          { 'border-error text-error': errorMessage },
+          { 'border-error text-error': engineInputError },
           inputClassName,
         )}
         placeholder={placeholder}
+        onInput={handleEngineInput}
       />
 
-      {isError ? (
+      {isError || engineInputError ? (
         <span
           role="alert"
           id={`errorMessage${name}`}
-          className="absolute bottom-0 left-0 text-[12px] text-error"
+          className="absolute -bottom-2 left-0 z-50 w-[300px] rounded-md border border-error bg-rose-100 p-1 text-[12px] text-error"
         >
-          {errorMessage}
+          {errorMessage || engineInputError}
         </span>
       ) : null}
     </label>

@@ -10,26 +10,28 @@ import { FormPhoneInputProps } from './types';
 export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
   config: { name, label, validationOptions },
   errors,
-
   control,
   inputClassName,
+  trigger,
 }) => {
   const isError = errors?.[name];
-
   const errorMessage = errors?.[name]?.message;
-
-  const isRequiredField = validationOptions?.required;
+  const isRequiredField = validationOptions?.required?.value;
 
   return (
     <Controller
       name={name}
       control={control}
       defaultValue=""
+      rules={{
+        required: validationOptions?.required || 'Це поле обовʼязкове',
+        ...validationOptions, // Додаткові опції для валідації
+      }}
       render={({ field }) => (
-        <label className="relative pb-4 text-primaryText">
+        <label className="relative mb-2 text-primaryText">
           <p className="mb-1 flex">
             {isRequiredField ? (
-              <span className="mr-1 block  text-[24px] leading-none text-red">
+              <span className="mr-1 block text-[24px] leading-none text-red">
                 *
               </span>
             ) : (
@@ -37,12 +39,13 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
             )}
             {label}
           </p>
+
           <span className="relative block">
             <PatternFormat
               type="tel"
               className={cn(
-                'block w-full rounded-md border border-transparent p-2 pl-10 font-geologica text-[16px] text-secondaryText',
-                { 'text-error': errorMessage },
+                'block w-full rounded-md border border-transparent px-2 py-1 pl-10 font-geologica text-[16px] text-secondaryText',
+                { 'border-error bg-rose-200 text-error': errorMessage },
                 {
                   'bg-green-200':
                     !errorMessage &&
@@ -52,9 +55,17 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
                 inputClassName,
               )}
               aria-invalid={errors[name] ? 'true' : 'false'}
-              format="(###) ## ## ###"
-              onChange={field.onChange}
-              onBlur={field.onBlur}
+              format="(###) ### ## ##"
+              onChange={async e => {
+                field.onChange(e); // Обробка значення
+                // Викликаємо валідацію для поля після кожної зміни
+                await trigger(name);
+              }}
+              onBlur={async () => {
+                field.onBlur(); // Обробка втрати фокусу
+                // Викликаємо валідацію для поля після втрати фокусу
+                await trigger(name);
+              }}
               name={field.name}
               value={field.value}
             />
@@ -69,7 +80,7 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
             <span
               role="alert"
               id={`errorMessage${name}`}
-              className="absolute bottom-0 left-0 text-[12px] text-error"
+              className="absolute -bottom-3.5 left-0 rounded-md border border-error bg-rose-100 p-1 text-[12px] text-error"
             >
               {errorMessage}
             </span>
