@@ -18,6 +18,8 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
   const errorMessage = errors?.[name]?.message;
   const isRequiredField = validationOptions?.required?.value;
 
+  console.log('validationOptions', validationOptions);
+
   return (
     <Controller
       name={name}
@@ -25,7 +27,7 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
       defaultValue=""
       rules={{
         required: validationOptions?.required || 'Це поле обовʼязкове',
-        ...validationOptions, // Додаткові опції для валідації
+        ...validationOptions,
       }}
       render={({ field }) => (
         <label className="relative mb-2 text-primaryText">
