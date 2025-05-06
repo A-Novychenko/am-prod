@@ -26,3 +26,4 @@ export * from './SearchProducts';
 export * from './ProductCardGallery';
 export * from './ProductCardList';
 export * from './SliderArrow';
+export * from './Modal';

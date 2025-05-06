@@ -30,7 +30,7 @@ export const CartContactForm: React.FC<CartContactFormProps> = ({
             htmlFor="name"
             className="block text-sm font-medium text-gray-700"
           >
-            Імя
+            Імя <span className="text-red">*</span>
           </label>
           <input
             id="name"
@@ -47,7 +47,7 @@ export const CartContactForm: React.FC<CartContactFormProps> = ({
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700"
           >
-            Телефон
+            Телефон <span className="text-red">*</span>
           </label>
           <input
             id="phone"
@@ -81,7 +81,7 @@ export const CartContactForm: React.FC<CartContactFormProps> = ({
             htmlFor="comment"
             className="block text-sm font-medium text-gray-700"
           >
-            Коментар (необовязково)
+            Коментар
           </label>
           <textarea
             id="comment"
