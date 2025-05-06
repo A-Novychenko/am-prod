@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -31,8 +31,6 @@ export const VinRequestForm: React.FC = () => {
 
   const {
     submitBtn,
-    reverseBtn,
-    reverseBtnBack,
     vinCode,
     brand,
     model,
@@ -43,37 +41,40 @@ export const VinRequestForm: React.FC = () => {
     message,
   } = staticData.vinRequestForm;
 
-  const [side, setSide] = useState<boolean>(true);
-
   const onSubmit: SubmitHandler<VinRequestFormInputs> = data => {
     console.log(data);
 
     reset();
   };
 
-  const handleReverse = async () => {
-    // setSide(!side);
-    if (!side) {
-      setSide(!side);
-    }
-
-    const isVinCodeValid = await trigger('vinCode');
-    const isPhoneValid = await trigger('phone');
-
-    if (isVinCodeValid && isPhoneValid) {
-      setSide(!side);
-    }
-  };
-
   const hasErrors = Object.keys(errors).length > 0;
   console.log('Has Validation Errors:', hasErrors);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-2 rounded-[16px] bg-darkBg p-3 text-[16px] md:w-[476px] md:px-8 md:py-6 smOnly:mb-10 mdOnly:mb-10 mdOnly:w-full"
-    >
-      {side ? (
+    <>
+      <h2 className="mb-10 text-center text-2xl font-bold">
+        Пошук запчастин за VIN-кодом
+      </h2>
+      <p className="mb-6">
+        Введіть VIN-код Вашого автомобіля, щоб швидко та точно підібрати сумісні
+        запчастини. Це найнадійніший спосіб врахувати рік випуску, комплектацію
+        та всі технічні особливості саме Вашої моделі. VIN — це унікальний
+        17-символьний номер, який зазвичай можна знайти в техпаспорті, під
+        лобовим склом або на стійці дверей. Його використання допомагає уникнути
+        помилок при замовленні та заощадити час.
+      </p>
+
+      <p className="mb-6">
+        Просто заповніть форму нижче, додайте VIN-код і перелік потрібних
+        запчастин — ми підберемо відповідні деталі та оперативно з Вами
+        зв’яжемося. Якщо Ви не маєте можливості вказати VIN, все одно надішліть
+        запит — наша команда допоможе знайти необхідне.
+      </p>
+
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-2 rounded-[16px] bg-darkBg p-3 text-[16px]  md:px-8 md:py-6 smOnly:mb-10 mdOnly:mb-10 mdOnly:w-full"
+      >
         <div className="flex flex-col gap-2">
           <VinRequestFormRequiredInput
             config={vinCode}
@@ -125,7 +126,7 @@ export const VinRequestForm: React.FC = () => {
             trigger={trigger}
           />
         </div>
-      ) : (
+
         <div className="flex flex-col gap-2">
           <VinRequestFormTextarea
             config={message}
@@ -134,44 +135,17 @@ export const VinRequestForm: React.FC = () => {
             trigger={trigger}
           />
         </div>
-      )}
 
-      {side ? (
         <button
-          type="button"
-          onClick={handleReverse}
+          type="submit"
           className={cn(
             'w-full rounded-md bg-accent p-3 pr-10 text-[20px] font-medium',
             'transition-colors hover:bg-darkBlueBg hover:text-primaryText focus:bg-darkBlueBg focus:text-primaryText',
-            { 'bg-error': hasErrors },
           )}
         >
-          {reverseBtn}
+          {submitBtn}
         </button>
-      ) : (
-        <>
-          <button
-            type="button"
-            onClick={handleReverse}
-            className={cn(
-              'w-full rounded-md bg-mediumBg p-3 pr-10 text-[20px] font-medium ',
-              'transition-colors hover:bg-slate-500 hover:text-primaryText focus:bg-slate-500 focus:text-primaryText',
-            )}
-          >
-            {reverseBtnBack}
-          </button>
-
-          <button
-            type="submit"
-            className={cn(
-              'w-full rounded-md bg-accent p-3 pr-10 text-[20px] font-medium',
-              'transition-colors hover:bg-darkBlueBg hover:text-primaryText focus:bg-darkBlueBg focus:text-primaryText',
-            )}
-          >
-            {submitBtn}
-          </button>
-        </>
-      )}
-    </form>
+      </form>
+    </>
   );
 };

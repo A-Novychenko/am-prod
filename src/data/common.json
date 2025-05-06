@@ -24,15 +24,42 @@
     }
   ],
   "footerLinks": [
-    { "href": "about", "name": "Про нас" },
-    { "href": "delivery", "name": "Доставка" },
-    { "href": "payment", "name": "Оплата" },
-    { "href": "returns", "name": "Повернення" },
-    { "href": "autoservice", "name": "СТО" },
-    { "href": "news", "name": "Акції/Новини" },
-    { "href": "agreement", "name": "Угода користувача" },
-    { "href": "brands", "name": "Бренди" },
-    { "href": "contacts", "name": "Контакти" }
+    {
+      "href": "about",
+      "name": "Про нас"
+    },
+    {
+      "href": "delivery",
+      "name": "Доставка"
+    },
+    {
+      "href": "payment",
+      "name": "Оплата"
+    },
+    {
+      "href": "returns",
+      "name": "Повернення"
+    },
+    {
+      "href": "autoservice",
+      "name": "СТО"
+    },
+    {
+      "href": "news",
+      "name": "Акції/Новини"
+    },
+    {
+      "href": "agreement",
+      "name": "Угода користувача"
+    },
+    {
+      "href": "brands",
+      "name": "Бренди"
+    },
+    {
+      "href": "contacts",
+      "name": "Контакти"
+    }
   ],
   "contacts": {
     "phone": {
@@ -47,7 +74,10 @@
   "socials": {
     "title": "Ми в соцмережах",
     "links": [
-      { "name": "telegram", "path": "@NovychenkoA" },
+      {
+        "name": "telegram",
+        "path": "@NovychenkoA"
+      },
       {
         "name": "instagram",
         "path": "https://www.instagram.com/avtomagazcomua?igsh=MXVhdnozb2dpNG4x"
@@ -147,14 +177,28 @@
       "name": "fuel",
       "label": "Вид палива",
       "options": [
-        { "value": "", "text": "Бензин" },
-        { "value": "", "text": "Дизель" },
-        { "value": "", "text": "Газ" },
-        { "value": "", "text": "Газ/бензин" },
-        { "value": "", "text": "Електро" }
+        {
+          "value": "",
+          "text": "Бензин"
+        },
+        {
+          "value": "",
+          "text": "Дизель"
+        },
+        {
+          "value": "",
+          "text": "Газ"
+        },
+        {
+          "value": "",
+          "text": "Газ/бензин"
+        },
+        {
+          "value": "",
+          "text": "Електро"
+        }
       ]
     },
-
     "year": {
       "name": "year",
       "label": "Рік випуску",
@@ -196,8 +240,6 @@
         }
       }
     },
-    "submitBtn": "Відправити VIN-запит",
-    "reverseBtn": "Додати список запчастин",
-    "reverseBtnBack": "Повернутись"
+    "submitBtn": "Відправити VIN-запит"
   }
 }
