@@ -11,13 +11,13 @@ export const VinRequestFormSelect: React.FC<VinRequestFormSelectProps> = ({
   inputClassName,
 }) => {
   return (
-    <label className="relative text-primaryText">
+    <label className="relative text-secondaryText">
       <p className="mb-1">{label}</p>
 
       <select
         {...register(name)}
         className={cn(
-          'w-full rounded-md border border-transparent px-1.5 py-0.5  text-[16px] text-secondaryText',
+          'w-full rounded-md border border-secondaryText/50 px-1.5 py-0.5 text-[16px] text-secondaryText',
 
           inputClassName,
         )}

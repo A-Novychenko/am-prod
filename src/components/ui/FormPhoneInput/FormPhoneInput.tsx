@@ -27,68 +27,73 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
       defaultValue=""
       rules={{
         required: validationOptions?.required || 'Це поле обовʼязкове',
+        validate: value => {
+          const cleaned = value.replace(/\D/g, ''); // видаляємо все, крім цифр
+          if (cleaned.length < 12) return 'Невірний номер телефону';
+          return true;
+        },
         ...validationOptions,
       }}
-      render={({ field }) => (
-        <label className="relative mb-2 text-primaryText">
-          <p className="mb-1 flex">
-            {isRequiredField ? (
-              <span className="mr-1 block text-[24px] leading-none text-red">
-                *
-              </span>
-            ) : (
-              ''
-            )}
-            {label}
-          </p>
+      render={({ field }) => {
+        console.log('current phone input value:', field.value);
 
-          <span className="relative block">
-            <PatternFormat
-              type="tel"
-              className={cn(
-                'block w-full rounded-md border border-transparent px-2 py-1 pl-10 font-geologica text-[16px] text-secondaryText',
-                { 'border-error bg-rose-200 text-error': errorMessage },
-                {
-                  'bg-green-200':
-                    !errorMessage &&
-                    field.value &&
-                    field.value.trim()?.length > 0,
-                },
-                inputClassName,
+        return (
+          <label className="relative w-full text-secondaryText">
+            <p className="mb-1 flex">
+              {isRequiredField ? (
+                <span className="mr-1 block leading-none text-red">*</span>
+              ) : (
+                ''
               )}
-              aria-invalid={errors[name] ? 'true' : 'false'}
-              format="(###) ### ## ##"
-              onChange={async e => {
-                field.onChange(e); // Обробка значення
-                // Викликаємо валідацію для поля після кожної зміни
-                await trigger(name);
-              }}
-              onBlur={async () => {
-                field.onBlur(); // Обробка втрати фокусу
-                // Викликаємо валідацію для поля після втрати фокусу
-                await trigger(name);
-              }}
-              name={field.name}
-              value={field.value}
-            />
-            {true && (
-              <span className="absolute left-2 top-1/2 block -translate-y-1/2 font-geologica text-secondaryText">
-                +38
-              </span>
-            )}
-          </span>
+              {label}
+            </p>
 
-          {isError ? (
-            <span
-              role="alert"
-              id={`errorMessage${name}`}
-              className="absolute -bottom-3.5 left-0 rounded-md border border-error bg-rose-100 p-1 text-[12px] text-error"
-            >
-              {errorMessage}
+            <span className="relative block">
+              <PatternFormat
+                type="tel"
+                className={cn(
+                  'block w-full rounded-md border border-secondaryText/50 px-2 py-1 font-geologica text-[16px] text-secondaryText',
+                  { 'border-error bg-rose-200 text-error': errorMessage },
+                  {
+                    'bg-green-200':
+                      !errorMessage &&
+                      field.value &&
+                      field.value.trim()?.length > 0,
+                  },
+                  inputClassName,
+                )}
+                aria-invalid={errors[name] ? 'true' : 'false'}
+                format="+38 (###) ### ## ##"
+                allowEmptyFormatting
+                mask="_"
+                onChange={async e => {
+                  console.log('e', e);
+                  field.onChange(e);
+
+                  await trigger(name);
+                }}
+                onBlur={async () => {
+                  field.onBlur();
+
+                  await trigger(name);
+                }}
+                name={field.name}
+                value={field.value}
+              />
             </span>
-          ) : null}
-        </label>
-      )}
+
+            {isError ? (
+              <span
+                role="alert"
+                id={`errorMessage${name}`}
+                className="absolute -bottom-3.5 left-0 rounded-md border border-error bg-rose-100 p-1 text-[12px] text-error"
+              >
+                {errorMessage}
+              </span>
+            ) : null}
+          </label>
+        );
+      }}
     />
   );
 };

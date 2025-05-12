@@ -109,6 +109,17 @@
     "textReCall": "Замовити зворотній дзвінок"
   },
   "vinRequestForm": {
+    "name": {
+      "name": "name",
+      "label": "Імʼя",
+      "placeholder": "Імʼя",
+      "validationOptions": {
+        "maxLength": {
+          "value": 60,
+          "message": "Повинно бути не більше 60 символів"
+        }
+      }
+    },
     "vinCode": {
       "name": "vinCode",
       "label": "VIN-код, 17символів",
@@ -178,23 +189,23 @@
       "label": "Вид палива",
       "options": [
         {
-          "value": "",
+          "value": "Бензин",
           "text": "Бензин"
         },
         {
-          "value": "",
+          "value": "Дизель",
           "text": "Дизель"
         },
         {
-          "value": "",
+          "value": "Газ",
           "text": "Газ"
         },
         {
-          "value": "",
+          "value": "Газ/бензин",
           "text": "Газ/бензин"
         },
         {
-          "value": "",
+          "value": "Електро",
           "text": "Електро"
         }
       ]
@@ -219,13 +230,9 @@
           "value": true,
           "message": "Поле обовʼязкове"
         },
-        "minLength": {
-          "value": 15,
-          "message": "Поле повинно містити рівно 15 символів"
-        },
         "pattern": {
-          "value": "^[+()-0-9]+$",
-          "message": "Може містити +,(, ), цифри, пробіл"
+          "value": "^\\d{10}$",
+          "message": "Введіть коректний номер телефону"
         }
       }
     },

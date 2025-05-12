@@ -44,12 +44,10 @@ export const VinRequestFormRequiredInput: React.FC<
   };
 
   return (
-    <label className="relative pb-2 text-primaryText">
+    <label className="relative w-full text-secondaryText">
       <p className="mb-1 flex">
         {isRequiredField ? (
-          <span className="mr-1 block  text-[24px] leading-none text-red">
-            *
-          </span>
+          <span className="mr-1 block  leading-none text-red">*</span>
         ) : (
           ''
         )}
@@ -63,7 +61,7 @@ export const VinRequestFormRequiredInput: React.FC<
         {...register(name, { ...registerOptions() })}
         type={inputType}
         className={cn(
-          'mb-2 w-full rounded-md border border-transparent px-2 py-1 font-nunito text-[16px] text-secondaryText',
+          'mb-2 w-full rounded-md border border-secondaryText/50 px-2 py-1 font-nunito text-[16px] text-secondaryText',
           { 'border-error text-error': errorMessage },
           { 'bg-green-200': !errorMessage && !isEmptyValue },
           { 'bg-rose-200': errorMessage },
