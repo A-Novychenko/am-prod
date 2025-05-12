@@ -67,7 +67,7 @@ export const VinRequestFormInput: React.FC<VinRequestFormInputProps> = ({
   };
 
   return (
-    <label className={cn('relative  pb-2 text-primaryText', wrapClassName)}>
+    <label className={cn('relative text-secondaryText', wrapClassName)}>
       <p className="mb-1">{label}</p>
 
       <input
@@ -77,7 +77,7 @@ export const VinRequestFormInput: React.FC<VinRequestFormInputProps> = ({
         {...register(name, { ...registerOptions() })}
         type={inputType}
         className={cn(
-          'mb-2 w-full rounded-md border border-transparent px-2 py-1 text-[16px] text-secondaryText',
+          'w-full rounded-md border border-secondaryText/50 px-2 py-1 text-[16px] text-secondaryText',
           { 'border-error text-error': errorMessage },
           { 'border-error text-error': engineInputError },
           inputClassName,

@@ -29,12 +29,12 @@ export const VinRequestFormTextarea: React.FC<VinRequestFormInputProps> = ({
   // };
 
   return (
-    <label className={cn('relative text-primaryText', wrapClassName)}>
+    <label className={cn('relative text-secondaryText', wrapClassName)}>
       <p className="mb-1">{label}</p>
 
       <textarea
         className={cn(
-          'h-[292px] w-full resize-none rounded-md border border-transparent p-2  text-[16px] text-secondaryText',
+          'h-[164px] w-full resize-none rounded-md border border-secondaryText/50 p-2  text-[16px] text-secondaryText',
           { 'text-error': errorMessage },
           inputClassName,
         )}
