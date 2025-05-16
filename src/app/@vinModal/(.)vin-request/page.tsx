@@ -9,7 +9,8 @@ export default function Page() {
   const router = useRouter();
 
   return (
-    <Modal show={true} onClose={() => router.back()}>
+    <Modal show={true} onClose={() => router.push('/')}>
+      {/* <Modal show={true} onClose={() => router.back()}> */}
       <VinRequestForm />
     </Modal>
   );

@@ -18,8 +18,6 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
   const errorMessage = errors?.[name]?.message;
   const isRequiredField = validationOptions?.required?.value;
 
-  console.log('validationOptions', validationOptions);
-
   return (
     <Controller
       name={name}
@@ -35,8 +33,6 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
         ...validationOptions,
       }}
       render={({ field }) => {
-        console.log('current phone input value:', field.value);
-
         return (
           <label className="relative w-full text-secondaryText">
             <p className="mb-1 flex">

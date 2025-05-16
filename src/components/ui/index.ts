@@ -27,3 +27,4 @@ export * from './ProductCardGallery';
 export * from './ProductCardList';
 export * from './SliderArrow';
 export * from './Modal';
+export * from './VinRequestModalCard';

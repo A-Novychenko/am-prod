@@ -14,10 +14,11 @@ export const addVinRequest = async (formData: Record<string, any>) => {
 
     const res = await result.json();
 
-    if (res.code !== 200) throw new Error('Server not connect');
+    if (res.code !== 201) throw new Error('Server not connect');
 
     return res;
   } catch (e) {
     console.log('e.addVinRequest', e);
+    throw new Error();
   }
 };
