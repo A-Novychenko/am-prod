@@ -55,9 +55,11 @@ export async function generateStaticParams() {
 export default function RootLayout({
   children,
   vinModal,
+  cart,
 }: Readonly<{
   children: React.ReactNode;
   vinModal: React.ReactNode;
+  cart: React.ReactNode;
 }>) {
   return (
     <html lang="uk" className="scroll-smooth">
@@ -70,6 +72,7 @@ export default function RootLayout({
 
             <main className="flex grow flex-col">
               {vinModal}
+              {cart}
               {children}
             </main>
 

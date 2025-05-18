@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import {
   CartContactForm,
@@ -16,6 +17,8 @@ import { DeliveryMethod } from './types';
 
 const Cart: React.FC = () => {
   const { items, syncCart } = useCart();
+
+  const router = useRouter();
 
   const [isVisible, setIsVisible] = useState(1);
 
@@ -93,23 +96,38 @@ const Cart: React.FC = () => {
             ) : (
               <div className="text-center">
                 {hasUnavailableItem && (
-                  <p className="mb-4 text-red">
+                  <p className="mb-4  text-red">
                     Для того щоб продовжити приберіть товар якого немає в
                     наявності
                   </p>
                 )}
 
-                <button
-                  type="button"
-                  className={cn(
-                    'mx-auto cursor-pointer rounded bg-accent p-2 text-center font-medium ',
-                    'transition-colors hover:bg-darkBg hover:text-primaryText disabled:bg-slate-300 disabled:text-slate-500',
-                  )}
-                  onClick={handleVisibleIncr}
-                  disabled={hasUnavailableItem}
-                >
-                  Продовжити
-                </button>
+                <div className="flex gap-4">
+                  <button
+                    type="button"
+                    className={cn(
+                      'mx-auto cursor-pointer rounded bg-accent p-2 text-center font-medium ',
+                      'transition-colors hover:bg-darkBg hover:text-primaryText focus:bg-darkBg focus:text-primaryText disabled:bg-slate-300 disabled:text-slate-500',
+                    )}
+                    onClick={() => {
+                      router.back();
+                    }}
+                  >
+                    Продовжити покупки
+                  </button>
+
+                  <button
+                    type="button"
+                    className={cn(
+                      'mx-auto cursor-pointer rounded bg-darkBg p-2 text-center font-medium text-primaryText',
+                      'transition-colors hover:bg-accent hover:text-secondaryText focus:bg-accent focus:text-secondaryText disabled:bg-slate-300 disabled:text-slate-500',
+                    )}
+                    onClick={handleVisibleIncr}
+                    disabled={hasUnavailableItem}
+                  >
+                    Оформити замовлення
+                  </button>
+                </div>
               </div>
             )}
           </div>
