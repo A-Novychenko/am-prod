@@ -1,10 +1,12 @@
 'use client';
 
+import { cn } from '@/utils';
 import { CartContactFormProps } from './types';
 
 export const CartContactForm: React.FC<CartContactFormProps> = ({
   formData,
   setFormData,
+  className = '',
 }) => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -20,7 +22,7 @@ export const CartContactForm: React.FC<CartContactFormProps> = ({
   };
 
   return (
-    <div className="mb-8 rounded-lg bg-white p-6 shadow-md">
+    <div className={cn('rounded-lg bg-white p-6', className)}>
       <h2 className="mb-4 text-xl font-bold text-darkBlueText">
         Контактна інформація
       </h2>

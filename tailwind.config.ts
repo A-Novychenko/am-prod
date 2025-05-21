@@ -63,6 +63,7 @@ const config: Config = {
       boxShadow: {
         custom: '2px 5px 15px rgba(0, 69, 203, 0.5)',
         customLight: '2px 5px 15px rgba(0, 69, 203, 0.2)',
+        customTop: '0 -4px 6px -4px rgba(0, 69, 203, 0.2)',
       },
     },
   },

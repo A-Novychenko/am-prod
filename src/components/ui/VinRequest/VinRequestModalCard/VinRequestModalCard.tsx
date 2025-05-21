@@ -2,9 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 
-import { VinRequestModalCardProps } from './types';
+import { Contacts } from '@/components/ui';
+
 import { formatDateToUkrainian } from '@/utils/formatDateToUkrainian';
-import { Contacts } from '../Contacts';
+
+import { VinRequestModalCardProps } from './types';
 
 export const VinRequestModalCard: React.FC<VinRequestModalCardProps> = ({
   type,

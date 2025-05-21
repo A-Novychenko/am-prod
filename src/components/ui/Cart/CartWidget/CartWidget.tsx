@@ -1,6 +1,6 @@
 'use client';
 
-// import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 import { useCart } from '@/context';
 
@@ -8,7 +8,6 @@ import { cn } from '@/utils';
 
 import staticData from '@/data/common.json';
 import CartIcon from '~/icons/shopping-cart.svg';
-import { useRouter } from 'next/navigation';
 
 export const CartWidget: React.FC = () => {
   const { alt } = staticData.cart;
@@ -20,7 +19,6 @@ export const CartWidget: React.FC = () => {
   const qty = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    // <Link href="/cart">
     <button onClick={() => router.push('/cart')}>
       <div className="relative">
         <CartIcon width={60} height={60} alt={alt} />
@@ -35,6 +33,5 @@ export const CartWidget: React.FC = () => {
         </span>
       </div>
     </button>
-    // </Link>
   );
 };

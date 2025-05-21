@@ -10,4 +10,5 @@ type SetFormData = React.Dispatch<React.SetStateAction<FormData>>;
 export type CartContactFormProps = {
   formData: FormData;
   setFormData: SetFormData;
+  className?: string;
 };

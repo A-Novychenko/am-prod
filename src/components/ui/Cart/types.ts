@@ -1,3 +1,5 @@
+export type CartProps = { isPage: boolean; isCheckoutPage: boolean };
+
 export type DeliveryMethod = 'pickup' | 'post';
 
 export type DeliveryFormProps = {
