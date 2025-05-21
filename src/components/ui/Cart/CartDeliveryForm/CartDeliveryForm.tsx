@@ -5,14 +5,15 @@ import { DeliveryFormProps, DeliveryMethod } from './types';
 export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
   deliveryMethod,
   setDeliveryMethod,
+  className = '',
 }) => {
   const handleChange = (method: DeliveryMethod) => {
     setDeliveryMethod(method);
   };
 
   return (
-    <>
-      <div className="flex flex-col gap-4 rounded-md border bg-white p-4 shadow-sm">
+    <div className={className}>
+      <div className="flex flex-col gap-4 rounded-[16px] bg-white p-4">
         <h2 className="text-lg font-semibold text-darkBlueText">
           Виберіть спосіб доставки
         </h2>
@@ -42,7 +43,7 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
         </div>
       </div>
 
-      <p className="my-4">
+      <p className="p-4">
         Вибраний спосіб доставки:
         <strong>
           {deliveryMethod === 'pickup' ? 'Самовивіз' : 'Відправка поштою'}
@@ -50,7 +51,7 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
       </p>
 
       {deliveryMethod === 'post' && (
-        <form>
+        <form className="p-4">
           <div>
             <label
               htmlFor="city"
@@ -88,6 +89,6 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
           </div>
         </form>
       )}
-    </>
+    </div>
   );
 };

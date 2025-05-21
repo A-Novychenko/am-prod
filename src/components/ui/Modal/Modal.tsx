@@ -34,7 +34,7 @@ export const Modal = ({ show, children, onClose }: ModalProps) => {
                 <TfiClose />
               </button>
 
-              <div className="max-h-[80vh] overflow-hidden overflow-y-auto p-7 md:p-12">
+              <div className="max-h-[90vh] overflow-hidden overflow-y-auto md:max-h-[80vh]">
                 {children}
               </div>
             </div>

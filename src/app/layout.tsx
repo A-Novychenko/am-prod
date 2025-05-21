@@ -8,6 +8,7 @@ import { Header } from '../layout/Header';
 import { Footer } from '@/layout/Footer';
 import { getMainCategories } from '@/actions/servicesAPI';
 import { CartProvider } from '@/context';
+import { CartModalSlot } from '@/components/ui';
 
 const nunito = Nunito({
   subsets: ['cyrillic', 'latin'],
@@ -71,9 +72,10 @@ export default function RootLayout({
             <Header />
 
             <main className="flex grow flex-col">
-              {vinModal}
-              {cart}
               {children}
+
+              {vinModal}
+              <CartModalSlot modal={cart} />
             </main>
 
             <Footer />

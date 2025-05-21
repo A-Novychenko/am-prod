@@ -9,6 +9,7 @@ import { useCart } from '@/context';
 import { cn, currencyFormatted } from '@/utils';
 
 import { CartItem } from '@/context/CartProvider/types';
+import { CartProductsProps } from './types';
 // type CartItem = {
 //   id: number;
 //   name: string;
@@ -18,23 +19,13 @@ import { CartItem } from '@/context/CartProvider/types';
 //   img: string;
 // };
 
-export const CartProducts: React.FC = () => {
-  const {
-    items,
-    totalAmount,
-    totalDiscount,
-    totalAmountWithDiscount,
-    addItem,
-    removeItem,
-  } = useCart();
+export const CartProducts: React.FC<CartProductsProps> = ({
+  className = '',
+  isCheckoutPage = false,
+}) => {
+  const { items, addItem, removeItem } = useCart();
 
   const { articleLabel } = staticData;
-
-  const totalAmountFormatted: string = currencyFormatted(totalAmount);
-  const totalDiscountFormatted: string = currencyFormatted(totalDiscount);
-  const totalAmountWithDiscountFormatted: string = currencyFormatted(
-    totalAmountWithDiscount,
-  );
 
   const increment = (item: CartItem) => {
     addItem({ ...item, quantity: item.quantity + 1 });
@@ -50,12 +41,8 @@ export const CartProducts: React.FC = () => {
   };
 
   return (
-    <div className="mb-8">
-      <p className="mb-4 text-[18px] font-semibold">
-        Товарів у кошику: {items.length}
-      </p>
-
-      <ul className="mb-8 flex flex-col gap-4">
+    <div className={className}>
+      <ul className="flex flex-col gap-2">
         {items &&
           items.map(item => {
             const {
@@ -92,7 +79,7 @@ export const CartProducts: React.FC = () => {
                 )}
               >
                 <div className="w-full gap-4 pt-2 md:flex md:flex-col md:items-center xl:flex-row xl:justify-between xl:pt-0">
-                  <div className="size-[120px] shrink-0 smOnly:mx-auto">
+                  <div className="size-[80px] shrink-0 smOnly:mx-auto">
                     <Image
                       src={img}
                       alt={name}
@@ -102,11 +89,27 @@ export const CartProducts: React.FC = () => {
                     />
                   </div>
 
-                  <p className="grow smOnly:text-center">{name}</p>
+                  <p
+                    className={cn('grow smOnly:text-center', {
+                      'max-w-[180px]': isCheckoutPage,
+                    })}
+                  >
+                    {name}
+                  </p>
 
-                  <div className="w-[180px] shrink-0 text-center xl:text-left smOnly:w-full">
-                    <p className="mb-2 text-[14px]">
-                      {articleLabel}&nbsp;
+                  <div
+                    className={cn(
+                      'w-[180px] shrink-0 text-center xl:text-left smOnly:w-full',
+                      { 'w-[140px]': isCheckoutPage },
+                    )}
+                  >
+                    <p
+                      className={cn('mb-2 text-[14px]', {
+                        'mb-2 text-[12px]': isCheckoutPage,
+                      })}
+                    >
+                      {articleLabel}&nbsp;{' '}
+                      <br className={cn({ hidden: !isCheckoutPage })} />
                       {article}
                     </p>
 
@@ -114,7 +117,11 @@ export const CartProducts: React.FC = () => {
                       {availability === '0' ? (
                         <span className="text-rose-800">Немає в наявності</span>
                       ) : (
-                        <span className="text-[14px] text-green-500">
+                        <span
+                          className={cn('text-[14px] text-green-500', {
+                            'text-[12px]': isCheckoutPage,
+                          })}
+                        >
                           В наявності {availability}шт
                         </span>
                       )}
@@ -125,7 +132,7 @@ export const CartProducts: React.FC = () => {
                 <div className="items-center gap-2 md:flex smOnly:text-center mdOnly:mb-4">
                   <div className="items-center gap-4  text-right md:flex  smOnly:text-center">
                     <div
-                      className={cn('xl:w-[112px]', {
+                      className={cn('xl:w-[100px]', {
                         'flex-col items-end md:flex': price_promo,
                       })}
                     >
@@ -145,7 +152,7 @@ export const CartProducts: React.FC = () => {
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-2 xl:w-[112px] smOnly:justify-center">
+                    <div className="flex items-center gap-2 xl:w-[100px] smOnly:justify-center">
                       <button
                         type="button"
                         className="size-8 rounded-md bg-slate-200"
@@ -171,7 +178,7 @@ export const CartProducts: React.FC = () => {
                       </button>
                     </div>
 
-                    <p className="xl:w-[112px] smOnly:my-4 smOnly:font-bold">
+                    <p className="xl:w-[100px] smOnly:my-4 smOnly:font-bold">
                       <span className="inline-block xl:hidden">
                         Сумма:&nbsp;
                       </span>
@@ -193,7 +200,7 @@ export const CartProducts: React.FC = () => {
 
                 <div
                   className={cn(
-                    'absolute right-0 top-0 hidden h-[40px] w-[96px] smOnly:left-1 smOnly:top-2 smOnly:h-[55px] smOnly:w-[120px]',
+                    'absolute -top-1 right-0 hidden h-[40px] w-[96px] smOnly:left-1 smOnly:top-2 smOnly:h-[55px] smOnly:w-[120px]',
                     {
                       block: price_promo,
                     },
@@ -204,37 +211,13 @@ export const CartProducts: React.FC = () => {
                     width={500}
                     height={218}
                     alt="Акція"
-                    className="size-full object-contain"
+                    className="size-full rotate-[10deg] object-contain"
                   />
                 </div>
               </li>
             );
           })}
       </ul>
-
-      <p className="mb-4 text-right text-[18px] font-semibold">
-        Товарів у кошику: {items.length}
-      </p>
-
-      <p
-        className={cn('text-right font-bold', {
-          ' font-normal': totalDiscount > 0,
-        })}
-      >
-        Сума: {totalAmountFormatted}
-      </p>
-
-      {totalDiscount > 0 && (
-        <>
-          <p className="mt-1 text-right text-[18px] font-bold text-green-600">
-            Знижка: {totalDiscountFormatted}
-          </p>
-
-          <p className="mt-2 text-right text-[18px] font-bold">
-            Сума зі знижкою: {totalAmountWithDiscountFormatted}
-          </p>
-        </>
-      )}
     </div>
   );
 };
