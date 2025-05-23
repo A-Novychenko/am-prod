@@ -90,8 +90,8 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                   </div>
 
                   <p
-                    className={cn('grow smOnly:text-center', {
-                      'max-w-[180px]': isCheckoutPage,
+                    className={cn('grow text-center xl:text-left', {
+                      'xl:max-w-[180px]': isCheckoutPage,
                     })}
                   >
                     {name}

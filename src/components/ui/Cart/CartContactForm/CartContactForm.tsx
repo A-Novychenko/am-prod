@@ -1,64 +1,64 @@
 'use client';
 
+import { CartPhoneInput } from '@/components/ui';
+
 import { cn } from '@/utils';
+
 import { CartContactFormProps } from './types';
 
 export const CartContactForm: React.FC<CartContactFormProps> = ({
-  formData,
-  setFormData,
+  checkoutState,
+  setCheckoutState,
   className = '',
+  handleValidationPhone,
+  handleValidationName,
+  errors,
 }) => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+    setCheckoutState(prev => ({ ...prev, [name]: value }));
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Логіка відправки форми
-    console.log('Form submitted:', formData);
+    if (name === 'name') {
+      handleValidationName(value);
+    }
   };
 
   return (
-    <div className={cn('rounded-lg bg-white p-6', className)}>
-      <h2 className="mb-4 text-xl font-bold text-darkBlueText">
+    <div className={cn('rounded-lg bg-white p-4', className)}>
+      <h2 className="text-lg font-semibold text-darkBlueText">
         Контактна інформація
       </h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Імя <span className="text-red">*</span>
-          </label>
+      <div className="flex flex-col gap-1">
+        <label className="relative block pb-5 text-sm font-medium text-gray-700">
+          Імя <span className="text-red">*</span>
           <input
             id="name"
             name="name"
             type="text"
-            value={formData.name}
+            value={checkoutState.name}
             onChange={handleChange}
+            onBlur={e => handleValidationName(e.target.value)}
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className={cn(
+              'mt-1 block w-full rounded-md border border-gray-300 px-2 py-1 shadow-sm focus:border-indigo-500 focus:ring-indigo-500',
+              { 'border-red bg-rose-100': errors.name },
+            )}
           />
-        </div>
+          {errors.name && (
+            <p className="absolute bottom-0 text-[12px] text-red">
+              {'Введіть імʼя'}
+            </p>
+          )}
+        </label>
+
         <div>
-          <label
-            htmlFor="phone"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Телефон <span className="text-red">*</span>
-          </label>
-          <input
-            id="phone"
-            name="phone"
-            type="text"
-            value={formData.phone}
+          <CartPhoneInput
+            value={checkoutState.phone}
             onChange={handleChange}
-            required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            handleValidationPhone={handleValidationPhone}
+            errors={errors}
           />
         </div>
         <div>
@@ -72,10 +72,10 @@ export const CartContactForm: React.FC<CartContactFormProps> = ({
             id="email"
             name="email"
             type="email"
-            value={formData.email}
+            value={checkoutState.email}
             onChange={handleChange}
             required
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 block w-full rounded-md border border-gray-300 px-2 py-1 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           />
         </div>
         <div>
@@ -88,18 +88,12 @@ export const CartContactForm: React.FC<CartContactFormProps> = ({
           <textarea
             id="comment"
             name="comment"
-            value={formData.comment}
+            value={checkoutState.comment}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            className="mt-1 block w-full resize-none rounded-md border border-gray-300 px-2 py-1 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           />
         </div>
-        {/* <button
-          type="submit"
-          className="w-full rounded-md bg-green-500 px-4 py-2 text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
-        >
-          Відправити
-        </button> */}
-      </form>
+      </div>
     </div>
   );
 };

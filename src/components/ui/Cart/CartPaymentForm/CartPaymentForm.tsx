@@ -1,22 +1,15 @@
 'use client';
 
 import React from 'react';
+import { CartPaymentFormProps } from './types';
 
-type PaymentMethod = 'card' | 'cash';
-
-interface PaymentFormProps {
-  paymentMethod: PaymentMethod;
-  setPaymentMethod: (method: PaymentMethod) => void;
-  className?: string;
-}
-
-export const CartPaymentForm: React.FC<PaymentFormProps> = ({
-  paymentMethod,
-  setPaymentMethod,
+export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
+  checkoutState: { deliveryMethod, paymentMethod },
+  setCheckoutState,
   className = '',
 }) => {
   const handleChange = (method: PaymentMethod) => {
-    setPaymentMethod(method);
+    setCheckoutState(prev => ({ ...prev, paymentMethod: method }));
   };
 
   return (
@@ -26,28 +19,59 @@ export const CartPaymentForm: React.FC<PaymentFormProps> = ({
           Виберіть спосіб оплати
         </h2>
         <div className="flex flex-col gap-2">
-          <label className="flex cursor-pointer items-center gap-2">
-            <input
-              type="radio"
-              name="payment"
-              value="card"
-              checked={paymentMethod === 'card'}
-              onChange={() => handleChange('card')}
-              className="size-5 text-darkBlueText focus:ring-darkBlueText"
-            />
-            <span className="text-sm text-gray-700">Оплата карткою</span>
-          </label>
-          <label className="flex cursor-pointer items-center gap-2">
-            <input
-              type="radio"
-              name="payment"
-              value="cash"
-              checked={paymentMethod === 'cash'}
-              onChange={() => handleChange('cash')}
-              className="size-5 text-darkBlueText focus:ring-darkBlueText"
-            />
-            <span className="text-sm text-gray-700">Готівка при отриманні</span>
-          </label>
+          {deliveryMethod === 'pickup' ? (
+            <>
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="card"
+                  checked={paymentMethod === 'card'}
+                  onChange={() => handleChange('card')}
+                  className="size-5 text-darkBlueText focus:ring-darkBlueText"
+                />
+                <span className="text-sm text-gray-700">Оплата карткою</span>
+              </label>
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="cash"
+                  checked={paymentMethod === 'cash'}
+                  onChange={() => handleChange('cash')}
+                  className="size-5 text-darkBlueText focus:ring-darkBlueText"
+                />
+                <span className="text-sm text-gray-700">
+                  Готівка при отриманні
+                </span>
+              </label>
+            </>
+          ) : (
+            <>
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="card"
+                  checked={paymentMethod === 'prepayment'}
+                  onChange={() => handleChange('prepayment')}
+                  className="size-5 text-darkBlueText focus:ring-darkBlueText"
+                />
+                <span className="text-sm text-gray-700">Передплата</span>
+              </label>
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="cash"
+                  checked={paymentMethod === 'cod'}
+                  onChange={() => handleChange('cod')}
+                  className="size-5 text-darkBlueText focus:ring-darkBlueText"
+                />
+                <span className="text-sm text-gray-700">Післяоплата</span>
+              </label>
+            </>
+          )}
         </div>
       </div>
 

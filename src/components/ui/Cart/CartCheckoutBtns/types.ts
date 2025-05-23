@@ -1,1 +1,4 @@
-export type CartCheckoutBtnsProps = { hasUnavailableItem: boolean };
+export type CartCheckoutBtnsProps = {
+  hasUnavailableItem: boolean;
+  handleSubmitCart: () => void;
+};

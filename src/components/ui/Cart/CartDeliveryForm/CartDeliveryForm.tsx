@@ -1,14 +1,28 @@
 'use client';
 
-import { DeliveryFormProps, DeliveryMethod } from './types';
+import { DeliveryFormProps } from './types';
 
 export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
-  deliveryMethod,
-  setDeliveryMethod,
+  checkoutState: { deliveryMethod, city, postOffice },
+  setCheckoutState,
   className = '',
 }) => {
   const handleChange = (method: DeliveryMethod) => {
-    setDeliveryMethod(method);
+    setCheckoutState(prev => ({
+      ...prev,
+      paymentMethod: method === 'pickup' ? 'card' : 'prepayment',
+      deliveryMethod: method,
+    }));
+  };
+
+  const handleChangeData = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setCheckoutState(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -38,15 +52,17 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
               onChange={() => handleChange('post')}
               className="size-5 text-darkBlueText focus:ring-darkBlueText"
             />
-            <span className="text-sm text-gray-700">Відправка поштою</span>
+            <span className="text-sm text-gray-700">
+              Відправка Новою поштою
+            </span>
           </label>
         </div>
       </div>
 
       <p className="p-4">
         Вибраний спосіб доставки:
-        <strong>
-          {deliveryMethod === 'pickup' ? 'Самовивіз' : 'Відправка поштою'}
+        <strong className="block">
+          {deliveryMethod === 'pickup' ? 'Самовивіз' : 'Відправка Новою поштою'}
         </strong>
       </p>
 
@@ -63,8 +79,8 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
               id="city"
               name="city"
               type="text"
-              //   value={formData.name}
-              //   onChange={handleChange}
+              value={city}
+              onChange={handleChangeData}
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             />
@@ -72,17 +88,17 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
 
           <div>
             <label
-              htmlFor="department"
+              htmlFor="postOffice"
               className="block text-sm font-medium text-gray-700"
             >
               Відділення
             </label>
             <input
-              id="department"
-              name="department"
+              id="postOffice"
+              name="postOffice"
               type="text"
-              //   value={formData.name}
-              //   onChange={handleChange}
+              value={postOffice}
+              onChange={handleChangeData}
               required
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
             />

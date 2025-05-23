@@ -6,6 +6,7 @@ import { CartCheckoutBtnsProps } from './types';
 
 export const CartCheckoutBtns: React.FC<CartCheckoutBtnsProps> = ({
   hasUnavailableItem,
+  handleSubmitCart,
 }) => {
   return (
     <div className="mx-auto flex gap-10">
@@ -19,9 +20,7 @@ export const CartCheckoutBtns: React.FC<CartCheckoutBtnsProps> = ({
         <div className="flex gap-4">
           <Btn
             styleType="primary"
-            onClick={() => {
-              alert('Замовлення створено');
-            }}
+            onClick={handleSubmitCart}
             disabled={hasUnavailableItem}
           >
             Відправити замовлення
