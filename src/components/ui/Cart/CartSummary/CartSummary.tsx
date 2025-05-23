@@ -16,7 +16,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({ className = '' }) => {
 
   return (
     <div className={cn('text-right font-bold', className)}>
-      <p className="mb-2 font-semibold md:mb-4 md:text-[18px]">
+      <p className="mb-1 font-semibold md:mb-4 xl:text-[18px]">
         Товарів у кошику: {items.length}
       </p>
 
@@ -30,11 +30,11 @@ export const CartSummary: React.FC<CartSummaryProps> = ({ className = '' }) => {
 
       {totalDiscount > 0 && (
         <>
-          <p className="mt-1  text-green-600 md:text-[18px]">
+          <p className="mt-1 text-green-600 xl:text-[18px]">
             Знижка: {totalDiscountFormatted}
           </p>
 
-          <p className="mt-2  md:mb-2 md:text-[18px]">
+          <p className="md:my-2  xl:text-[18px]">
             Сума зі знижкою: {totalAmountWithDiscountFormatted}
           </p>
         </>

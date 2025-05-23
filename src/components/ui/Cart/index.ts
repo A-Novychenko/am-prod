@@ -7,3 +7,6 @@ export * from './CartBtns';
 export * from './CartCheckoutBtns';
 export * from './CartSummary';
 export * from './CartPaymentForm';
+export * from './CartCheckoutSummary';
+export * from './CartEmptyNotice';
+export * from './CartPhoneInput';

@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 
 import {
   CartBtns,
-  CartCheckoutBtns,
+  CartCheckoutSummary,
   CartContactForm,
   CartDeliveryForm,
+  CartEmptyNotice,
   CartPaymentForm,
   CartProducts,
   CartSummary,
@@ -14,94 +15,158 @@ import {
 
 import { useCart } from '@/context';
 
-import { CartProps, DeliveryMethod } from './types';
+const DEFAULT_STATE = {
+  name: '',
+  phone: '',
+  email: '',
+  comment: '',
+  city: '',
+  postOffice: '',
+  deliveryMethod: 'pickup' as DeliveryMethod,
+  paymentMethod: 'card' as PaymentMethod,
+};
 
-type PaymentMethod = 'card' | 'cash';
+const CHECKOUT_STORAGE_KEY = 'CHECKOUT_STATE';
 
 const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
   const { items, syncCart } = useCart();
 
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    comment: '',
+  const [isCartLoading, setIsCartLoading] = useState(true);
+
+  const [errors, setErrors] = useState<CartErrors>({});
+
+  const [checkoutState, setCheckoutState] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem(CHECKOUT_STORAGE_KEY);
+      return stored ? JSON.parse(stored) : DEFAULT_STATE;
+    }
+    return DEFAULT_STATE;
   });
 
-  const [deliveryMethod, setDeliveryMethod] =
-    useState<DeliveryMethod>('pickup');
-
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('card');
+  const {
+    name,
+    phone,
+    email,
+    comment,
+    city,
+    postOffice,
+    deliveryMethod,
+    paymentMethod,
+  } = checkoutState;
 
   useEffect(() => {
-    // Синхронізація кошика при завантаженні сторінки
+    localStorage.setItem(CHECKOUT_STORAGE_KEY, JSON.stringify(checkoutState));
+  }, [checkoutState]);
+
+  useEffect(() => {
     const updCart = async () => {
-      syncCart();
+      await syncCart();
+      setIsCartLoading(false);
     };
 
     updCart();
   }, [syncCart]);
 
+  if (isCartLoading) {
+    return <div className="p-8 text-center">Завантаження кошика...</div>; // можешь заменить на спиннер
+  }
+
   if (items.length === 0) {
-    return <p>Немає товарів у кошику</p>;
+    return <CartEmptyNotice />;
   }
 
   const hasUnavailableItem = items.some(item => item.availability === '0');
 
-  const hasContactsData = Object.values(formData).some(
-    value => value !== null && value !== undefined && value !== '',
+  const hasContactsData = [name, phone, email, comment].some(
+    value => value?.trim() !== '',
   );
+
+  const handleValidationName = (val: string) => {
+    const nameCleaned = val?.trim();
+
+    console.log('nameCleaned.length < 2', nameCleaned.length < 2);
+
+    if (nameCleaned.length < 2) {
+      setErrors(pS => ({ ...pS, name: 'name' }));
+    } else {
+      setErrors(pS => ({ ...pS, name: undefined }));
+    }
+  };
+
+  const handleValidationPhone = (val: string) => {
+    const phoneCleaned = val.replace(/\D/g, '');
+
+    if (phoneCleaned.length < 12) {
+      setErrors(pS => ({ ...pS, phone: 'phone' }));
+    } else {
+      setErrors(pS => ({ ...pS, phone: undefined }));
+    }
+  };
+
+  const handleSubmitCart = async () => {
+    const data = {
+      name: name,
+      phone: phone,
+      email: email,
+      comment: comment,
+      delivery: deliveryMethod,
+      deliveryCity: city,
+      postOffice: postOffice,
+      payment: paymentMethod,
+      products: items,
+    };
+
+    handleValidationPhone(phone);
+    handleValidationName(name);
+
+    if (errors.name || errors.phone) {
+      return;
+    }
+
+    console.log('data', data);
+
+    localStorage.removeItem(CHECKOUT_STORAGE_KEY);
+    setCheckoutState(DEFAULT_STATE);
+  };
 
   return (
     <>
       <div className="flex flex-col">
         {isCheckoutPage ? (
           <div className="flex flex-col gap-6">
-            <div className="flex gap-6">
-              <div className="flex grow flex-col gap-6">
+            <div className="flex flex-col gap-4 xl:flex-row xl:gap-6">
+              <CartContactForm
+                checkoutState={checkoutState}
+                setCheckoutState={setCheckoutState}
+                handleValidationPhone={handleValidationPhone}
+                handleValidationName={handleValidationName}
+                errors={errors}
+                className="rounded-[16px] shadow-customLight xl:w-[434px]"
+              />
+              <CartDeliveryForm
+                checkoutState={checkoutState}
+                setCheckoutState={setCheckoutState}
+                className="rounded-[16px] shadow-customLight xl:w-[434px]"
+              />
+              <CartPaymentForm
+                checkoutState={checkoutState}
+                setCheckoutState={setCheckoutState}
+                className="rounded-[16px] shadow-customLight xl:w-[434px]"
+              />
+            </div>
+
+            <div className="relative gap-6 xl:flex">
+              <div className="mb-4 flex grow flex-col gap-6 xl:mb-0">
                 <CartProducts isCheckoutPage />
               </div>
 
-              <div className="relative flex w-[300px] gap-6 ">
-                <div className="sticky top-8 flex h-fit w-full flex-col gap-6 rounded-[16px] px-3 py-4 shadow-customLight ">
-                  <CartSummary className="w-full text-left" />
-                  {hasContactsData && (
-                    <div>
-                      <p>Контактні дані:</p>
-                      {formData.name && <p>Імʼя: {formData.name}</p>}
-                      {formData.phone && <p>Телефон: {formData.phone}</p>}
-                      {formData.email && <p>Емейл: {formData.email}</p>}
-                      {formData.comment && <p>Коментар: {formData.comment}</p>}
-                    </div>
-                  )}
-                  <p>
-                    Спосіб доставки:{' '}
-                    {deliveryMethod === 'pickup' ? 'Самовивіз' : 'Нова пошта'}
-                  </p>
-                  <p>
-                    Спосіб оплати:{' '}
-                    {paymentMethod === 'card' ? 'Картою' : 'Готівка'}
-                  </p>
-                  <CartCheckoutBtns hasUnavailableItem={hasUnavailableItem} />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex gap-6">
-              <CartContactForm
-                formData={formData}
-                setFormData={setFormData}
-                className="w-[434px] rounded-[16px] shadow-customLight"
-              />
-              <CartDeliveryForm
-                deliveryMethod={deliveryMethod}
-                setDeliveryMethod={setDeliveryMethod}
-                className="w-[434px] rounded-[16px] shadow-customLight"
-              />
-              <CartPaymentForm
-                paymentMethod={paymentMethod}
-                setPaymentMethod={setPaymentMethod}
-                className="w-[434px] rounded-[16px] shadow-customLight"
+              <CartCheckoutSummary
+                hasContactsData={hasContactsData}
+                checkoutState={checkoutState}
+                hasUnavailableItem={hasUnavailableItem}
+                handleSubmitCart={handleSubmitCart}
+                // error={error}
+                errors={errors}
               />
             </div>
           </div>
