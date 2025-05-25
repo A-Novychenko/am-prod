@@ -14,6 +14,7 @@ import {
 } from '@/components/ui';
 
 import { useCart } from '@/context';
+import { addOrder } from '@/actions/servicesAPI';
 
 const DEFAULT_STATE = {
   name: '',
@@ -123,10 +124,14 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
       return;
     }
 
-    console.log('data', data);
+    try {
+      await addOrder(data);
 
-    localStorage.removeItem(CHECKOUT_STORAGE_KEY);
-    setCheckoutState(DEFAULT_STATE);
+      localStorage.removeItem(CHECKOUT_STORAGE_KEY);
+      setCheckoutState(DEFAULT_STATE);
+    } catch (e) {
+      console.log('ERROR', e);
+    }
   };
 
   return (
@@ -165,7 +170,6 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
                 checkoutState={checkoutState}
                 hasUnavailableItem={hasUnavailableItem}
                 handleSubmitCart={handleSubmitCart}
-                // error={error}
                 errors={errors}
               />
             </div>

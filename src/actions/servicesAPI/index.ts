@@ -5,3 +5,4 @@ export * from './getProducts';
 export * from './getBannerProducts';
 export * from './getProductsForCartByIds';
 export * from './addVinRequest';
+export * from './addOrder';
