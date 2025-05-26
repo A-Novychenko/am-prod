@@ -22,3 +22,5 @@ export * from './Modal';
 export * from './Cart';
 export * from './VinRequest';
 export * from './Btn';
+export * from './CopyBtn';
+export * from './CommentBox';

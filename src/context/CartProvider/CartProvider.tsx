@@ -40,6 +40,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
   switch (action.type) {
     case 'ADD_ITEM': {
       const updatedItems = state.items.slice();
+
       const existingItemIndex = updatedItems.findIndex(
         item => item.id === action.payload.id,
       );
@@ -47,16 +48,35 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       if (existingItemIndex >= 0) {
         updatedItems[existingItemIndex] = {
           ...updatedItems[existingItemIndex],
-          quantity: action.payload.quantity, // Використовуємо нове значення
+          quantity:
+            updatedItems[existingItemIndex].quantity + action.payload.quantity,
         };
       } else {
-        updatedItems.push(action.payload);
+        updatedItems.unshift(action.payload);
       }
 
       return {
         ...state,
         items: updatedItems,
         ...calculateTotals(updatedItems), // Викликаємо calculateTotals
+      };
+    }
+
+    case 'SET_QUANTITY': {
+      const updatedItems = state.items.slice();
+      const index = updatedItems.findIndex(
+        item => item.id === action.payload.id,
+      );
+      if (index >= 0) {
+        updatedItems[index] = {
+          ...updatedItems[index],
+          quantity: action.payload.quantity,
+        };
+      }
+      return {
+        ...state,
+        items: updatedItems,
+        ...calculateTotals(updatedItems),
       };
     }
 
@@ -90,27 +110,36 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const fetchCartItems = async () => {
       const storedCart = localStorage.getItem('cart');
+
       if (!storedCart) return;
+
       const parsedCart: CartState = JSON.parse(storedCart);
+
       const ids = parsedCart?.items?.map((item: CartItem) => item.id) || [];
+
       if (!ids.length) return;
+
       const { products } = await getProductsForCartByIds(ids);
-      const updatedItems = products ?? [];
+
       const updatedCartItems =
         parsedCart.items?.map(item => {
-          const updatedProduct = updatedItems.find(
+          const updatedProduct = products.find(
             (product: IASGProduct) => product.id === item.id,
           );
           return {
             ...item,
-            price: updatedProduct.price,
-            price_promo: updatedProduct.price_promo,
+            price: updatedProduct?.price || item.price,
+            price_promo: updatedProduct?.price_promo || item.price_promo,
           };
         }) || [];
+
       dispatch({ type: 'CLEAR_CART' });
-      updatedCartItems.forEach((item: CartItem) =>
-        dispatch({ type: 'ADD_ITEM', payload: item }),
-      );
+
+      updatedCartItems
+        .reverse()
+        .forEach((item: CartItem) =>
+          dispatch({ type: 'ADD_ITEM', payload: item }),
+        );
     };
 
     fetchCartItems();
@@ -147,6 +176,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     [dispatch],
   );
 
+  const setQuantity = useCallback((id: number, quantity: number) => {
+    dispatch({ type: 'SET_QUANTITY', payload: { id, quantity } });
+  }, []);
+
   const removeItem = useCallback(
     (id: number) => {
       dispatch({ type: 'REMOVE_ITEM', payload: id });
@@ -160,25 +193,36 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const syncCart = useCallback(async () => {
     const storedCart = localStorage.getItem('cart');
+
     if (!storedCart) return;
+
     const parsedCart: CartState = JSON.parse(storedCart);
+
     const ids = parsedCart.items.map((item: CartItem) => item.id);
+
     if (ids.length) {
       const { products } = await getProductsForCartByIds(ids);
-      const updatedItems = products.map((product: IASGProduct) => {
-        const cartItem = parsedCart.items.find(item => item.id === product.id);
+
+      const updatedItems = parsedCart.items.map((item: CartItem) => {
+        const updatedProduct = products.find(
+          (product: IASGProduct) => product.id === item.id,
+        );
         return {
-          ...cartItem,
-          price: product.price,
-          price_promo: product.price_promo,
-          availability: product.count_warehouse_3,
-          article: product.article,
+          ...item,
+          price: updatedProduct?.price || item.price,
+          price_promo: updatedProduct?.price_promo || item.price_promo,
+          availability: updatedProduct?.count_warehouse_3,
+          article: updatedProduct?.article,
         };
       });
+
       dispatch({ type: 'CLEAR_CART' });
-      updatedItems.forEach((item: CartItem) =>
-        dispatch({ type: 'ADD_ITEM', payload: item }),
-      );
+
+      updatedItems
+        .reverse()
+        .forEach((item: CartItem) =>
+          dispatch({ type: 'ADD_ITEM', payload: item }),
+        );
     }
   }, [dispatch]);
 
@@ -193,6 +237,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         removeItem,
         clearCart,
         syncCart,
+        setQuantity,
       }}
     >
       {children}

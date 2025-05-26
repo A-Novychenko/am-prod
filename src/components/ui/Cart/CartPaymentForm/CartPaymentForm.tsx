@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+
 import { CartPaymentFormProps } from './types';
 
 export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
@@ -30,7 +31,9 @@ export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
                   onChange={() => handleChange('card')}
                   className="size-5 text-darkBlueText focus:ring-darkBlueText"
                 />
-                <span className="text-sm text-gray-700">Оплата карткою</span>
+                <span className="text-sm text-gray-700">
+                  Оплата по реквізатам
+                </span>
               </label>
               <label className="flex cursor-pointer items-center gap-2">
                 <input
@@ -57,9 +60,11 @@ export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
                   onChange={() => handleChange('prepayment')}
                   className="size-5 text-darkBlueText focus:ring-darkBlueText"
                 />
-                <span className="text-sm text-gray-700">Передплата</span>
+                <span className="text-sm text-gray-700">
+                  Передплата по реквізатам
+                </span>
               </label>
-              <label className="flex cursor-pointer items-center gap-2">
+              {/* <label className="flex cursor-pointer items-center gap-2">
                 <input
                   type="radio"
                   name="payment"
@@ -69,7 +74,7 @@ export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
                   className="size-5 text-darkBlueText focus:ring-darkBlueText"
                 />
                 <span className="text-sm text-gray-700">Післяоплата</span>
-              </label>
+              </label> */}
             </>
           )}
         </div>

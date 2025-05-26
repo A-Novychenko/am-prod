@@ -28,7 +28,8 @@ export type CartState = {
 export type CartAction =
   | { type: 'ADD_ITEM'; payload: CartItem }
   | { type: 'REMOVE_ITEM'; payload: number } // `id` передається як число
-  | { type: 'CLEAR_CART' };
+  | { type: 'CLEAR_CART' }
+  | { type: 'SET_QUANTITY'; payload: { id: number; quantity: number } };
 
 // Типи для контексту
 export type CartContextProps = {
@@ -40,6 +41,7 @@ export type CartContextProps = {
   removeItem: (id: number) => void;
   clearCart: () => void;
   syncCart: () => Promise<void>;
+  setQuantity: (id: number, quantity: number) => void;
 };
 
 export type idsType = number[];

@@ -63,7 +63,6 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
                 allowEmptyFormatting
                 mask="_"
                 onChange={async e => {
-                  console.log('e', e);
                   field.onChange(e);
 
                   await trigger(name);

@@ -10,3 +10,4 @@ export * from './CartPaymentForm';
 export * from './CartCheckoutSummary';
 export * from './CartEmptyNotice';
 export * from './CartPhoneInput';
+export * from './CartResult';

@@ -13,7 +13,6 @@ export default async function CategoryPage({
   params: { product: string; category: string };
   searchParams: { page?: string; name: string };
 }) {
-  console.log('category', category);
   const categories = await getCategories(category);
 
   return (

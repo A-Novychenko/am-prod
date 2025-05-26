@@ -7,13 +7,13 @@ export const NavLinks: React.FC = () => {
 
   return (
     <nav className="hidden xl:block">
-      <ul className="justify-between border-t border-white/30 xl:flex">
+      <ul className="justify-around border-t border-white/30 xl:flex">
         {navLinks &&
           navLinks.map(({ name, href }, idx) => (
             <li key={idx} className="py-1">
               <Link
                 href={`/${href}`}
-                className="cursor-pointer py-1 text-[16px] uppercase transition-all hover:text-accent"
+                className="block cursor-pointer py-1 text-[16px] font-bold uppercase text-accent transition-all hover:text-primaryText"
               >
                 {name}
               </Link>

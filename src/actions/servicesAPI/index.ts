@@ -6,3 +6,5 @@ export * from './getBannerProducts';
 export * from './getProductsForCartByIds';
 export * from './addVinRequest';
 export * from './addOrder';
+export * from './getProductsByTecDocArticle';
+export * from './getOrderStatus';

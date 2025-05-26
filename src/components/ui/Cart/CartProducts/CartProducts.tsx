@@ -3,6 +3,7 @@
 import Image from 'next/image';
 
 import { TiDelete } from 'react-icons/ti';
+
 import staticData from '@/data/common.json';
 
 import { useCart } from '@/context';
@@ -10,30 +11,24 @@ import { cn, currencyFormatted } from '@/utils';
 
 import { CartItem } from '@/context/CartProvider/types';
 import { CartProductsProps } from './types';
-// type CartItem = {
-//   id: number;
-//   name: string;
-//   price: number;
-//   price_promo: number;
-//   quantity: number;
-//   img: string;
-// };
 
 export const CartProducts: React.FC<CartProductsProps> = ({
-  className = '',
+  items,
   isCheckoutPage = false,
+  isCheckoutResultPage = false,
+  className = '',
 }) => {
-  const { items, addItem, removeItem } = useCart();
+  const { setQuantity, removeItem } = useCart();
 
   const { articleLabel } = staticData;
 
   const increment = (item: CartItem) => {
-    addItem({ ...item, quantity: item.quantity + 1 });
+    setQuantity(item.id, item.quantity + 1);
   };
 
   const decrement = (item: CartItem) => {
     if (item.quantity > 1) {
-      addItem({ ...item, quantity: item.quantity - 1 });
+      setQuantity(item.id, item.quantity - 1);
     } else {
       // removeItem(item.id); // Видаляємо товар, якщо кількість стає 0
       return;
@@ -113,19 +108,23 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                       {article}
                     </p>
 
-                    <p className="mb-4 overflow-hidden text-ellipsis text-[12px] font-bold uppercase leading-[1.6]">
-                      {availability === '0' ? (
-                        <span className="text-rose-800">Немає в наявності</span>
-                      ) : (
-                        <span
-                          className={cn('text-[14px] text-green-500', {
-                            'text-[12px]': isCheckoutPage,
-                          })}
-                        >
-                          В наявності {availability}шт
-                        </span>
-                      )}
-                    </p>
+                    {!isCheckoutResultPage && (
+                      <p className="mb-4 overflow-hidden text-ellipsis text-[12px] font-bold uppercase leading-[1.6]">
+                        {availability === '0' ? (
+                          <span className="text-rose-800">
+                            Немає в наявності
+                          </span>
+                        ) : (
+                          <span
+                            className={cn('text-[14px] text-green-500', {
+                              'text-[12px]': isCheckoutPage,
+                            })}
+                          >
+                            В наявності {availability}шт
+                          </span>
+                        )}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -152,33 +151,46 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-2 xl:w-[100px] smOnly:justify-center">
-                      <button
-                        type="button"
-                        className="size-8 rounded-md bg-slate-200"
-                        onClick={() => {
-                          decrement(item);
-                        }}
-                      >
-                        -
-                      </button>
+                    {!isCheckoutResultPage && (
+                      <div className="flex items-center gap-2 xl:w-[100px] smOnly:justify-center">
+                        <button
+                          type="button"
+                          className="size-8 rounded-md bg-slate-200"
+                          onClick={() => {
+                            decrement(item);
+                          }}
+                        >
+                          -
+                        </button>
 
-                      <p className="inline-flex size-8 items-center justify-center text-center">
-                        {quantity}
+                        <p className="inline-flex size-8 items-center justify-center text-center">
+                          {quantity}
+                        </p>
+
+                        <button
+                          type="button"
+                          className="size-8 rounded-md bg-slate-200"
+                          onClick={() => {
+                            increment(item);
+                          }}
+                        >
+                          +
+                        </button>
+                      </div>
+                    )}
+
+                    {isCheckoutResultPage && (
+                      <p className="inline-flex size-8 w-[100px] items-center justify-center text-center">
+                        {quantity}шт
                       </p>
+                    )}
 
-                      <button
-                        type="button"
-                        className="size-8 rounded-md bg-slate-200"
-                        onClick={() => {
-                          increment(item);
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
-
-                    <p className="xl:w-[100px] smOnly:my-4 smOnly:font-bold">
+                    <p
+                      className={cn(
+                        'xl:w-[100px] smOnly:my-4 smOnly:font-bold',
+                        { 'mr-4': isCheckoutResultPage },
+                      )}
+                    >
                       <span className="inline-block xl:hidden">
                         Сумма:&nbsp;
                       </span>
@@ -187,15 +199,17 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                     </p>
                   </div>
 
-                  <button
-                    type="button"
-                    className="absolute right-1 top-1 p-2 text-redApple transition-colors hover:text-darkRed focus:text-darkRed xl:static"
-                    onClick={() => {
-                      removeItem(id);
-                    }}
-                  >
-                    <TiDelete size={24} />
-                  </button>
+                  {!isCheckoutResultPage && (
+                    <button
+                      type="button"
+                      className="absolute right-1 top-1 p-2 text-redApple transition-colors hover:text-darkRed focus:text-darkRed xl:static"
+                      onClick={() => {
+                        removeItem(id);
+                      }}
+                    >
+                      <TiDelete size={24} />
+                    </button>
+                  )}
                 </div>
 
                 <div

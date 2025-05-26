@@ -1,6 +1,6 @@
 import { SearchProducts } from '@/components/ui';
 
-import { getProductsByTecDocArticle } from '@/actions/servicesAPI/getProductsByTecDocArticle';
+import { getProductsByTecDocArticle } from '@/actions/servicesAPI';
 
 export default async function SearchProductPage({
   searchParams: { searchQuery, typeGallery },

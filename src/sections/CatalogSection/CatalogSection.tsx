@@ -1,4 +1,4 @@
-import { getMainCategories } from '@/actions/servicesAPI/getMainCategories';
+import { getMainCategories } from '@/actions/servicesAPI';
 
 import { CategoryList } from '@/components/base';
 

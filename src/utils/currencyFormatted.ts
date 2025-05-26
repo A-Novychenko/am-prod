@@ -3,10 +3,12 @@ export const currencyFormatted = (price: number) => {
     return price.toString();
   }
 
-  return price.toLocaleString('uk-UA', {
-    style: 'currency',
-    currency: 'UAH',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
+  return `${price.toLocaleString('uk-UA')} грн`;
+  // return price.toLocaleString('uk-UA', {
+  //   style: 'currency',
+  //   currency: 'UAH',
+  //   currencyDisplay: 'name',
+  //   minimumFractionDigits: 0,
+  //   maximumFractionDigits: 0,
+  // });
 };
