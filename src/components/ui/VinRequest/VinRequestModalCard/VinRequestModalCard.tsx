@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 
 import { Contacts } from '@/components/ui';
 
-import { formatDateToUkrainian } from '@/utils/formatDateToUkrainian';
+import { formatDateToUkrainian } from '@/utils';
 
 import { VinRequestModalCardProps } from './types';
 

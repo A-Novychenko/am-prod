@@ -92,6 +92,7 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
         <CartCheckoutBtns
           hasUnavailableItem={hasUnavailableItem}
           handleSubmitCart={handleSubmitCart}
+          errors={errors}
         />
       </div>
     </div>

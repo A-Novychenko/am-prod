@@ -12,7 +12,7 @@ import { CartModalSlot } from '@/components/ui';
 
 const nunito = Nunito({
   subsets: ['cyrillic', 'latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800', '900', '1000'],
   variable: '--font-nunito',
   display: 'swap',
   adjustFontFallback: false,

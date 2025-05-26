@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import {
   CartBtns,
@@ -31,6 +32,8 @@ const CHECKOUT_STORAGE_KEY = 'CHECKOUT_STATE';
 
 const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
   const { items, syncCart } = useCart();
+
+  const router = useRouter();
 
   const [isCartLoading, setIsCartLoading] = useState(true);
 
@@ -85,8 +88,6 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
   const handleValidationName = (val: string) => {
     const nameCleaned = val?.trim();
 
-    console.log('nameCleaned.length < 2', nameCleaned.length < 2);
-
     if (nameCleaned.length < 2) {
       setErrors(pS => ({ ...pS, name: 'name' }));
     } else {
@@ -124,11 +125,15 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
       return;
     }
 
+    console.log('data', data);
+
     try {
-      await addOrder(data);
+      const result = await addOrder(data);
 
       localStorage.removeItem(CHECKOUT_STORAGE_KEY);
       setCheckoutState(DEFAULT_STATE);
+
+      router.push(`/checkout/result?data=${JSON.stringify(result.data)}`);
     } catch (e) {
       console.log('ERROR', e);
     }
@@ -162,7 +167,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
 
             <div className="relative gap-6 xl:flex">
               <div className="mb-4 flex grow flex-col gap-6 xl:mb-0">
-                <CartProducts isCheckoutPage />
+                <CartProducts items={items} isCheckoutPage />
               </div>
 
               <CartCheckoutSummary
@@ -176,7 +181,10 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
           </div>
         ) : (
           <>
-            <CartProducts className="flex h-[50vh] flex-col gap-4 overflow-hidden overflow-y-auto p-4 xl:h-[40vh]" />
+            <CartProducts
+              items={items}
+              className="flex h-[50vh] flex-col gap-4 overflow-hidden overflow-y-auto p-4 xl:h-[40vh]"
+            />
 
             <CartSummary className="pt-2 shadow-customTop md:pt-8" />
 

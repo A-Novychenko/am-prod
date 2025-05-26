@@ -1,8 +1,8 @@
-const API_URL = process.env.API_URL as string;
+const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
 
-export const getCategory = async (id: string) => {
+export const getOrderStatus = async (id: string) => {
   try {
-    const result = await fetch(`${API_URL}/catalog/category/${id}`, {
+    const result = await fetch(`${API_URL}/orders/status/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -17,8 +17,8 @@ export const getCategory = async (id: string) => {
 
     if (res.code !== 200) throw new Error('Server not connect');
 
-    return res.categories;
+    return res;
   } catch (e) {
-    console.log('e.getCategory', e);
+    console.log('e.getOrderStatus', e);
   }
 };

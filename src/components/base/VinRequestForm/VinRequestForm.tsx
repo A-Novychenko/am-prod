@@ -53,8 +53,6 @@ export const VinRequestForm: React.FC = () => {
     try {
       const result = await addVinRequest(data);
 
-      console.log('first');
-
       setData(result.data);
 
       setStatus('success');
@@ -64,9 +62,6 @@ export const VinRequestForm: React.FC = () => {
       setStatus('fail');
     }
   };
-
-  // const hasErrors = Object.keys(errors).length > 0;
-  // console.log('Has Validation Errors:', hasErrors);
 
   return (
     <>
