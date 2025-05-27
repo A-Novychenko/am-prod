@@ -16,9 +16,7 @@ export default function CheckoutResultPage() {
           товару під час отримання.
         </p>
 
-        <CartResult />
-
-        <Suspense fallback={<p>Завантаження результату кошика...</p>}>
+        <Suspense>
           <CartResult />
         </Suspense>
       </div>
