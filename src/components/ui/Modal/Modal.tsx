@@ -30,7 +30,7 @@ export const Modal = ({ show, children, onClose }: ModalProps) => {
         <div className="container">
           <Dialog.Panel className="relative mx-auto sm:my-10">
             <div className="rounded-lg bg-white p-7 py-10 shadow-xl transition-all sm:w-full md:p-12">
-              <button onClick={onClose} className="absolute right-4 top-4">
+              <button onClick={onClose} className="absolute right-4 top-4 p-2">
                 <TfiClose />
               </button>
 

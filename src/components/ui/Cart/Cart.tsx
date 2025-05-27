@@ -9,9 +9,12 @@ import {
   CartContactForm,
   CartDeliveryForm,
   CartEmptyNotice,
+  CartErrorAlert,
   CartPaymentForm,
   CartProducts,
   CartSummary,
+  Loader,
+  Modal,
 } from '@/components/ui';
 
 import { useCart } from '@/context';
@@ -31,13 +34,17 @@ const DEFAULT_STATE = {
 const CHECKOUT_STORAGE_KEY = 'CHECKOUT_STATE';
 
 const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
-  const { items, syncCart } = useCart();
+  const { items, syncCart, clearCart } = useCart();
 
   const router = useRouter();
+
+  const [pending, setPending] = useState(false);
 
   const [isCartLoading, setIsCartLoading] = useState(true);
 
   const [errors, setErrors] = useState<CartErrors>({});
+
+  const [submitError, setSubmitError] = useState<boolean>(false);
 
   const [checkoutState, setCheckoutState] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -72,7 +79,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
   }, [syncCart]);
 
   if (isCartLoading) {
-    return <div className="p-8 text-center">Завантаження кошика...</div>; // можешь заменить на спиннер
+    return <Loader />;
   }
 
   if (items.length === 0) {
@@ -105,12 +112,26 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
     }
   };
 
+  const handleSubmitValidateName = (val: string): string | undefined => {
+    const nameCleaned = val?.trim();
+    if (nameCleaned.length < 2) {
+      return 'name';
+    }
+  };
+
+  const handleSubmitValidatePhone = (val: string): string | undefined => {
+    const phoneCleaned = val.replace(/\D/g, '');
+    if (phoneCleaned.length < 12) {
+      return 'phone';
+    }
+  };
+
   const handleSubmitCart = async () => {
     const data = {
-      name: name,
-      phone: phone,
-      email: email,
-      comment: comment,
+      name,
+      phone,
+      email,
+      comment,
       delivery: deliveryMethod,
       deliveryCity: city,
       postOffice: postOffice,
@@ -118,24 +139,36 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
       products: items,
     };
 
-    handleValidationPhone(phone);
-    handleValidationName(name);
+    const nameError = handleSubmitValidateName(name);
+    const phoneError = handleSubmitValidatePhone(phone);
 
-    if (errors.name || errors.phone) {
+    const newErrors: CartErrors = {
+      name: nameError,
+      phone: phoneError,
+    };
+
+    setErrors(newErrors);
+
+    if (nameError || phoneError) {
+      console.log('error');
       return;
     }
 
-    console.log('data', data);
+    setPending(true);
 
     try {
       const result = await addOrder(data);
 
+      clearCart();
       localStorage.removeItem(CHECKOUT_STORAGE_KEY);
       setCheckoutState(DEFAULT_STATE);
 
       router.push(`/checkout/result?data=${JSON.stringify(result.data)}`);
+      setPending(false);
     } catch (e) {
       console.log('ERROR', e);
+      setPending(false);
+      setSubmitError(true);
     }
   };
 
@@ -164,7 +197,6 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
                 className="rounded-[16px] shadow-customLight xl:w-[434px]"
               />
             </div>
-
             <div className="relative gap-6 xl:flex">
               <div className="mb-4 flex grow flex-col gap-6 xl:mb-0">
                 <CartProducts items={items} isCheckoutPage />
@@ -178,6 +210,11 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
                 errors={errors}
               />
             </div>
+
+            <Modal show={submitError} onClose={() => setSubmitError(false)}>
+              <CartErrorAlert />
+            </Modal>
+            {pending && <Loader />}
           </div>
         ) : (
           <>

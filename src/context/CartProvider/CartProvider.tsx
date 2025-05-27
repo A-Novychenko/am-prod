@@ -9,10 +9,10 @@ import React, {
   useCallback,
 } from 'react';
 
-import { CartAction, CartContextProps, CartItem, CartState } from './types';
 import { getProductsForCartByIds } from '@/actions/servicesAPI';
 
-// Початковий стан
+import { CartAction, CartContextProps, CartItem, CartState } from './types';
+
 const initialState: CartState = {
   items: [],
   totalAmount: 0,
@@ -113,33 +113,38 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
       if (!storedCart) return;
 
-      const parsedCart: CartState = JSON.parse(storedCart);
+      try {
+        const parsedCart: CartState = JSON.parse(storedCart);
 
-      const ids = parsedCart?.items?.map((item: CartItem) => item.id) || [];
+        const ids = parsedCart?.items?.map((item: CartItem) => item.id) || [];
 
-      if (!ids.length) return;
+        if (!ids.length) return;
 
-      const { products } = await getProductsForCartByIds(ids);
+        const { products } = await getProductsForCartByIds(ids);
 
-      const updatedCartItems =
-        parsedCart.items?.map(item => {
-          const updatedProduct = products.find(
-            (product: IASGProduct) => product.id === item.id,
+        const updatedCartItems =
+          parsedCart.items?.map(item => {
+            const updatedProduct = products.find(
+              (product: IASGProduct) => product.id === item.id,
+            );
+            return {
+              ...item,
+              price: updatedProduct?.price || item.price,
+              price_promo: updatedProduct?.price_promo || item.price_promo,
+            };
+          }) || [];
+
+        dispatch({ type: 'CLEAR_CART' });
+
+        updatedCartItems
+          .reverse()
+          .forEach((item: CartItem) =>
+            dispatch({ type: 'ADD_ITEM', payload: item }),
           );
-          return {
-            ...item,
-            price: updatedProduct?.price || item.price,
-            price_promo: updatedProduct?.price_promo || item.price_promo,
-          };
-        }) || [];
-
-      dispatch({ type: 'CLEAR_CART' });
-
-      updatedCartItems
-        .reverse()
-        .forEach((item: CartItem) =>
-          dispatch({ type: 'ADD_ITEM', payload: item }),
-        );
+      } catch (e) {
+        console.error('Failed to load cart from localStorage:', e);
+        localStorage.removeItem('cart'); // Очистити, якщо дані некоректні
+      }
     };
 
     fetchCartItems();
@@ -157,6 +162,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         'cart',
         JSON.stringify({ ...state, items: updatedItems }),
       );
+    } else {
+      localStorage.removeItem('cart');
     }
   }, [state]);
 

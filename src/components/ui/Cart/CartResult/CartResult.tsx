@@ -62,6 +62,21 @@ export const CartResult: React.FC = () => {
       return total + actualPrice * item.quantity;
     }, 0);
 
+  const Sale = ({ products }: { products: CartItem[] }) => {
+    const sale: number =
+      sumProductPrices(products) - calculateTotalPrice(products);
+
+    if (sale < 1) return null;
+
+    return (
+      <p className="mb-3 text-[18px] font-black text-green-600">
+        Знижка: {''}
+        {sumProductPrices(products) - calculateTotalPrice(products)}
+        грн
+      </p>
+    );
+  };
+
   return (
     <>
       {data && (
@@ -113,12 +128,7 @@ export const CartResult: React.FC = () => {
                     </span>
                   </p>
 
-                  <p className="mb-3 text-[18px] font-black text-green-600">
-                    Знижка: {''}
-                    {sumProductPrices(data.products) -
-                      calculateTotalPrice(data.products)}
-                    грн
-                  </p>
+                  <Sale products={data.products} />
 
                   <p className="text-[18px] font-extrabold">
                     <span>Сума до сплати: </span>
@@ -142,7 +152,7 @@ export const CartResult: React.FC = () => {
                         <td>{data.name}</td>
                       </tr>
                       <tr>
-                        <td className="font-bold">Номер телефону:</td>
+                        <td className="font-bold">Телефон:</td>
                         <td className="break-all tracking-[-1px]">
                           {data.phone}
                         </td>
@@ -191,7 +201,7 @@ export const CartResult: React.FC = () => {
                 </div>
               </div>
 
-              <CommentBox comment={data.comment} />
+              {data.comment && <CommentBox comment={data.comment} />}
             </div>
 
             <div className="mb-4 flex justify-center xl:hidden">
