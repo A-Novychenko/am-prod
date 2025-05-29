@@ -5,14 +5,18 @@ import { useSearchParams } from 'next/navigation';
 
 import { GoLink } from 'react-icons/go';
 
-import { CartProducts, CommentBox, CopyBtn } from '@/components/ui';
+import {
+  CartOrderStatus,
+  CartProducts,
+  CommentBox,
+  CopyBtn,
+} from '@/components/ui';
 
 import { getOrderStatus } from '@/actions/servicesAPI';
 import {
   generateDeliveryMethodText,
   generatePaymentMethodText,
   formatDateToUkrainian,
-  generateStatusText,
 } from '@/utils';
 
 import { CartItem } from '@/context/CartProvider/types';
@@ -92,11 +96,7 @@ export const CartResult: React.FC = () => {
                   Дата створення: {formatDateToUkrainian(data.createdAt)}
                 </p>
 
-                {status && (
-                  <p className="font-semibold text-blue-600">
-                    {generateStatusText(status)}
-                  </p>
-                )}
+                <CartOrderStatus status={status} />
 
                 <div className="mx-auto mt-4 w-full max-w-md rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
                   <p className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700 xl:justify-center">
@@ -201,7 +201,7 @@ export const CartResult: React.FC = () => {
                 </div>
               </div>
 
-              {data.comment && <CommentBox comment={data.comment} />}
+              {data.message && <CommentBox comment={data.message} />}
             </div>
 
             <div className="mb-4 flex justify-center xl:hidden">

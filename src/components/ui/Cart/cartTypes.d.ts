@@ -25,7 +25,7 @@ type CheckoutResult = {
   phone: string;
   number: string;
   email: string;
-  comment: string;
+  message: string;
   deliveryCity: string;
   postOffice: string;
   delivery: DeliveryMethod;
