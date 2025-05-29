@@ -5,3 +5,4 @@ export * from './generatePaymentMethodText';
 export * from './generateDeliveryMethodText';
 export * from './formatDateToUkrainian';
 export * from './generateStatusText';
+export * from './generateStatusColor';

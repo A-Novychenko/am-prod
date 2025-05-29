@@ -131,7 +131,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
       name,
       phone,
       email,
-      comment,
+      message: comment,
       delivery: deliveryMethod,
       deliveryCity: city,
       postOffice: postOffice,
