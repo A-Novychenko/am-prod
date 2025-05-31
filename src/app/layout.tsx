@@ -9,6 +9,7 @@ import { Footer } from '@/layout/Footer';
 import { getMainCategories } from '@/actions/servicesAPI';
 import { CartProvider } from '@/context';
 import { CartModalSlot } from '@/components/ui';
+import { ToastContainer } from 'react-toastify';
 
 const nunito = Nunito({
   subsets: ['cyrillic', 'latin'],
@@ -81,6 +82,16 @@ export default function RootLayout({
             <Footer />
           </div>
         </CartProvider>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          theme="dark"
+        />
       </body>
     </html>
   );

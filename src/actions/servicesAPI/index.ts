@@ -8,3 +8,4 @@ export * from './addVinRequest';
 export * from './addOrder';
 export * from './getProductsByTecDocArticle';
 export * from './getOrderStatus';
+export * from './addCallback';
