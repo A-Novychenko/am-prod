@@ -2,7 +2,7 @@
 export type SliderProps = {
   slideComponent: React.FC<any>;
   slidesData: Record<string, any>[] | [];
-  section: 'main-banner' | 'sale';
+  section: 'main-banner' | 'sale' | 'single-page';
   wrapClassName?: string;
   slideClassName?: string;
 };

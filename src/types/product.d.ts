@@ -22,3 +22,5 @@ interface IASGProduct {
   banner: boolean;
   sale: boolean;
 }
+
+type GalleryViewMode = 'list' | 'gallery';

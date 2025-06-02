@@ -2,14 +2,19 @@ import { SearchProducts } from '@/components/ui';
 
 import { getProductsByTecDocArticle } from '@/actions/servicesAPI';
 
+import staticData from '@/data/common.json';
+
 export default async function SearchProductPage({
   searchParams: { searchQuery, typeGallery },
 }: {
-  searchParams: { searchQuery: string; typeGallery: 'list' | 'gallery' };
+  searchParams: { searchQuery: string; typeGallery: GalleryViewMode };
 }) {
+  const defaultTypeGallery: GalleryViewMode =
+    staticData.defaultTypeGallery as GalleryViewMode;
+
   const { products } = await getProductsByTecDocArticle(searchQuery);
 
-  const initialViewMode = typeGallery ? typeGallery : 'list';
+  const initialViewMode = typeGallery ? typeGallery : defaultTypeGallery;
 
   return (
     <section className="section ">

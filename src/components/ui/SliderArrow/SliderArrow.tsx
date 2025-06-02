@@ -13,14 +13,6 @@ export const SliderArrow: React.FC<SliderArrowProps> = ({
   section,
   wrapClassName,
 }) => {
-  //   const {
-  //     arrowSlider: {
-  //       prevBtnAriaLabel,
-  //       nextBtnAriaLabel,
-  //       prevIconAriaLabel,
-  //       nextIconAriaLabel,
-  //     },
-  //   } = data;
   return (
     <div
       className={cn(

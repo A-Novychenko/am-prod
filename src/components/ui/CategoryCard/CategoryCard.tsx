@@ -41,7 +41,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
 }) => {
   const IconData = iconsMap[id];
 
-  const { noImage } = staticData;
+  const { noImage, defaultTypeGallery } = staticData;
 
   const image = img && img?.length > 0 ? img : noImage;
 
@@ -49,7 +49,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
     <Link
       href={{
         pathname: link,
-        query: { name, nameCat, typeGallery: 'list' },
+        query: { name, nameCat, typeGallery: defaultTypeGallery },
       }}
     >
       <div className="flex flex-col items-center justify-between gap-4 rounded-[16px] bg-lightBg px-2 py-4 xl:h-[228px] ">

@@ -5,11 +5,15 @@ import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 import { RiGalleryView2, RiListCheck2 } from 'react-icons/ri';
 
+import staticData from '@/data/common.json';
+
 import { ProductTypeGallerySwitcherProps } from './types';
 
 export const ProductTypeGallerySwitcher: React.FC<
   ProductTypeGallerySwitcherProps
 > = ({ children }) => {
+  const { defaultTypeGallery } = staticData;
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -18,7 +22,7 @@ export const ProductTypeGallerySwitcher: React.FC<
     searchParams.get('typeGallery') === 'list' ||
     searchParams.get('typeGallery') === 'gallery'
       ? searchParams.get('typeGallery')
-      : 'list';
+      : defaultTypeGallery;
 
   const createQueryString = useCallback(
     (name: string, value: string) => {

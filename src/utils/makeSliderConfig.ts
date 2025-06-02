@@ -5,6 +5,7 @@ import { SliderProps } from '@/components/ui/Slider/types';
 enum Sections {
   MAIN_BANNER = 'main-banner',
   SALE = 'sale',
+  SINGLE_PAGE = 'single-page',
 }
 
 export const makeSliderConfig = ({
@@ -44,6 +45,19 @@ export const makeSliderConfig = ({
 
     case Sections.SALE:
       loopBase = false;
+
+      slidesPerViewTab = 1;
+      spaceBetweenTab = 16;
+
+      slidesPerViewDesk = 1;
+      spaceBetweenDesk = 24;
+
+      paginationBase = { clickable: true };
+
+      break;
+
+    case Sections.SINGLE_PAGE:
+      loopBase = true;
 
       slidesPerViewTab = 1;
       spaceBetweenTab = 16;

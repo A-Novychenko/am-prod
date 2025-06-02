@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { BuyBtn } from '@/components/ui';
 
@@ -10,31 +11,11 @@ import staticData from '@/data/common.json';
 import { CartItem } from '@/context/CartProvider/types';
 import { ProductCardGalleryProps } from './types';
 
-// article: '216671';
-// banner: false;
-// brand: 'ELF';
-// category: 'ELF/TOTAL';
-// category_id: 16;
-// cid: '0359914';
-// count_warehouse_3: '>10';
-// createdAt: '2024-03-05T20:19:26.443Z';
-// description: '';
-// id: 337575;
-// img: [
-//   'https://cdn.online.asg.ua/images/products/0359914/805_805/3_ven_0359914_1692950039.jpg',
-// ];
-// name: 'EVOLUTION 700 TURBO DIESEL 10W40 1L (x12)';
-// price: 271;
-// price_promo: null;
-// sale: false;
-// tecdoc_article: '216671';
-// updatedAt: '2025-01-03T11:59:49.939Z';
-// _id: '65e77e4e5187d0e82e6b13e7';
-
 export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
   product,
 }) => {
   const {
+    _id,
     id,
     brand,
     article,
@@ -73,30 +54,32 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
           },
         )}
       >
-        <div className="h-[200px] p-2  md:h-[298px]">
-          <Image
-            src={image}
-            width={298}
-            height={298}
-            alt={name}
-            className="block size-full object-contain"
-            placeholder="blur"
-            blurDataURL={noImage}
-          />
-        </div>
+        <Link href={`/single-product/${_id}`}>
+          <div className="h-[200px] p-2  md:h-[298px]">
+            <Image
+              src={image}
+              width={298}
+              height={298}
+              alt={name}
+              className="block size-full object-contain"
+              placeholder="blur"
+              blurDataURL={noImage}
+            />
+          </div>
+        </Link>
 
         <div className="w-full p-4 pt-0 text-[14px]/normal">
-          <p>{brand}</p>
+          <Link href={`/single-product/${_id}`}>
+            <p>{brand}</p>
 
-          <h3 className="mb-2 line-clamp-2 h-[42px] overflow-hidden text-ellipsis text-[14px]/normal font-semibold uppercase leading-[1.5] text-secondaryText">
-            {name}
-          </h3>
+            <h3 className="mb-2 line-clamp-2 h-[42px] overflow-hidden text-ellipsis text-[14px]/normal font-semibold uppercase leading-[1.5] text-secondaryText">
+              {name}
+            </h3>
 
-          <p className="mb-4 line-clamp-3  h-[63px] overflow-hidden text-ellipsis  font-normal  text-secondaryText">
-            {description}
-            {description}
-            {description}
-          </p>
+            <p className="mb-4 line-clamp-3  h-[63px] overflow-hidden text-ellipsis  font-normal  text-secondaryText">
+              {description}
+            </p>
+          </Link>
           <p className="line-clamp-2 overflow-hidden text-ellipsis text-[16px] font-normal leading-[1.5] text-secondaryText">
             {`Артикул: ${article}`}
           </p>
