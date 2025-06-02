@@ -8,32 +8,13 @@ import staticData from '@/data/common.json';
 
 import { CartItem } from '@/context/CartProvider/types';
 import { ProductCardListProps } from './types';
-
-// article: '216671';
-// banner: false;
-// brand: 'ELF';
-// category: 'ELF/TOTAL';
-// category_id: 16;
-// cid: '0359914';
-// count_warehouse_3: '>10';
-// createdAt: '2024-03-05T20:19:26.443Z';
-// description: '';
-// id: 337575;
-// img: [
-//   'https://cdn.online.asg.ua/images/products/0359914/805_805/3_ven_0359914_1692950039.jpg',
-// ];
-// name: 'EVOLUTION 700 TURBO DIESEL 10W40 1L (x12)';
-// price: 271;
-// price_promo: null;
-// sale: false;
-// tecdoc_article: '216671';
-// updatedAt: '2025-01-03T11:59:49.939Z';
-// _id: '65e77e4e5187d0e82e6b13e7';
+import Link from 'next/link';
 
 export const ProductCardList: React.FC<ProductCardListProps> = ({
   product,
 }) => {
   const {
+    _id,
     id,
     brand,
     article,
@@ -67,30 +48,34 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
         'bg-saleBg': price_promo,
       })}
     >
-      <div className="h-[200px] shrink-0 p-2 md:h-[298px]">
-        <Image
-          src={image}
-          width={298}
-          height={298}
-          alt={name}
-          className="block size-full object-contain"
-          placeholder="blur"
-          blurDataURL={noImage}
-        />
-      </div>
+      <Link href={`/single-product/${_id}`}>
+        <div className="h-[200px] shrink-0 p-2 md:h-[298px]">
+          <Image
+            src={image}
+            width={298}
+            height={298}
+            alt={name}
+            className="block size-full object-contain"
+            placeholder="blur"
+            blurDataURL={noImage}
+          />
+        </div>
+      </Link>
 
       <div className="flex grow gap-4 p-6">
-        <div className="smOnly:w-full">
-          <div className="mb-2 overflow-hidden text-[16px] font-semibold uppercase leading-[1.5] text-secondaryText">
-            <p>{brand}</p>
+        <Link href={`/single-product/${_id}`}>
+          <div className="smOnly:w-full">
+            <div className="mb-2 overflow-hidden text-[16px] font-semibold uppercase leading-[1.5] text-secondaryText">
+              <p>{brand}</p>
 
-            <p>{name}</p>
+              <p>{name}</p>
+            </div>
+
+            <p className="mb-4 line-clamp-[7] w-[668px] overflow-hidden text-ellipsis text-[16px] font-normal leading-[1.5] text-secondaryText">
+              {description}
+            </p>
           </div>
-
-          <p className="mb-4 line-clamp-[7] w-[668px] overflow-hidden text-ellipsis text-[16px] font-normal leading-[1.5] text-secondaryText">
-            {description}
-          </p>
-        </div>
+        </Link>
 
         <div className="flex flex-col items-center">
           <p

@@ -5,6 +5,8 @@ import { Pagination } from '@/components/ui';
 
 import { getCategory, getProducts } from '@/actions/servicesAPI';
 
+import staticData from '@/data/common.json';
+
 export default async function ProductPage({
   params: { product, category },
   searchParams,
@@ -14,9 +16,11 @@ export default async function ProductPage({
     page?: string;
     name: string;
     nameCat: string;
-    typeGallery: 'list' | 'gallery';
+    typeGallery: GalleryViewMode;
   };
 }) {
+  const { defaultTypeGallery } = staticData;
+
   const page = parseInt(searchParams.page || '1', 10);
 
   const { products, totalPages } = await getProducts(product, page);
@@ -28,7 +32,7 @@ export default async function ProductPage({
 
   const initialViewMode = searchParams.typeGallery
     ? searchParams.typeGallery
-    : 'list';
+    : defaultTypeGallery;
 
   return (
     <section className="section flex grow bg-mediumBg">

@@ -7,6 +7,7 @@ import SearchIcon from '~/icons/search-icon.svg';
 import staticData from '@/data/common.json';
 
 export const SearchBar = () => {
+  const { defaultTypeGallery } = staticData;
   const { placeholder, ariaLabelBtn, ariaLabelIcon } = staticData.searchInput;
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -20,7 +21,7 @@ export const SearchBar = () => {
     e.preventDefault();
 
     router.push(
-      `/search-products?searchQuery=${searchQuery.trim().toUpperCase()}&typeGallery=list`,
+      `/search-products?searchQuery=${searchQuery.trim().toUpperCase()}&typeGallery=${defaultTypeGallery}`,
     );
 
     setSearchQuery('');

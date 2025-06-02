@@ -25,3 +25,4 @@ export * from './Btn';
 export * from './CopyBtn';
 export * from './CommentBox';
 export * from './Loader';
+export * from './SingleProduct';

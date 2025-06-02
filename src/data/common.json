@@ -5,21 +5,22 @@
   "siteName": "avto-magaz.com.ua",
   "noImage": "/images/no-photo.png",
   "articleLabel": "Артикул:",
+  "defaultTypeGallery": "gallery",
   "navLinks": [
     {
-      "href": "autochemistry",
+      "href": "categories/3?name=Автохімія&nameCat=Автохімія",
       "name": "Автохімія"
     },
     {
-      "href": "autoparts",
+      "href": "categories/5?name=Запчастини&nameCat=Запчастини",
       "name": "Автозапчастини"
     },
     {
-      "href": "batteries",
+      "href": "categories/4?name=Акумуляторні+батареї&nameCat=Акумуляторні+батареї",
       "name": "Акумулятори"
     },
     {
-      "href": "accessories",
+      "href": "categories/7?name=Аксесуари&nameCat=Аксесуари&typeGallery=list",
       "name": "Аксесуари"
     }
   ],
