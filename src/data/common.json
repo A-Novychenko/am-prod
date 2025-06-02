@@ -26,39 +26,39 @@
   ],
   "footerLinks": [
     {
-      "href": "about",
+      "href": "in-progress",
       "name": "Про нас"
     },
     {
-      "href": "delivery",
+      "href": "in-progress",
       "name": "Доставка"
     },
     {
-      "href": "payment",
+      "href": "in-progress",
       "name": "Оплата"
     },
     {
-      "href": "returns",
+      "href": "in-progress",
       "name": "Повернення"
     },
     {
-      "href": "autoservice",
+      "href": "in-progress",
       "name": "СТО"
     },
     {
-      "href": "news",
+      "href": "in-progress",
       "name": "Акції/Новини"
     },
     {
-      "href": "agreement",
+      "href": "in-progress",
       "name": "Угода користувача"
     },
     {
-      "href": "brands",
+      "href": "in-progress",
       "name": "Бренди"
     },
     {
-      "href": "contacts",
+      "href": "in-progress",
       "name": "Контакти"
     }
   ],
