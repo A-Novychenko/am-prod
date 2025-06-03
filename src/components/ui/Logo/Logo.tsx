@@ -1,30 +1,29 @@
-// import Link from 'next/link';
-
-// export const Logo: React.FC = () => {
-//   return (
-//     <Link href="/" className="cursor-pointer">
-//       <div className="relative h-[125px] w-[85px] leading-none">
-//         <p className="font-lora text-[96px] font-bold uppercase text-red">A</p>
-
-//         <p className="absolute left-[53px] top-[55px] -translate-x-1/2 font-lora text-[72px] font-semibold uppercase text-yellow-400">
-//           M
-//         </p>
-//       </div>
-//     </Link>
-//   );
-// };
-
+import Image from 'next/image';
 import Link from 'next/link';
 
 export const Logo: React.FC = () => {
   return (
-    <Link href="/" className="cursor-pointer">
-      <div className="relative h-[100px] w-[85px] leading-none">
-        <p className="font-lora text-[80px] font-bold uppercase text-red">A</p>
+    <Link href="/" className="flex flex-col items-center">
+      <div className="h-[80px] md:size-[114px]">
+        <Image
+          priority
+          src="/images/logo.png"
+          width={1340}
+          height={1340}
+          alt="Логотип компанії, червона літера А зверху та жовта літера М знизу та нижній надпиc - адреса сайту"
+          className="size-full object-cover"
+        />
+      </div>
 
-        <p className="absolute left-[43px] top-[45px] -translate-x-1/2 font-lora text-[64px] font-semibold uppercase text-yellow-400">
-          M
-        </p>
+      <div className="h-4 md:h-5 xl:h-[24px]">
+        <Image
+          priority
+          src="/images/text-logo.png"
+          width={1340}
+          height={1340}
+          alt="Логотип компанії, червона літера А зверху та жовта літера М знизу та нижній надпиc - адреса сайту"
+          className="size-full object-cover"
+        />
       </div>
     </Link>
   );

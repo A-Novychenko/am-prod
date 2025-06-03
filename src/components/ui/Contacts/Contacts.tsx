@@ -14,7 +14,7 @@ export const Contacts: React.FC<ContactsProps> = ({ classNameWrap }) => {
   return (
     <ul
       className={cn(
-        'flex flex-col gap-4 text-primaryText xl:text-[24px]',
+        'flex flex-col gap-4 text-primaryText xl:text-[20px]',
         classNameWrap,
       )}
     >

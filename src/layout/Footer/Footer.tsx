@@ -18,18 +18,21 @@ export const Footer = () => {
         <FooterLinks />
 
         <div className="items-center justify-between py-8 xl:flex">
-          <div className="items-center justify-between xl:flex xl:w-[433px] smOnly:text-center">
-            <WorkSchedule />
+          <div className="justify-between md:flex md:flex-row xl:gap-10 smOnly:text-center">
+            <WorkSchedule labelClassName="text-[22px] font-semibold" />
 
             <Socials />
           </div>
 
-          <div className="smOnly:mb-4 smOnly:flex smOnly:justify-center ">
+          <div className="my-4 xl:my-0 smOnly:flex smOnly:justify-center">
             <Logo />
           </div>
 
-          <div className="gap-8 text-[20px] text-primaryText xl:flex xl:w-[433px] smOnly:text-center">
-            <ul className="h-[74px] flex-col items-center justify-between xl:flex">
+          <div
+            className="flex flex-col justify-between gap-8 text-[20px] text-primaryText md:flex-row 
+        xl:items-baseline xl:gap-10 smOnly:text-center"
+          >
+            <ul className="flex-col items-center justify-between gap-4 md:flex md:items-stretch ">
               <li>
                 <Link
                   href={`mailto:${mail}`}
@@ -48,7 +51,8 @@ export const Footer = () => {
                 </Link>
               </li>
             </ul>
-            <Contacts classNameWrap="xl:text-[18px]" />
+
+            <Contacts classNameWrap="xl:text-[20px] md:justify-between" />
           </div>
         </div>
       </div>
