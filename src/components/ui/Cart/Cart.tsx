@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import {
@@ -15,6 +15,7 @@ import {
   CartSummary,
   Loader,
   Modal,
+  RecaptchaRef,
 } from '@/components/ui';
 
 import { useCart } from '@/context';
@@ -45,6 +46,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
   const [errors, setErrors] = useState<CartErrors>({});
 
   const [submitError, setSubmitError] = useState<boolean>(false);
+  const [isCaptchaError, setIsCaptchaError] = useState<boolean>(false);
 
   const [checkoutState, setCheckoutState] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -53,6 +55,9 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
     }
     return DEFAULT_STATE;
   });
+
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<RecaptchaRef>(null);
 
   const {
     name,
@@ -126,7 +131,17 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
     }
   };
 
+  const handleCloseErrorAlert = () => {
+    setIsCaptchaError(false);
+    setSubmitError(false);
+  };
+
   const handleSubmitCart = async () => {
+    if (!captchaToken) {
+      alert('Будь ласка, підтвердьте, що Ви не робот.');
+      return;
+    }
+
     const data = {
       name,
       phone,
@@ -137,6 +152,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
       postOffice: postOffice,
       payment: paymentMethod,
       products: items,
+      captchaToken,
     };
 
     const nameError = handleSubmitValidateName(name);
@@ -155,7 +171,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
     }
 
     setPending(true);
-
+    console.log('data', data);
     try {
       const result = await addOrder(data);
 
@@ -165,9 +181,22 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
 
       router.push(`/checkout/result?data=${JSON.stringify(result.data)}`);
       setPending(false);
-    } catch (e) {
-      console.log('ERROR', e);
+
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (e: any) {
       setPending(false);
+
+      const msg = e.message;
+
+      //Сообщение если и коректировать то здесь и мидлваре "recaptcha" на сервере
+      if (msg === 'Captcha verification failed') {
+        setIsCaptchaError(true);
+      }
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
       setSubmitError(true);
     }
   };
@@ -207,12 +236,14 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
                 checkoutState={checkoutState}
                 hasUnavailableItem={hasUnavailableItem}
                 handleSubmitCart={handleSubmitCart}
+                setCaptchaToken={setCaptchaToken}
+                recaptchaRef={recaptchaRef}
                 errors={errors}
               />
             </div>
 
-            <Modal show={submitError} onClose={() => setSubmitError(false)}>
-              <CartErrorAlert />
+            <Modal show={submitError} onClose={handleCloseErrorAlert}>
+              <CartErrorAlert isCaptchaError={isCaptchaError} />
             </Modal>
             {pending && <Loader />}
           </div>

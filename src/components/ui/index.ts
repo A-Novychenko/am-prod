@@ -26,3 +26,4 @@ export * from './CopyBtn';
 export * from './CommentBox';
 export * from './Loader';
 export * from './SingleProduct';
+export * from './Recaptcha';

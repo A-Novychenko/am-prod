@@ -1,4 +1,4 @@
-import { CartSummary, CartCheckoutBtns } from '@/components/ui';
+import { CartSummary, CartCheckoutBtns, Recaptcha } from '@/components/ui';
 
 import { cn } from '@/utils';
 
@@ -18,6 +18,8 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
   },
   hasUnavailableItem,
   handleSubmitCart,
+  setCaptchaToken,
+  recaptchaRef,
   errors,
 }) => {
   return (
@@ -29,7 +31,6 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
         )}
       >
         <CartSummary className="w-full text-left" />
-
         {(hasContactsData || errors.name || errors.phone) && (
           <div className="text-[12px] xl:text-[16px]">
             <p className="font-bold smOnly:hidden">Контактні дані:</p>
@@ -57,7 +58,6 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
             )}
           </div>
         )}
-
         <div className="text-[12px] xl:text-[16px]">
           <p>
             <span className="font-bold">Спосіб доставки: </span>{' '}
@@ -80,7 +80,6 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
             </>
           )}
         </div>
-
         <p className="text-[12px] xl:text-[16px]">
           <span className="font-bold">Спосіб оплати:</span>{' '}
           {paymentMethod === 'card' && 'Картою'}
@@ -88,6 +87,16 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
           {paymentMethod === 'prepayment' && 'Передплата'}
           {paymentMethod === 'cod' && 'Післяоплата'}
         </p>
+
+        <div className="flex justify-center">
+          <Recaptcha
+            ref={recaptchaRef}
+            formId="checkout"
+            siteKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+            onChange={setCaptchaToken}
+            size="compact"
+          />
+        </div>
 
         <CartCheckoutBtns
           hasUnavailableItem={hasUnavailableItem}
