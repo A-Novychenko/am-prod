@@ -10,10 +10,10 @@ export const VinRequestMainCard = () => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center rounded-2xl  p-10 text-center shadow-customLight xl:mr-8">
+    <div className="mb-4 flex flex-col items-center rounded-2xl p-10  text-center shadow-customLight xl:mb-0 xl:mr-8">
       <h2 className="mb-6 text-2xl font-bold">Не знайшли потрібну деталь?</h2>
 
-      <IconVin className="block h-52" />
+      <IconVin className="block h-52 smOnly:h-full" />
 
       <p className="mb-8">
         Залиште VIN-код Вашого авто — ми підберемо запчастини швидко та точно!

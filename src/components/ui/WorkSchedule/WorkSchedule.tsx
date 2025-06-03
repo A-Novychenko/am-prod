@@ -1,10 +1,19 @@
+import { cn } from '@/utils';
+
 import staticData from '@/data/common.json';
 
-export const WorkSchedule: React.FC = () => {
-  const { label, businessDays, saturday, weekends } = staticData.workSchedule;
+export const WorkSchedule: React.FC<{ labelClassName?: string }> = ({
+  labelClassName,
+}) => {
+  const { label, businessDays, saturday, weekends, address } =
+    staticData.workSchedule;
   return (
     <div className="smOnly:mb-4">
-      <p className="text-[18px] font-semibold smOnly:mb-2">{label}</p>
+      <p
+        className={cn('text-[18px] font-semibold smOnly:mb-2', labelClassName)}
+      >
+        {label}
+      </p>
 
       <ul className="text-[14px]/normal">
         <li>
@@ -15,6 +24,9 @@ export const WorkSchedule: React.FC = () => {
         </li>
         <li>
           <p>{weekends}</p>
+        </li>
+        <li>
+          <p>{address}</p>
         </li>
       </ul>
     </div>
