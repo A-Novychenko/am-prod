@@ -10,6 +10,7 @@ export const SingleProductSection: React.FC<{ product: IASGProduct }> = ({
   product,
 }) => {
   const {
+    _id,
     id,
     brand,
     name,
@@ -24,6 +25,7 @@ export const SingleProductSection: React.FC<{ product: IASGProduct }> = ({
   const hasPromo = price_promo !== null && price_promo > 0;
 
   const cartItem: CartItem = {
+    _id,
     id,
     name,
     price,

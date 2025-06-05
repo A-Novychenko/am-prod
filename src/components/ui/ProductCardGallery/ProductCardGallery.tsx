@@ -34,6 +34,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
   const countWarehouse = count_warehouse_3 === '0' ? ' ' : count_warehouse_3;
 
   const cartItem: CartItem = {
+    _id,
     id,
     name,
     price,

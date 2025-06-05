@@ -1,11 +1,14 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import {
   FormPhoneInput,
+  Recaptcha,
+  RecaptchaRef,
   VinRequestFormInput,
   VinRequestFormRequiredInput,
   VinRequestFormSelect,
@@ -19,6 +22,7 @@ import { cn } from '@/utils';
 import staticData from '@/data/common.json';
 
 import { VinRequestFormInputs } from './types';
+import useFormPersist from 'react-hook-form-persist';
 
 export const VinRequestForm: React.FC = () => {
   const {
@@ -27,6 +31,7 @@ export const VinRequestForm: React.FC = () => {
     watch,
     trigger,
     control,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<VinRequestFormInputs>();
@@ -44,23 +49,51 @@ export const VinRequestForm: React.FC = () => {
     message,
   } = staticData.vinRequestForm;
 
-  const [status, setStatus] = useState<string>('');
+  useFormPersist('vinForm', { watch, setValue });
+
+  const [status, setStatus] = useState<
+    '' | 'success' | 'fail' | 'captchaFail' | 'pending'
+  >('');
   const [data, setData] = useState(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
+
+  const recaptchaRef = useRef<RecaptchaRef>(null);
 
   const onSubmit: SubmitHandler<VinRequestFormInputs> = async data => {
+    if (!captchaToken) {
+      setRecaptchaError('Будь ласка, підтвердьте, що Ви не робот.');
+
+      return;
+    }
+
+    setRecaptchaError(null);
     setStatus('pending');
 
     try {
-      const result = await addVinRequest(data);
+      const result = await addVinRequest({ ...data, captchaToken });
 
       setData(result.data);
 
       setStatus('success');
       reset();
-    } catch (error) {
+      window.sessionStorage.removeItem('vinForm');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (e: any) {
+      const msg = e.message;
+
+      //Сообщение если и коректировать то здесь и мидлваре "recaptcha" на сервере
+      if (msg === 'Captcha verification failed') {
+        setStatus('captchaFail');
+      } else {
+        setStatus('fail');
+      }
+
       setData(null);
-      setStatus('fail');
     }
+
+    recaptchaRef.current?.reset();
+    setCaptchaToken(null);
   };
 
   return (
@@ -157,6 +190,26 @@ export const VinRequestForm: React.FC = () => {
               />
             </div>
 
+            <div className="flex w-full flex-col items-center justify-center">
+              <Recaptcha
+                ref={recaptchaRef}
+                formId="vin"
+                siteKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                // onChange={setCaptchaToken}
+                onChange={token => {
+                  setCaptchaToken(token);
+                  setRecaptchaError(null);
+                }}
+                size="compact"
+              />
+
+              {recaptchaError && (
+                <div className="mt-2 flex items-center justify-center gap-2 text-sm text-red">
+                  <span>{recaptchaError}</span>
+                </div>
+              )}
+            </div>
+
             <button
               type="submit"
               className={cn(
@@ -170,11 +223,7 @@ export const VinRequestForm: React.FC = () => {
         </>
       )}
 
-      {status === 'success' && (
-        <VinRequestModalCard type="success" data={data} />
-      )}
-
-      {status === 'fail' && <VinRequestModalCard type="fail" />}
+      <VinRequestModalCard type={status} data={data} setStatus={setStatus} />
     </>
   );
 };

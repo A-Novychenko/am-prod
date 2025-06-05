@@ -6,6 +6,7 @@
 
 // Тип для елемента корзини
 export type CartItem = {
+  _id: string;
   id: number;
   name: string;
   price: number;

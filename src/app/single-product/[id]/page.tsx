@@ -4,6 +4,7 @@ export const revalidate = 0;
 import { CastrolSeoSection, SingleProductSection } from '@/sections';
 
 import { getProductData } from '@/actions/servicesAPI';
+import Link from 'next/link';
 
 export default async function SingleProductPage({
   params: { id },
@@ -26,8 +27,11 @@ export default async function SingleProductPage({
             Товар не знайдено
           </h1>
           <p className="text-gray-500">
-            Спробуйте перевірити правильність посилання або поверніться на
-            головну сторінку.
+            Спробуйте перевірити правильність посилання або поверніться на{' '}
+            <Link href="/" className="text-blue-700">
+              головну сторінку
+            </Link>
+            .
           </p>
         </div>
       </section>

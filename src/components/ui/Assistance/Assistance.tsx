@@ -9,6 +9,8 @@ import { Popover } from '@headlessui/react';
 import { FaTelegram } from 'react-icons/fa6';
 import { IoIosCall } from 'react-icons/io';
 
+import { CartPhoneInput, Recaptcha, RecaptchaRef } from '@/components/ui';
+
 import staticData from '@/data/common.json';
 import { addCallback } from '@/actions/servicesAPI';
 
@@ -20,11 +22,35 @@ export const Assistance = () => {
   const [phone, setPhone] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const [errors, setErrors] = useState<CartErrors>({});
+
+  const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+  const recaptchaRef = useRef<RecaptchaRef>(null);
+
   useEffect(() => {
     if (showRecallInput && inputRef.current) {
       inputRef.current.focus();
     }
   }, [showRecallInput]);
+
+  const handleValidationPhone = (val: string) => {
+    const phoneCleaned = val.replace(/\D/g, '');
+
+    if (phoneCleaned.length < 12) {
+      setErrors(pS => ({ ...pS, phone: 'phone' }));
+    } else {
+      setErrors(pS => ({ ...pS, phone: undefined }));
+    }
+  };
+
+  const handleSubmitValidatePhone = (val: string): string | undefined => {
+    const phoneCleaned = val.replace(/\D/g, '');
+    if (phoneCleaned.length < 12) {
+      return 'phone';
+    }
+  };
 
   const handleReCall = async (close: () => void) => {
     if (!showRecallInput) {
@@ -32,10 +58,31 @@ export const Assistance = () => {
       return;
     }
 
+    const phoneError = handleSubmitValidatePhone(phone);
+
+    const newErrors: CartErrors = {
+      phone: phoneError,
+    };
+
+    setErrors(newErrors);
+
+    if (phoneError) {
+      console.log('error');
+      return;
+    }
+
     if (!phone.trim()) {
       toast.error('Введіть номер телефону');
       return;
     }
+
+    if (!captchaToken) {
+      setRecaptchaError('Будь ласка, підтвердьте, що Ви не робот.');
+
+      return;
+    }
+
+    setRecaptchaError(null);
 
     try {
       const res = await addCallback({ phone });
@@ -49,6 +96,9 @@ export const Assistance = () => {
     } catch (err) {
       toast.error('Сталася помилка. Спробуйте пізніше');
     }
+
+    recaptchaRef.current?.reset();
+    setCaptchaToken(null);
   };
 
   return (
@@ -59,7 +109,7 @@ export const Assistance = () => {
             {label}
           </Popover.Button>
           <Popover.Panel
-            className="fixed inset-x-0 z-30 w-full rounded-2xl border-t
+            className="fixed inset-x-0 bottom-0 z-30 w-full rounded-2xl border-t
        border-white/10 bg-darkBg p-6 text-primaryText shadow-2xl
        md:absolute md:left-1/2 md:mt-2 md:w-64 md:-translate-x-1/2 md:rounded-2xl md:border
         md:border-white/10 md:bg-darkBg md:p-6 md:shadow-xl"
@@ -90,14 +140,34 @@ export const Assistance = () => {
                 {/* ... інші кнопки */}
 
                 {showRecallInput && (
-                  <input
-                    ref={inputRef}
-                    type="tel"
-                    placeholder="+38 (0__) ___-__-__"
-                    value={phone}
-                    onChange={e => setPhone(e.target.value)}
-                    className="rounded-lg border border-white/20 bg-gray-800 px-4 py-2 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
-                  />
+                  <>
+                    <CartPhoneInput
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
+                      handleValidationPhone={handleValidationPhone}
+                      errors={errors}
+                      showLabel={false}
+                    />
+                    <div className="flex w-full flex-col items-center justify-center">
+                      <Recaptcha
+                        ref={recaptchaRef}
+                        formId="vin"
+                        siteKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                        // onChange={setCaptchaToken}
+                        onChange={token => {
+                          setCaptchaToken(token);
+                          setRecaptchaError(null);
+                        }}
+                        size="compact"
+                      />
+
+                      {recaptchaError && (
+                        <div className="mt-2 flex items-center justify-center gap-2 text-sm text-red">
+                          <span>{recaptchaError}</span>
+                        </div>
+                      )}
+                    </div>
+                  </>
                 )}
 
                 <button

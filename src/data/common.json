@@ -94,7 +94,7 @@
     "businessDays": "Пн-Пт: 10:00-20:00",
     "saturday": "Сб: 10:00-20:00",
     "weekends": "Нд - вихідний",
-    "address": "Київ, Залізничне шосе, 2"
+    "address": "Київ"
   },
   "searchInput": {
     "placeholder": "Введіть номер запчастини",

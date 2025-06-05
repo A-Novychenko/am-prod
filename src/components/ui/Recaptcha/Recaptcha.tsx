@@ -18,7 +18,10 @@ export type RecaptchaRef = {
 };
 
 export const Recaptcha = forwardRef<RecaptchaRef, RecaptchaProps>(
-  ({ formId, siteKey, onChange, onError, onExpired }, ref) => {
+  (
+    { formId, siteKey, onChange, onError, onExpired, size = 'compact' },
+    ref,
+  ) => {
     const captchaRef = useRef<ReCAPTCHA>(null);
 
     useImperativeHandle(ref, () => ({
@@ -30,7 +33,7 @@ export const Recaptcha = forwardRef<RecaptchaRef, RecaptchaProps>(
     return (
       <div id={`recaptcha-${formId}`}>
         <ReCAPTCHA
-          size="compact"
+          size={size}
           ref={captchaRef}
           sitekey={siteKey}
           onChange={onChange}

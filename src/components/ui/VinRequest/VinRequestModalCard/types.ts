@@ -1,5 +1,5 @@
 export type VinRequestModalCardProps = {
-  type: 'success' | 'fail';
+  type: '' | 'success' | 'fail' | 'captchaFail' | 'pending';
   data?: {
     number: string;
     vinCode: string;
@@ -13,4 +13,7 @@ export type VinRequestModalCardProps = {
     phone: string;
     createdAt: string;
   } | null;
+  setStatus: React.Dispatch<
+    '' | 'success' | 'fail' | 'captchaFail' | 'pending'
+  >;
 };

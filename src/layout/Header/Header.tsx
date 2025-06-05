@@ -12,12 +12,11 @@ export const Header = () => {
   return (
     <header className=" bg-darkBg text-primaryText">
       <div className="container">
-        <div className="flex flex-col py-1 xl:flex-row xl:items-center  xl:justify-between">
-          <div className="mt-2 flex items-center justify-between xl:gap-12 smOnly:order-1 smOnly:mb-4 smOnly420:flex-col smOnly420:gap-4">
+        <div className="flex flex-col py-1 xl:flex-row xl:items-center xl:justify-between">
+          <div className="mt-2 flex justify-between xl:gap-8 smOnly:order-1 smOnly:mb-4 smOnly420:flex-col smOnly420:gap-4">
             <Logo />
 
-            {/* <WorkSchedule /> */}
-            <Contacts />
+            <Contacts classNameWrap="mt-4" />
           </div>
 
           <div className="items-center gap-2 pt-8 xl:flex xl:flex-col smOnly:order-3">
@@ -28,7 +27,6 @@ export const Header = () => {
 
           <div className="flex items-center justify-between xl:gap-12 smOnly:order-2 smOnly:mb-4">
             <WorkSchedule />
-            {/* <Contacts /> */}
 
             <CartWidget />
           </div>

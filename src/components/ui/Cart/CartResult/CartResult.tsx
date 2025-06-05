@@ -20,6 +20,7 @@ import {
 } from '@/utils';
 
 import { CartItem } from '@/context/CartProvider/types';
+import Link from 'next/link';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string;
 const PATH = '/checkout/result';
@@ -99,10 +100,15 @@ export const CartResult: React.FC = () => {
                 <CartOrderStatus status={status} />
 
                 <div className="mx-auto mt-4 w-full max-w-md rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-                  <p className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700 xl:justify-center">
+                  <Link
+                    href={orderLink}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="mb-2 flex items-center gap-2 text-sm font-bold text-gray-700 hover:underline focus:underline xl:justify-center"
+                  >
                     <GoLink className="size-4 text-blue-500" />
                     Посилання на відстеження
-                  </p>
+                  </Link>
 
                   <p className="mb-3 text-sm text-gray-500">
                     Натисніть кнопку нижче, щоб скопіювати посилання для

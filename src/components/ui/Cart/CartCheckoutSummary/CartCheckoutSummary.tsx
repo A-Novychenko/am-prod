@@ -21,6 +21,8 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
   setCaptchaToken,
   recaptchaRef,
   errors,
+  recaptchaError,
+  setRecaptchaError,
 }) => {
   return (
     <div className="sticky bottom-0 top-[initial] flex gap-2 xl:relative xl:w-[300px] xl:gap-6">
@@ -88,14 +90,23 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
           {paymentMethod === 'cod' && 'Післяоплата'}
         </p>
 
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center justify-center">
           <Recaptcha
             ref={recaptchaRef}
             formId="checkout"
             siteKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-            onChange={setCaptchaToken}
+            onChange={token => {
+              setCaptchaToken(token);
+              setRecaptchaError(null);
+            }}
             size="compact"
           />
+
+          {recaptchaError && (
+            <div className="mt-2 flex items-center justify-center gap-2 text-sm text-red">
+              <span>{recaptchaError}</span>
+            </div>
+          )}
         </div>
 
         <CartCheckoutBtns
