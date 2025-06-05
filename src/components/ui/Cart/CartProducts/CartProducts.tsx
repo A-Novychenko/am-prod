@@ -11,6 +11,7 @@ import { cn, currencyFormatted } from '@/utils';
 
 import { CartItem } from '@/context/CartProvider/types';
 import { CartProductsProps } from './types';
+import Link from 'next/link';
 
 export const CartProducts: React.FC<CartProductsProps> = ({
   items,
@@ -41,6 +42,7 @@ export const CartProducts: React.FC<CartProductsProps> = ({
         {items &&
           items.map(item => {
             const {
+              _id,
               id,
               name,
               price,
@@ -73,60 +75,62 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                   { 'bg-saleBg': price_promo },
                 )}
               >
-                <div className="w-full gap-4 pt-2 md:flex md:flex-col md:items-center xl:flex-row xl:justify-between xl:pt-0">
-                  <div className="size-[80px] shrink-0 smOnly:mx-auto">
-                    <Image
-                      src={img}
-                      alt={name}
-                      width={100}
-                      height={100}
-                      className="size-full object-contain"
-                    />
-                  </div>
+                <Link href={`/single-product/${_id}`}>
+                  <div className="w-full gap-4 pt-2 md:flex md:flex-col md:items-center xl:flex-row xl:justify-between xl:pt-0">
+                    <div className="size-[80px] shrink-0 smOnly:mx-auto">
+                      <Image
+                        src={img}
+                        alt={name}
+                        width={100}
+                        height={100}
+                        className="size-full object-contain"
+                      />
+                    </div>
 
-                  <p
-                    className={cn('grow text-center xl:text-left', {
-                      'xl:max-w-[180px]': isCheckoutPage,
-                    })}
-                  >
-                    {name}
-                  </p>
-
-                  <div
-                    className={cn(
-                      'w-[180px] shrink-0 text-center xl:text-left smOnly:w-full',
-                      { 'w-[140px]': isCheckoutPage },
-                    )}
-                  >
                     <p
-                      className={cn('mb-2 text-[14px]', {
-                        'mb-2 text-[12px]': isCheckoutPage,
+                      className={cn('grow text-center xl:text-left', {
+                        'xl:max-w-[180px]': isCheckoutPage,
                       })}
                     >
-                      {articleLabel}&nbsp;{' '}
-                      <br className={cn({ hidden: !isCheckoutPage })} />
-                      {article}
+                      {name}
                     </p>
 
-                    {!isCheckoutResultPage && (
-                      <p className="mb-4 overflow-hidden text-ellipsis text-[12px] font-bold uppercase leading-[1.6]">
-                        {availability === '0' ? (
-                          <span className="text-rose-800">
-                            Немає в наявності
-                          </span>
-                        ) : (
-                          <span
-                            className={cn('text-[14px] text-green-500', {
-                              'text-[12px]': isCheckoutPage,
-                            })}
-                          >
-                            В наявності {availability}шт
-                          </span>
-                        )}
+                    <div
+                      className={cn(
+                        'w-[180px] shrink-0 text-center xl:text-left smOnly:w-full',
+                        { 'w-[140px]': isCheckoutPage },
+                      )}
+                    >
+                      <p
+                        className={cn('mb-2 text-[14px]', {
+                          'mb-2 text-[12px]': isCheckoutPage,
+                        })}
+                      >
+                        {articleLabel}&nbsp;{' '}
+                        <br className={cn({ hidden: !isCheckoutPage })} />
+                        {article}
                       </p>
-                    )}
+
+                      {!isCheckoutResultPage && (
+                        <p className="mb-4 overflow-hidden text-ellipsis text-[12px] font-bold uppercase leading-[1.6]">
+                          {availability === '0' ? (
+                            <span className="text-rose-800">
+                              Немає в наявності
+                            </span>
+                          ) : (
+                            <span
+                              className={cn('text-[14px] text-green-500', {
+                                'text-[12px]': isCheckoutPage,
+                              })}
+                            >
+                              В наявності {availability}шт
+                            </span>
+                          )}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
+                </Link>
 
                 <div className="items-center gap-2 md:flex smOnly:text-center mdOnly:mb-4">
                   <div className="items-center gap-4  text-right md:flex  smOnly:text-center">

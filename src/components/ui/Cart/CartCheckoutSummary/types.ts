@@ -10,4 +10,6 @@ export type CartCheckoutSummaryProps = {
   errors: CartErrors;
   setCaptchaToken: React.Dispatch<SetStateAction<string | null>>;
   recaptchaRef: React.RefObject<RecaptchaRef>;
+  recaptchaError: string | null;
+  setRecaptchaError: React.Dispatch<SetStateAction<string | null>>;
 };

@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 export const Logo: React.FC = () => {
   return (
-    <Link href="/" className="flex flex-col items-center">
-      <div className="h-[80px] md:size-[114px]">
+    <Link href="/" className="flex  flex-col  items-center ">
+      <div className="h-[80px] md:size-[80px]">
         <Image
           priority
           src="/images/logo.png"
@@ -15,7 +15,7 @@ export const Logo: React.FC = () => {
         />
       </div>
 
-      <div className="h-4 md:h-5 xl:h-[24px]">
+      <div className="h-4 md:h-5 xl:h-[28px]">
         <Image
           priority
           src="/images/text-logo.png"

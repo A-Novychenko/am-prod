@@ -47,6 +47,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
 
   const [submitError, setSubmitError] = useState<boolean>(false);
   const [isCaptchaError, setIsCaptchaError] = useState<boolean>(false);
+  const [recaptchaError, setRecaptchaError] = useState<string | null>(null);
 
   const [checkoutState, setCheckoutState] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -137,10 +138,14 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
   };
 
   const handleSubmitCart = async () => {
+    console.log('captchaToken', captchaToken);
     if (!captchaToken) {
-      alert('Будь ласка, підтвердьте, що Ви не робот.');
+      setRecaptchaError('Будь ласка, підтвердьте, що Ви не робот.');
+
       return;
     }
+
+    setRecaptchaError(null);
 
     const data = {
       name,
@@ -239,6 +244,8 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
                 setCaptchaToken={setCaptchaToken}
                 recaptchaRef={recaptchaRef}
                 errors={errors}
+                recaptchaError={recaptchaError}
+                setRecaptchaError={setRecaptchaError}
               />
             </div>
 

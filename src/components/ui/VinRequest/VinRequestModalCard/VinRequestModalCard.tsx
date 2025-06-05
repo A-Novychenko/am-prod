@@ -11,8 +11,11 @@ import { VinRequestModalCardProps } from './types';
 export const VinRequestModalCard: React.FC<VinRequestModalCardProps> = ({
   type,
   data,
+  setStatus,
 }) => {
   const router = useRouter();
+
+  if (!type) return;
 
   const makeData = () => {
     if (data) {
@@ -163,23 +166,77 @@ export const VinRequestModalCard: React.FC<VinRequestModalCardProps> = ({
         <div className="text-center text-[20px] font-bold">
           <h2 className="text-error">Сталася помилка</h2>
 
-          <p className="mb-8  text-error">
+          <div className="mb-8  text-error">
             <span className="mb-4 block">
               На жаль, не вдалося надіслати він-запит. Спробуйте ще раз або
               зателефонуйте за телефонами:
             </span>
             <Contacts classNameWrap="text-secondaryText" />
-          </p>
+          </div>
 
-          <button
-            type="button"
-            className="text-base font-normal text-secondaryText"
-            onClick={() => {
-              router.push('/');
-            }}
-          >
-            На головну
-          </button>
+          <div className="flex justify-center gap-4">
+            <button
+              type="button"
+              className="text-base font-normal text-secondaryText"
+              onClick={() => {
+                router.push('/');
+              }}
+            >
+              На головну
+            </button>
+            <button
+              type="button"
+              className="text-base font-normal text-secondaryText"
+              onClick={() => {
+                setStatus('');
+              }}
+            >
+              Повернутись до запиту
+            </button>
+          </div>
+        </div>
+      )}
+
+      {type === 'captchaFail' && (
+        <div className="text-center text-[20px] font-bold">
+          <h2 className="text-error">Не вдалося підтвердити, що Ви не робот</h2>
+
+          <div className="mb-8 text-error">
+            <span className="mb-4 block">
+              Схоже, виникла помилка під час перевірки CAPTCHA. Це може статися,
+              якщо термін дії перевірки закінчився або вона не була пройдена
+              коректно.
+            </span>
+            <span className="mb-4 block">
+              Будь ласка, оновіть сторінку або повторно пройдіть перевірку.
+            </span>
+            <span className="mb-4 block">
+              Якщо проблема повторюється, зв’яжіться з нами за телефонами:
+            </span>
+
+            <Contacts classNameWrap="text-secondaryText" />
+          </div>
+
+          <div className="flex justify-center gap-4">
+            <button
+              type="button"
+              className="text-base font-normal text-secondaryText"
+              onClick={() => {
+                router.push('/');
+              }}
+            >
+              На головну
+            </button>
+            <button
+              type="button"
+              className="text-base font-normal text-secondaryText"
+              onClick={() => {
+                setStatus('');
+              }}
+            >
+              Повернутись до запиту
+            </button>
+          </div>
         </div>
       )}
     </>

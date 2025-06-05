@@ -37,6 +37,7 @@ const config: Config = {
       colors: {
         lightBg: '#FFFFFF',
         darkBg: '#101340',
+        // darkBg: '#000',
         mediumBg: '#E5EEF6',
         darkBlueBg: '#0045CB',
         accent: '#00EA90',

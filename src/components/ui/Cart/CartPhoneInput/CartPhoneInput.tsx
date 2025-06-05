@@ -11,10 +11,22 @@ export const CartPhoneInput: React.FC<CartPhoneInputProps> = ({
   onChange,
   handleValidationPhone,
   errors,
+  className,
+  showLabel = true,
 }) => {
   return (
-    <label className="relative block pb-5 text-sm font-medium text-gray-700">
-      Телефон <span className="text-red">*</span>
+    <label
+      className={cn(
+        'relative block pb-5 text-sm font-medium text-gray-700',
+        className,
+      )}
+    >
+      {showLabel && (
+        <>
+          Телефон <span className="text-red">*</span>
+        </>
+      )}
+
       <PatternFormat
         id="phone"
         name="phone"

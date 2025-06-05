@@ -5,4 +5,6 @@ export type CartPhoneInputProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   errors: CartErrors;
   handleValidationPhone: (val: string) => void;
+  className?: string;
+  showLabel?: boolean;
 };
