@@ -23,7 +23,8 @@ export const NotFoundSection = () => {
               Повернутись на головну
             </Link>
           </div>
-          <div className="mt-10 md:h-[300px] xl:h-[500px]">
+
+          <div className="mt-10 md:h-[40vh] xl:h-[50vh]">
             <Image
               src="/images/image-404.png"
               alt="Машина не знайдена"
