@@ -1,16 +1,25 @@
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
 import { CastrolSeoSection, SingleProductSection } from '@/sections';
 
 import { getProductData } from '@/actions/servicesAPI';
-import Link from 'next/link';
 
 export default async function SingleProductPage({
-  params: { id },
+  params: { slug },
 }: {
-  params: { id: string };
+  params: { slug: string };
 }) {
+  const match = slug.match(/--([a-f0-9]{24})$/i);
+  const id = match?.[1];
+
+  if (!id) {
+    return notFound();
+  }
+
   let product: IASGProduct | null = null;
 
   try {

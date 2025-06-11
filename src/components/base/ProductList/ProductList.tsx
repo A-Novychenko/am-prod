@@ -15,21 +15,21 @@ import { ProductListProps } from './types';
 export const ProductList: React.FC<ProductListProps> = ({
   products,
   category,
-  categoryName,
+  prevCategoryName,
   viewMode,
   backLink = true,
 }) => {
   return (
     <div className="h-full">
       <div className={cn({ 'flex justify-end': !backLink })}>
-        <ProductTypeGallerySwitcher>
+        <ProductTypeGallerySwitcher viewMode={viewMode}>
           {backLink && (
             <Link
-              href={`/categories/${category}`}
+              href={`/catalog/${viewMode}/${category}`}
               className="flex gap-2 rounded-[8px] bg-slate-50 px-4 py-2"
             >
               <RiArrowGoBackFill size={16} />
-              {categoryName}
+              {prevCategoryName}
             </Link>
           )}
         </ProductTypeGallerySwitcher>
@@ -40,7 +40,7 @@ export const ProductList: React.FC<ProductListProps> = ({
           'flex flex-col',
           {
             ' flex-wrap gap-2 xl:flex-row smOnly:justify-center':
-              viewMode === 'gallery',
+              viewMode === 'grid',
           },
           { ' gap-3': viewMode === 'list' },
         )}

@@ -36,22 +36,16 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   id,
   name,
   link,
-  nameCat,
   img = '',
 }) => {
   const IconData = iconsMap[id];
 
-  const { noImage, defaultTypeGallery } = staticData;
+  const { noImage } = staticData;
 
   const image = img && img?.length > 0 ? img : noImage;
 
   return (
-    <Link
-      href={{
-        pathname: link,
-        query: { name, nameCat, typeGallery: defaultTypeGallery },
-      }}
-    >
+    <Link href={link}>
       <div className="flex flex-col items-center justify-between gap-4 rounded-[16px] bg-lightBg px-2 py-4 xl:h-[228px] ">
         {IconData ? (
           <IconData.Component
@@ -68,7 +62,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                     src={image}
                     width={200}
                     height={200}
-                    alt={nameCat ? nameCat : link}
+                    alt={name ? name : link}
                     placeholder="blur"
                     blurDataURL={noImage}
                     className="size-full object-contain"

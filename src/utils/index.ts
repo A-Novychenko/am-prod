@@ -6,3 +6,6 @@ export * from './generateDeliveryMethodText';
 export * from './formatDateToUkrainian';
 export * from './generateStatusText';
 export * from './generateStatusColor';
+export * from './generateSlugName';
+export * from './getSlugId';
+export * from './generateProductPath';

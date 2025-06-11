@@ -138,7 +138,6 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
   };
 
   const handleSubmitCart = async () => {
-    console.log('captchaToken', captchaToken);
     if (!captchaToken) {
       setRecaptchaError('Будь ласка, підтвердьте, що Ви не робот.');
 
@@ -176,7 +175,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
     }
 
     setPending(true);
-    console.log('data', data);
+
     try {
       const result = await addOrder(data);
 

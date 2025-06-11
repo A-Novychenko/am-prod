@@ -1,4 +1,5 @@
 import {
+  BackBtn,
   SingleProductImgBox,
   SingleProductInfo,
   SingleProductPrice,
@@ -27,6 +28,7 @@ export const SingleProductSection: React.FC<{ product: IASGProduct }> = ({
   const cartItem: CartItem = {
     _id,
     id,
+    brand,
     name,
     price,
     price_promo,
@@ -42,6 +44,8 @@ export const SingleProductSection: React.FC<{ product: IASGProduct }> = ({
         <h2 className="mb-6 text-2xl font-bold text-gray-900 sm:text-3xl">
           {brand} {name}
         </h2>
+
+        <BackBtn className="mb-6" />
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           <SingleProductImgBox img={img} name={name} />

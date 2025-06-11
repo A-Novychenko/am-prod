@@ -1,14 +1,14 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { BuyBtn } from '@/components/ui';
 
-import { cn } from '@/utils';
+import { cn, generateProductPath } from '@/utils';
 
 import staticData from '@/data/common.json';
 
 import { CartItem } from '@/context/CartProvider/types';
 import { ProductCardListProps } from './types';
-import Link from 'next/link';
 
 export const ProductCardList: React.FC<ProductCardListProps> = ({
   product,
@@ -34,6 +34,7 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
   const cartItem: CartItem = {
     _id,
     id,
+    brand,
     name,
     price,
     price_promo,
@@ -49,7 +50,7 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
         'bg-saleBg': price_promo,
       })}
     >
-      <Link href={`/single-product/${_id}`}>
+      <Link href={generateProductPath({ name, _id, brand })}>
         <div className="h-[200px] shrink-0 p-2 md:h-[298px]">
           <Image
             src={image}
@@ -64,7 +65,7 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
       </Link>
 
       <div className="flex grow gap-4 p-6">
-        <Link href={`/single-product/${_id}`}>
+        <Link href={generateProductPath({ name, _id, brand })}>
           <div className="smOnly:w-full">
             <div className="mb-2 overflow-hidden text-[16px] font-semibold uppercase leading-[1.5] text-secondaryText">
               <p>{brand}</p>

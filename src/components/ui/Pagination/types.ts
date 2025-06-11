@@ -1,7 +1,7 @@
 export type PaginationProps = {
   totalPages: number;
-  product: string;
+  brand: string;
   category: string;
   page: number;
-  name: string;
+  viewMode: GalleryViewMode;
 };

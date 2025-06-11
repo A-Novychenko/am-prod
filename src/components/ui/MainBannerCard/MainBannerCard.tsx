@@ -12,6 +12,7 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
   _id,
   id,
   category,
+  brand,
   name,
   description,
   price,
@@ -27,6 +28,7 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
   const cartItem: CartItem = {
     _id,
     id,
+    brand,
     name,
     price,
     price_promo,

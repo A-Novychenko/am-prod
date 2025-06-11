@@ -17,8 +17,8 @@ export const SearchProducts = ({
 
       <ProductList
         products={products}
-        category={'test'}
-        categoryName={'test'}
+        category=""
+        prevCategoryName=""
         viewMode={viewMode}
         backLink={false}
       />

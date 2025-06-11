@@ -4,35 +4,35 @@ import { ProductList } from '@/components/base';
 import { Pagination } from '@/components/ui';
 
 import { getCategory, getProducts } from '@/actions/servicesAPI';
+import { getSlugId } from '@/utils';
 
 import staticData from '@/data/common.json';
 
 export default async function ProductPage({
-  params: { product, category },
-  searchParams,
+  params: { viewMode, category, brand, page },
 }: {
-  params: { product: string; category: string };
-  searchParams: {
-    page?: string;
-    name: string;
-    nameCat: string;
-    typeGallery: GalleryViewMode;
+  params: {
+    viewMode: GalleryViewMode;
+    category: string;
+    brand: string;
+    page: string;
   };
 }) {
-  const { defaultTypeGallery } = staticData;
+  const defaultTypeGallery: GalleryViewMode =
+    staticData.defaultTypeGallery as GalleryViewMode;
 
-  const page = parseInt(searchParams.page || '1', 10);
+  const id = getSlugId(brand);
 
-  const { products, totalPages } = await getProducts(product, page);
+  const match = page.match(/^page-(\d+)$/);
+  const pageNumber = match ? parseInt(match[1], 10) : 1;
 
-  const res = await getCategory(category);
-
+  const { products, totalPages } = await getProducts(id, pageNumber);
   const categoryName = products[0]?.category;
-  const prevCategoryName = res?.name ? res?.name : '';
 
-  const initialViewMode = searchParams.typeGallery
-    ? searchParams.typeGallery
-    : defaultTypeGallery;
+  const res = await getCategory(id);
+  const prevCategoryName = res?.parentName ? res?.parentName : '';
+
+  const initialViewMode = viewMode ? viewMode : defaultTypeGallery;
 
   return (
     <section className="section flex grow bg-mediumBg">
@@ -44,16 +44,16 @@ export default async function ProductPage({
             viewMode={initialViewMode}
             products={products}
             category={category}
-            categoryName={prevCategoryName}
+            prevCategoryName={prevCategoryName}
           />
         )}
 
         <Pagination
           totalPages={totalPages}
-          product={product}
+          brand={brand}
           category={category}
-          page={page}
-          name={categoryName}
+          page={pageNumber}
+          viewMode={viewMode}
         />
       </div>
     </section>
