@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { BuyBtn } from '@/components/ui';
 
-import { cn } from '@/utils';
+import { cn, generateProductPath } from '@/utils';
 
 import staticData from '@/data/common.json';
 
@@ -36,6 +36,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
   const cartItem: CartItem = {
     _id,
     id,
+    brand,
     name,
     price,
     price_promo,
@@ -55,7 +56,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
           },
         )}
       >
-        <Link href={`/single-product/${_id}`}>
+        <Link href={generateProductPath({ name, _id, brand })}>
           <div className="h-[200px] p-2  md:h-[298px]">
             <Image
               src={image}
@@ -70,7 +71,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
         </Link>
 
         <div className="w-full p-4 pt-0 text-[14px]/normal">
-          <Link href={`/single-product/${_id}`}>
+          <Link href={generateProductPath({ name, _id, brand })}>
             <p>{brand}</p>
 
             <h3 className="mb-2 line-clamp-2 h-[42px] overflow-hidden text-ellipsis text-[14px]/normal font-semibold uppercase leading-[1.5] text-secondaryText">

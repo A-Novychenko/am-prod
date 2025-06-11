@@ -1,45 +1,37 @@
 'use client';
 
-import { useCallback } from 'react';
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 import { RiGalleryView2, RiListCheck2 } from 'react-icons/ri';
-
-import staticData from '@/data/common.json';
 
 import { ProductTypeGallerySwitcherProps } from './types';
 
 export const ProductTypeGallerySwitcher: React.FC<
   ProductTypeGallerySwitcherProps
-> = ({ children }) => {
-  const { defaultTypeGallery } = staticData;
-
+> = ({ children, viewMode }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
-  const viewMode =
-    searchParams.get('typeGallery') === 'list' ||
-    searchParams.get('typeGallery') === 'gallery'
-      ? searchParams.get('typeGallery')
-      : defaultTypeGallery;
+  const updateViewSegment = (newView: GalleryViewMode) => {
+    const segments = pathname.split('/');
 
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set(name, value);
+    if (segments.length < 3) {
+      console.warn('Некоректний шлях:', pathname);
+      return;
+    }
 
-      return params.toString();
-    },
-    [searchParams],
-  );
+    // Змінюємо лише третій сегмент (індекс 2)
+    segments[2] = newView;
+    const newPath = segments.join('/');
+    router.replace(newPath);
+  };
 
   const handleSetGallery = () => {
-    router.push(pathname + '?' + createQueryString('typeGallery', 'gallery'));
+    updateViewSegment('grid');
   };
 
   const handleSetList = () => {
-    router.push(pathname + '?' + createQueryString('typeGallery', 'list'));
+    updateViewSegment('list');
   };
 
   return (
@@ -47,17 +39,17 @@ export const ProductTypeGallerySwitcher: React.FC<
       {children}
 
       <div className="hidden gap-2 xl:flex">
+        <button onClick={handleSetGallery}>
+          <RiGalleryView2
+            size={24}
+            color={viewMode === 'grid' ? '#0045CB' : '#969696'}
+          />
+        </button>
+
         <button onClick={handleSetList}>
           <RiListCheck2
             size={24}
             color={viewMode === 'list' ? '#0045CB' : '#969696'}
-          />
-        </button>
-
-        <button onClick={handleSetGallery}>
-          <RiGalleryView2
-            size={24}
-            color={viewMode === 'gallery' ? '#0045CB' : '#969696'}
           />
         </button>
       </div>

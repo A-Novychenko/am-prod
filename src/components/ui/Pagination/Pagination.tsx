@@ -1,28 +1,14 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-
-import staticData from '@/data/common.json';
 
 import { PaginationProps } from './types';
 
 export const Pagination: React.FC<PaginationProps> = ({
   totalPages,
-  product,
+  brand,
   category,
   page,
-  name,
+  viewMode,
 }) => {
-  const { defaultTypeGallery } = staticData;
-  const searchParams = useSearchParams();
-
-  const viewMode =
-    searchParams.get('typeGallery') === 'list' ||
-    searchParams.get('typeGallery') === 'gallery'
-      ? searchParams.get('typeGallery')
-      : defaultTypeGallery;
-
   // Генеруємо масив сторінок для відображення
   const pagesToShow = [];
 
@@ -64,11 +50,11 @@ export const Pagination: React.FC<PaginationProps> = ({
       {pagesToShow.map((p, index) => (
         <Link
           key={index}
-          href={`/categories/${category}/${product}?page=${p}&name=${name}&typeGallery=${viewMode}`}
+          href={`/catalog/${viewMode}/${category}/${brand}/page-${p}`}
           className={`mx-1 rounded-[8px] px-4 py-2 first:mr-6 last:ml-6 smOnly:px-3 smOnly:first:mr-2 smOnly:last:ml-2 ${
             page === p
-              ? 'bg-slate-50 text-slate-900'
-              : 'bg-slate-700 text-white'
+              ? 'bg-slate-700 text-white'
+              : 'bg-slate-50 text-slate-900'
           }`}
         >
           {p === '...' ? <span className="text-white">...</span> : p}

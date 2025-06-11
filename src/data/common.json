@@ -5,22 +5,26 @@
   "siteName": "avto-magaz.com.ua",
   "noImage": "/images/no-photo.png",
   "articleLabel": "Артикул:",
-  "defaultTypeGallery": "gallery",
+  "defaultTypeGallery": "grid",
   "navLinks": [
     {
-      "href": "categories/3?name=Автохімія&nameCat=Автохімія",
+      "href": "catalog/grid/avtokhimiya--1",
+      "name": "Мастила"
+    },
+    {
+      "href": "catalog/grid/avtokhimiya--3",
       "name": "Автохімія"
     },
     {
-      "href": "categories/5?name=Запчастини&nameCat=Запчастини",
+      "href": "catalog/grid/zapchastyny--5",
       "name": "Автозапчастини"
     },
     {
-      "href": "categories/4?name=Акумуляторні+батареї&nameCat=Акумуляторні+батареї",
+      "href": "catalog/grid/akumulyatorni-batareyi--4",
       "name": "Акумулятори"
     },
     {
-      "href": "categories/7?name=Аксесуари&nameCat=Аксесуари&typeGallery=list",
+      "href": "catalog/grid/aksesuary--7",
       "name": "Аксесуари"
     }
   ],

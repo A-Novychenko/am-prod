@@ -23,4 +23,4 @@ interface IASGProduct {
   sale: boolean;
 }
 
-type GalleryViewMode = 'list' | 'gallery';
+type GalleryViewMode = 'list' | 'grid';

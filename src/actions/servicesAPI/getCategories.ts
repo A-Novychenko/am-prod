@@ -1,6 +1,6 @@
 const API_URL = process.env.API_URL as string;
 
-export const getCategories = async (id: string) => {
+export const getCategories = async (id: number) => {
   try {
     const result = await fetch(`${API_URL}/catalog/categories?id=${id}`, {
       method: 'GET',

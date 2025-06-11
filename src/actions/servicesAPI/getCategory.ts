@@ -1,6 +1,6 @@
 const API_URL = process.env.API_URL as string;
 
-export const getCategory = async (id: string) => {
+export const getCategory = async (id: number) => {
   try {
     const result = await fetch(`${API_URL}/catalog/category/${id}`, {
       method: 'GET',
@@ -17,7 +17,7 @@ export const getCategory = async (id: string) => {
 
     if (res.code !== 200) throw new Error('Server not connect');
 
-    return res.categories;
+    return res.category;
   } catch (e) {
     console.log('e.getCategory', e);
   }

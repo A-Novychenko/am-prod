@@ -1,17 +1,17 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { TiDelete } from 'react-icons/ti';
 
 import staticData from '@/data/common.json';
 
 import { useCart } from '@/context';
-import { cn, currencyFormatted } from '@/utils';
+import { cn, currencyFormatted, generateProductPath } from '@/utils';
 
 import { CartItem } from '@/context/CartProvider/types';
 import { CartProductsProps } from './types';
-import Link from 'next/link';
 
 export const CartProducts: React.FC<CartProductsProps> = ({
   items,
@@ -43,6 +43,7 @@ export const CartProducts: React.FC<CartProductsProps> = ({
           items.map(item => {
             const {
               _id,
+              brand,
               id,
               name,
               price,
@@ -75,7 +76,7 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                   { 'bg-saleBg': price_promo },
                 )}
               >
-                <Link href={`/single-product/${_id}`}>
+                <Link href={generateProductPath({ name, _id, brand })}>
                   <div className="w-full gap-4 pt-2 md:flex md:flex-col md:items-center xl:flex-row xl:justify-between xl:pt-0">
                     <div className="size-[80px] shrink-0 smOnly:mx-auto">
                       <Image
