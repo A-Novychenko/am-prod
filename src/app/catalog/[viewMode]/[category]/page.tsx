@@ -2,19 +2,21 @@ export const dynamic = 'force-dynamic';
 
 import Link from 'next/link';
 
-import { CategoryList } from '@/components/base';
+import { CategoryList, ProductList } from '@/components/base';
 
-import { getCategories, getCategory } from '@/actions/servicesAPI';
+import { getCategories, getCategory, getProducts } from '@/actions/servicesAPI';
 import { cn, getSlugId } from '@/utils';
 
 import staticData from '@/data/common.json';
+import { Pagination } from '@/components/ui';
 
 export default async function CategoryPage({
   params: { viewMode, category },
 }: {
-  params: { viewMode: string; category: string };
+  params: { viewMode: GalleryViewMode; category: string };
 }) {
-  const { defaultTypeGallery } = staticData;
+  const defaultTypeGallery: GalleryViewMode =
+    staticData.defaultTypeGallery as GalleryViewMode;
   const initialViewMode = viewMode ? viewMode : defaultTypeGallery;
 
   const id = getSlugId(category);
@@ -23,6 +25,16 @@ export default async function CategoryPage({
 
   const res = await getCategory(id);
   const prevCategoryName = res?.name ? res?.name : '';
+
+  let products = [];
+  let totalPages = 1;
+  const page = 1;
+  if (!categories.length) {
+    const res = await getProducts(id, page);
+
+    products = res?.products;
+    totalPages = res?.totalPages;
+  }
 
   return (
     <>
@@ -43,11 +55,34 @@ export default async function CategoryPage({
             Перейти до всіх категорій
           </Link>
 
-          <CategoryList
-            data={categories}
-            link={`catalog/${initialViewMode}/${category}`}
-            page="1"
-          />
+          {categories.length > 0 ? (
+            <CategoryList
+              data={categories}
+              link={`catalog/${initialViewMode}/${category}`}
+              page="1"
+            />
+          ) : (
+            <>
+              {products.length && (
+                <>
+                  <ProductList products={products} viewMode={initialViewMode} />
+
+                  <Pagination
+                    totalPages={totalPages}
+                    brand={category}
+                    category={category}
+                    page={page}
+                    viewMode={initialViewMode}
+                  />
+                </>
+              )}
+              <CategoryList
+                data={categories}
+                link={`catalog/${initialViewMode}/${category}/${category}`}
+                page="1"
+              />
+            </>
+          )}
         </div>
       </section>
     </>

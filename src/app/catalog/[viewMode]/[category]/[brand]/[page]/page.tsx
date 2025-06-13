@@ -1,9 +1,9 @@
 export const dynamic = 'force-dynamic';
 
-import { ProductList } from '@/components/base';
-import { Pagination } from '@/components/ui';
+import { CategoryList, ProductList } from '@/components/base';
+import { BackBtn, Pagination } from '@/components/ui';
 
-import { getCategory, getProducts } from '@/actions/servicesAPI';
+import { getCategories, getProducts } from '@/actions/servicesAPI';
 import { getSlugId } from '@/utils';
 
 import staticData from '@/data/common.json';
@@ -29,32 +29,41 @@ export default async function ProductPage({
   const { products, totalPages } = await getProducts(id, pageNumber);
   const categoryName = products[0]?.category;
 
-  const res = await getCategory(id);
-  const prevCategoryName = res?.parentName ? res?.parentName : '';
-
   const initialViewMode = viewMode ? viewMode : defaultTypeGallery;
+
+  let categories = [];
+
+  if (!products.length) {
+    categories = await getCategories(id);
+  }
 
   return (
     <section className="section flex grow bg-mediumBg">
-      <div className="container flex  grow flex-col justify-between">
+      {/* <div className="container flex  grow flex-col justify-between"> */}
+      <div className="container">
         <h1 className="mb-10 text-[40px]">{categoryName}</h1>
 
-        {products && (
-          <ProductList
-            viewMode={initialViewMode}
-            products={products}
-            category={category}
-            prevCategoryName={prevCategoryName}
-          />
+        {products.length ? (
+          <div className="flex flex-col">
+            <ProductList viewMode={initialViewMode} products={products} />
+            <Pagination
+              totalPages={totalPages}
+              brand={brand}
+              category={category}
+              page={pageNumber}
+              viewMode={viewMode}
+            />
+          </div>
+        ) : (
+          <>
+            <BackBtn className="mb-10 inline-block  rounded-[8px] bg-slate-50 px-4 py-2" />
+            <CategoryList
+              data={categories}
+              link={`catalog/${initialViewMode}/${category}`}
+              page="1"
+            />
+          </>
         )}
-
-        <Pagination
-          totalPages={totalPages}
-          brand={brand}
-          category={category}
-          page={pageNumber}
-          viewMode={viewMode}
-        />
       </div>
     </section>
   );

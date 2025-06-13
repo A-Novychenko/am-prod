@@ -8,9 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        // disallow: ['/studio/', '/studio/*'],
+        disallow: ['/in-progress'],
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${BASE_URL}/sitemaps/sitemap-index.xml`,
   };
 }

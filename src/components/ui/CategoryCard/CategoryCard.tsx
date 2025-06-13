@@ -15,6 +15,7 @@ import SaleIcon from '~/icons/catalog/sale-icon.svg';
 import EnergyIcon from '~/icons/catalog/energy.svg';
 
 import { CategoryCardProps } from './types';
+import { LetterAvatar } from '../LetterAvatar';
 
 const iconsMap: Record<
   number,
@@ -55,7 +56,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
           />
         ) : (
           <>
-            {img && (
+            {img ? (
               <div className="size-full">
                 <div className="h-[150px]">
                   <Image
@@ -69,6 +70,8 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
                   />
                 </div>
               </div>
+            ) : (
+              <LetterAvatar size={150} name={name} id={id} />
             )}
           </>
         )}
