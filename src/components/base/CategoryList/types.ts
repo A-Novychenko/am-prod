@@ -2,6 +2,7 @@ export type CategoryListProps = {
   data: Category[];
   link: string;
   page?: string;
+  isMainCategory?: boolean;
 };
 
 type Category = {
@@ -9,4 +10,6 @@ type Category = {
   name: string;
   parent_id: number;
   img?: string;
+  hasChildren: boolean;
+  hasProducts: boolean;
 };

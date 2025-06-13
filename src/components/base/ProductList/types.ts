@@ -1,7 +1,7 @@
 export type ProductListProps = {
   products: IASGProduct[];
   viewMode: GalleryViewMode;
-  category: string;
-  prevCategoryName: string;
-  backLink?: boolean;
+  // category: string;
+  // prevCategoryName: string;
+  // backLink?: boolean;
 };

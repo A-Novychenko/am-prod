@@ -6,6 +6,9 @@ interface GenerateProductPathProps {
   _id: string;
 }
 
+const escapeRegExp = (str: string): string =>
+  str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 export const generateProductPath = ({
   brand = '',
   name,
@@ -14,9 +17,10 @@ export const generateProductPath = ({
   let cleanedName = name;
 
   if (brand) {
-    const brandPattern = new RegExp(`\\b${brand}\\b`, 'i'); // слово целиком, без чувствительности к регистру
+    const safeBrand = escapeRegExp(brand);
+    const brandPattern = new RegExp(`\\b${safeBrand}\\b`, 'i'); // безопасно вставляем в RegExp
     if (brandPattern.test(name)) {
-      cleanedName = name.replace(brandPattern, '').replace(/\s+/g, ' ').trim(); // удалить и очистить лишние пробелы
+      cleanedName = name.replace(brandPattern, '').replace(/\s+/g, ' ').trim(); // удаляем бренд и чистим пробелы
     }
   }
 

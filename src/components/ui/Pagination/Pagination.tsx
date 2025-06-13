@@ -47,19 +47,23 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className="mt-10 flex justify-center">
-      {pagesToShow.map((p, index) => (
-        <Link
-          key={index}
-          href={`/catalog/${viewMode}/${category}/${brand}/page-${p}`}
-          className={`mx-1 rounded-[8px] px-4 py-2 first:mr-6 last:ml-6 smOnly:px-3 smOnly:first:mr-2 smOnly:last:ml-2 ${
-            page === p
-              ? 'bg-slate-700 text-white'
-              : 'bg-slate-50 text-slate-900'
-          }`}
-        >
-          {p === '...' ? <span className="text-white">...</span> : p}
-        </Link>
-      ))}
+      {pagesToShow.map((p, index) => {
+        const link = `/catalog/${viewMode}/${category}/${brand}/page-${p}`;
+
+        return (
+          <Link
+            key={index}
+            href={link}
+            className={`mx-1 rounded-[8px] px-4 py-2 first:mr-6 last:ml-6 smOnly:px-3 smOnly:first:mr-2 smOnly:last:ml-2 ${
+              page === p
+                ? 'bg-slate-700 text-white'
+                : 'bg-slate-50 text-slate-900'
+            }`}
+          >
+            {p === '...' ? <span className="text-white">...</span> : p}
+          </Link>
+        );
+      })}
     </div>
   );
 };

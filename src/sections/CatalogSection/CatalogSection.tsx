@@ -10,7 +10,11 @@ export const CatalogSection: React.FC = async () => {
       <section className="section" id="main-cat">
         <div className="container">
           {mainCategories && (
-            <CategoryList data={mainCategories} link={'catalog/grid'} />
+            <CategoryList
+              data={mainCategories}
+              link={'catalog/grid'}
+              isMainCategory
+            />
           )}
         </div>
       </section>

@@ -1,8 +1,9 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 
-import { RiArrowGoBackFill } from 'react-icons/ri';
+// import { RiArrowGoBackFill } from 'react-icons/ri';
 
 import {
+  BackBtn,
   ProductCardGallery,
   ProductCardList,
   ProductTypeGallerySwitcher,
@@ -14,24 +15,13 @@ import { ProductListProps } from './types';
 
 export const ProductList: React.FC<ProductListProps> = ({
   products,
-  category,
-  prevCategoryName,
   viewMode,
-  backLink = true,
 }) => {
   return (
     <div className="h-full">
-      <div className={cn({ 'flex justify-end': !backLink })}>
+      <div>
         <ProductTypeGallerySwitcher viewMode={viewMode}>
-          {backLink && (
-            <Link
-              href={`/catalog/${viewMode}/${category}`}
-              className="flex gap-2 rounded-[8px] bg-slate-50 px-4 py-2"
-            >
-              <RiArrowGoBackFill size={16} />
-              {prevCategoryName}
-            </Link>
-          )}
+          <BackBtn />
         </ProductTypeGallerySwitcher>
       </div>
 
@@ -46,7 +36,7 @@ export const ProductList: React.FC<ProductListProps> = ({
         )}
       >
         {products &&
-          products.map((product: IASGProduct) => (
+          products?.map((product: IASGProduct) => (
             <li key={product._id}>
               {viewMode === 'list' ? (
                 <>

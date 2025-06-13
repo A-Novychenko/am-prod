@@ -10,3 +10,4 @@ export * from './getProductsByTecDocArticle';
 export * from './getOrderStatus';
 export * from './addCallback';
 export * from './getProductData';
+export * from './getTotalProducts';

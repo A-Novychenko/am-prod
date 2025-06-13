@@ -4,6 +4,7 @@ export const getProducts = async (id: number, page: number) => {
   try {
     const result = await fetch(
       `${API_URL}/catalog/products?id=${id}&page=${page}`,
+      // `${API_URL}/catalog/products?id=${id}&page=${page}&limit=2`,
       {
         method: 'GET',
         headers: {

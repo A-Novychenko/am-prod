@@ -15,13 +15,7 @@ export const SearchProducts = ({
           : 'Нічого не знайдено'}
       </p>
 
-      <ProductList
-        products={products}
-        category=""
-        prevCategoryName=""
-        viewMode={viewMode}
-        backLink={false}
-      />
+      <ProductList products={products} viewMode={viewMode} />
     </>
   );
 };
