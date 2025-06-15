@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import { Geologica, Lora, Nunito } from 'next/font/google';
 
+// export const revalidate = 0;
+
+export const dynamic = 'force-dynamic';
+
 import meta from '@/data/meta';
 
 import './globals.css';
@@ -35,6 +39,11 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = meta;
+
+// export const generateMetadata = async () => {
+//   console.log('metaMAIN');
+//   return meta;
+// };
 
 type Category = {
   id: string;

@@ -8,8 +8,8 @@ export const getOrderStatus = async (id: string) => {
         'Content-Type': 'application/json',
       },
 
-      // cache: 'no-cache',
-      next: { revalidate: 0 },
+      cache: 'no-store',
+      // next: { revalidate: 0 },
       // body: JSON.stringify({ id }),
     });
 
