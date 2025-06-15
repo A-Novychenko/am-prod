@@ -4,14 +4,12 @@ export const getProducts = async (id: number, page: number) => {
   try {
     const result = await fetch(
       `${API_URL}/catalog/products?id=${id}&page=${page}`,
-      // `${API_URL}/catalog/products?id=${id}&page=${page}&limit=2`,
       {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
         next: { revalidate: 0 },
-        // cache: 'no-cache',
       },
     );
 
@@ -22,5 +20,6 @@ export const getProducts = async (id: number, page: number) => {
     return res;
   } catch (e) {
     console.log('e.getProducts', e);
+    return null; // ✅ обязательно вернуть null
   }
 };

@@ -1,4 +1,7 @@
 export const dynamic = 'force-dynamic';
+// export const fetchCache = 'no-store';
+// '"auto" | "force-no-store" | "only-no-store" | "default-no-store" | "default-cache" | "only-cache" | "force-cache" | undefined'.
+export const revalidate = 0;
 
 import Link from 'next/link';
 
@@ -31,6 +34,10 @@ export default async function CategoryPage({
   const page = 1;
   if (!categories.length) {
     const res = await getProducts(id, page);
+
+    if (!res) {
+      return <div>Помилка завантаження товарів. Спробуйте пізніше.</div>;
+    }
 
     products = res?.products;
     totalPages = res?.totalPages;

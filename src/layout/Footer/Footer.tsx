@@ -19,7 +19,7 @@ export const Footer = () => {
 
         <div className="items-center justify-between py-8 xl:flex">
           <div className="justify-between md:flex md:flex-row xl:gap-10 smOnly:text-center">
-            <WorkSchedule labelClassName="text-[22px] font-semibold" />
+            <WorkSchedule labelClassName="text-[22px] font-semibold mb-2" />
 
             <Socials />
           </div>

@@ -8,7 +8,7 @@ export const getCategories = async (id: number) => {
         'Content-Type': 'application/json',
       },
       // cache: 'no-cache',
-      next: { revalidate: 60 },
+      next: { revalidate: 0 },
     });
 
     const res = await result.json();

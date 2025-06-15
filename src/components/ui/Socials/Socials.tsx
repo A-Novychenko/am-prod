@@ -13,13 +13,13 @@ export const Socials: React.FC = () => {
     <div className="smOnly:mb-4">
       <p className="text-[22px] font-semibold smOnly:mb-2">{title}</p>
 
-      <ul className="smOnly:flex smOnly:flex-col smOnly:items-center">
+      <ul className="gap-2 smOnly:flex smOnly:flex-col smOnly:items-center">
         {links &&
           links.map(({ name, path }, idx) => (
-            <li key={idx}>
+            <li key={idx} className="md:mb-2 md:last:mb-0">
               <Link
                 href={path}
-                className="flex cursor-pointer gap-2  transition-all hover:stroke-accent hover:text-accent focus:stroke-accent focus:text-accent smOnly:mb-2"
+                className="flex cursor-pointer gap-2 py-2 transition-all hover:stroke-accent hover:text-accent focus:stroke-accent focus:text-accent smOnly:mb-2"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
