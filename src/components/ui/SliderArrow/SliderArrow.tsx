@@ -28,13 +28,13 @@ export const SliderArrow: React.FC<SliderArrowProps> = ({
           styles.btn,
         )}
         type="button"
-        // aria-label={prevBtnAriaLabel}
+        aria-label={'Перейти до попереднього слайду'}
       >
         <ControlIcon
           width={40}
           height={40}
           className={`size-[20px] rotate-180 md:size-[24px] xl:size-[40px]`}
-          //   aria-label={prevIconAriaLabel}
+          aria-label={'Стрілка вліво'}
         />
       </button>
 
@@ -45,13 +45,13 @@ export const SliderArrow: React.FC<SliderArrowProps> = ({
           styles.btn,
         )}
         type="button"
-        // aria-label={nextBtnAriaLabel}
+        aria-label={'Перейти до наступного слайду'}
       >
         <ControlIcon
           width={40}
           height={40}
           className="size-[20px] md:size-[24px] xl:size-[40px]"
-          //   aria-label={nextIconAriaLabel}
+          aria-label={'Стрілка вправо'}
         />
       </button>
     </div>

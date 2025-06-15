@@ -1,5 +1,7 @@
 export const dynamic = 'force-dynamic';
 
+import { notFound } from 'next/navigation';
+
 import { CategoryList, ProductList } from '@/components/base';
 import { BackBtn, Pagination } from '@/components/ui';
 
@@ -26,7 +28,14 @@ export default async function ProductPage({
   const match = page.match(/^page-(\d+)$/);
   const pageNumber = match ? parseInt(match[1], 10) : 1;
 
-  const { products, totalPages } = await getProducts(id, pageNumber);
+  const res = await getProducts(id, pageNumber);
+
+  if (!res || !res.products?.length || pageNumber > res.totalPages) {
+    return notFound();
+  }
+
+  const { products, totalPages } = res;
+
   const categoryName = products[0]?.category;
 
   const initialViewMode = viewMode ? viewMode : defaultTypeGallery;

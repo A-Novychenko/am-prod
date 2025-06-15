@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import { CategoryCard } from '@/components/ui';
 
 import { cn, generateSlugName } from '@/utils';
@@ -5,7 +7,6 @@ import { cn, generateSlugName } from '@/utils';
 import { CategoryListProps } from './types';
 
 import styles from './CategoryList.module.css';
-import { Fragment } from 'react';
 
 export const CategoryList: React.FC<CategoryListProps> = ({
   data,
@@ -50,14 +51,6 @@ export const CategoryList: React.FC<CategoryListProps> = ({
                     link={resultLink}
                     img={img ? img : undefined}
                   />
-
-                  {/* {hasChildren ? (
-                    <p>Есть подкатегории</p>
-                  ) : (
-                    <p>Нет подкатегорий</p>
-                  )}
-                  {hasProducts ? <p>Есть продукты</p> : <p>Нет продуктов</p>}
-                  {isEmptyCat && <p>Ничего нет</p>} */}
                 </li>
               )}
             </Fragment>

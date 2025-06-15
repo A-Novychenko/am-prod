@@ -46,7 +46,7 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
   const image = img && img?.length > 0 ? img : noImage;
 
   return (
-    <Link href={link}>
+    <Link href={link} key={id + name}>
       <div className="flex flex-col items-center justify-between gap-4 rounded-[16px] bg-lightBg px-2 py-4 xl:h-[228px] ">
         {IconData ? (
           <IconData.Component
