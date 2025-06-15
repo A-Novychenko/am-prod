@@ -7,8 +7,8 @@ export const getTotalProducts = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: { revalidate: 0 },
-      // cache: 'no-cache',
+      // next: { revalidate: 0 },
+      cache: 'no-store',
     });
 
     const res = await result.json();

@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 import Link from 'next/link';
@@ -7,6 +7,16 @@ import { notFound } from 'next/navigation';
 import { CastrolSeoSection, SingleProductSection } from '@/sections';
 
 import { getProductData } from '@/actions/servicesAPI';
+
+export const generateMetadata = async ({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) => {
+  console.log('meatProduct', slug);
+
+  return {};
+};
 
 export default async function SingleProductPage({
   params: { slug },

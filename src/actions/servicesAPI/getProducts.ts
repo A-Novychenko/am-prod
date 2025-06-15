@@ -9,7 +9,8 @@ export const getProducts = async (id: number, page: number) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        next: { revalidate: 0 },
+        // next: { revalidate: 0 },
+        cache: 'no-store',
       },
     );
 

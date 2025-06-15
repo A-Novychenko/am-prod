@@ -8,7 +8,8 @@ export const addCallback = async (formData: Record<string, any>) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      next: { revalidate: 0 },
+      // next: { revalidate: 0 },
+      cache: 'no-store',
       body: JSON.stringify(formData),
     });
 

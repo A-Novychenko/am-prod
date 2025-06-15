@@ -11,8 +11,8 @@ export const getProductsForCartByIds = async (ids: idsType) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        next: { revalidate: 0 },
-        // cache: 'no-cache',
+        // next: { revalidate: 0 },
+        cache: 'no-store',
       },
     );
 
