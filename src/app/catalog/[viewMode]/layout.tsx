@@ -3,7 +3,7 @@
 // '"auto" | "force-no-store" | "only-no-store" | "default-no-store" | "default-cache" | "only-cache" | "force-cache" | undefined'.
 // export const revalidate = 0;
 
-export default function ViewModeLayout({
+export default async function ViewModeLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -5,10 +5,12 @@ import { getProductsByTecDocArticle } from '@/actions/servicesAPI';
 import staticData from '@/data/common.json';
 
 export default async function SearchProductPage({
-  searchParams: { searchQuery, typeGallery },
+  searchParams,
 }: {
-  searchParams: { searchQuery: string; typeGallery: GalleryViewMode };
+  searchParams: Promise<{ searchQuery: string; typeGallery: GalleryViewMode }>;
 }) {
+  const { searchQuery, typeGallery } = await searchParams;
+
   const defaultTypeGallery: GalleryViewMode =
     staticData.defaultTypeGallery as GalleryViewMode;
 

@@ -3,10 +3,12 @@ import { NextRequest } from 'next/server';
 const BACKEND_URL = process.env.SITEMAP_API_URL;
 
 export async function GET(
-  req: NextRequest,
-  { params }: { params: { path: string[] } },
+  request: NextRequest,
+  { params }: { params: Promise<{ path: string[] }> },
 ) {
-  const filePath = params.path.join('/');
+  const { path } = await params;
+
+  const filePath = path.join('/');
   const url = `${BACKEND_URL}/sitemaps/${filePath}`;
 
   try {

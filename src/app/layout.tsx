@@ -63,15 +63,15 @@ export async function generateStaticParams() {
   );
 }
 
-export default function RootLayout({
-  children,
-  vinModal,
+export default async function RootLayout({
   cart,
-}: Readonly<{
+  vinModal,
+  children,
+}: {
   children: React.ReactNode;
   vinModal: React.ReactNode;
   cart: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="uk" className="scroll-smooth">
       <body

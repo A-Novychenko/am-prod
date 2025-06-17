@@ -1,8 +1,4 @@
-import dynamic from 'next/dynamic';
-
-const Cart = dynamic(() => import('@/components/ui/Cart/Cart'), {
-  ssr: false,
-});
+import Cart from '@/components/ui/Cart/Cart';
 
 export default function CartPagePage() {
   return (

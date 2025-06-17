@@ -14,10 +14,12 @@ import staticData from '@/data/common.json';
 import { Pagination } from '@/components/ui';
 
 export default async function CategoryPage({
-  params: { viewMode, category },
+  params,
 }: {
-  params: { viewMode: GalleryViewMode; category: string };
+  params: Promise<{ viewMode: GalleryViewMode; category: string }>;
 }) {
+  const { viewMode, category } = await params;
+
   const defaultTypeGallery: GalleryViewMode =
     staticData.defaultTypeGallery as GalleryViewMode;
   const initialViewMode = viewMode ? viewMode : defaultTypeGallery;
