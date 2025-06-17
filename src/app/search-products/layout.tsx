@@ -1,7 +1,9 @@
-export default function Layout({
+import React from 'react';
+
+export default async function Layout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return <div className="grow bg-mediumBg">{children}</div>;
 }

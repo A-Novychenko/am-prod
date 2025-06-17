@@ -11,11 +11,11 @@ import metaDefaults from '@/data/meta.json';
 export async function generateMetadata({
   params,
 }: {
-  params: { viewMode: string; category: string };
+  params: Promise<{ viewMode: string; category: string }>;
 }) {
   console.log('meatCat');
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL!;
-  const { viewMode, category } = params;
+  const { viewMode, category } = await params;
 
   const [slug] = category.split('--');
   const decodedSlug = decodeURIComponent(slug);
@@ -103,7 +103,7 @@ export async function generateMetadata({
   };
 }
 
-export default function CategoryLayout({
+export default async function CategoryLayout({
   children,
 }: {
   children: React.ReactNode;

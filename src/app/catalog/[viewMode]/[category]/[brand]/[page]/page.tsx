@@ -12,15 +12,17 @@ import { getSlugId } from '@/utils';
 import staticData from '@/data/common.json';
 
 export default async function ProductPage({
-  params: { viewMode, category, brand, page },
+  params,
 }: {
-  params: {
+  params: Promise<{
     viewMode: GalleryViewMode;
     category: string;
     brand: string;
     page: string;
-  };
+  }>;
 }) {
+  const { viewMode, category, brand, page } = await params;
+
   const defaultTypeGallery: GalleryViewMode =
     staticData.defaultTypeGallery as GalleryViewMode;
 

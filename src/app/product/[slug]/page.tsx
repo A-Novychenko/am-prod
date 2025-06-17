@@ -9,20 +9,23 @@ import { CastrolSeoSection, SingleProductSection } from '@/sections';
 import { getProductData } from '@/actions/servicesAPI';
 
 export const generateMetadata = async ({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) => {
+  const { slug } = await params;
   console.log('meatProduct', slug);
 
-  return {};
+  return { title: slug };
 };
 
 export default async function SingleProductPage({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
+
   const match = slug.match(/--([a-f0-9]{24})$/i);
   const id = match?.[1];
 
