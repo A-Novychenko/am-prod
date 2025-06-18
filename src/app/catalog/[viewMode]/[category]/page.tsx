@@ -1,17 +1,35 @@
-// export const dynamic = 'force-dynamic';
-// export const fetchCache = 'no-store';
-// '"auto" | "force-no-store" | "only-no-store" | "default-no-store" | "default-cache" | "only-cache" | "force-cache" | undefined'.
-// export const revalidate = 0;
-
 import Link from 'next/link';
 
 import { CategoryList, ProductList } from '@/components/base';
+import { Pagination } from '@/components/ui';
 
 import { getCategories, getCategory, getProducts } from '@/actions/servicesAPI';
-import { cn, getSlugId } from '@/utils';
+import { cn, getSlugId, makeCatStructuredData } from '@/utils';
 
 import staticData from '@/data/common.json';
-import { Pagination } from '@/components/ui';
+import { makeCatMetaData } from '@/data/makeCatMetaData';
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) => {
+  const { category } = await params;
+
+  const id = getSlugId(category);
+  const categoryData = await getCategory(id);
+
+  return makeCatMetaData({
+    categorySlug: category,
+    category: categoryData?.name || category, // для TITLE и DESCRIPTION
+    categoryData: categoryData
+      ? {
+          name: categoryData.name,
+          img: categoryData.img?.trim() || '',
+        }
+      : null,
+  });
+};
 
 export default async function CategoryPage({
   params,
@@ -45,8 +63,19 @@ export default async function CategoryPage({
     totalPages = res?.totalPages;
   }
 
+  const structuredData = makeCatStructuredData({
+    category: prevCategoryName || 'Автотовари', // Человеческое имя категории, например "Мастильні матеріали"
+    categorySlug: category, // Slug категории из URL, например "mastylni-materialy--1"
+  });
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       <section className="section bg-mediumBg">
         <div className="container">
           <h1

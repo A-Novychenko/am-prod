@@ -14,7 +14,6 @@ export const generateMetadata = async ({
   params: Promise<{ slug: string }>;
 }) => {
   const { slug } = await params;
-  console.log('meatProduct', slug);
 
   return { title: slug };
 };
