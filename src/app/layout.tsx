@@ -1,19 +1,16 @@
 import type { Metadata } from 'next';
 import { Geologica, Lora, Nunito } from 'next/font/google';
+import { ToastContainer } from 'react-toastify';
 
-// export const revalidate = 0;
+import { Footer, Header } from '@/layout';
+import { CartModalSlot } from '@/components/ui';
 
-export const dynamic = 'force-dynamic';
+import { getMainCategories } from '@/actions/servicesAPI';
+import { CartProvider } from '@/context';
 
 import meta from '@/data/meta';
 
 import './globals.css';
-import { Header } from '../layout/Header';
-import { Footer } from '@/layout/Footer';
-import { getMainCategories } from '@/actions/servicesAPI';
-import { CartProvider } from '@/context';
-import { CartModalSlot } from '@/components/ui';
-import { ToastContainer } from 'react-toastify';
 
 const nunito = Nunito({
   subsets: ['cyrillic', 'latin'],
@@ -38,12 +35,10 @@ const lora = Lora({
   adjustFontFallback: false,
 });
 
-export const metadata: Metadata = meta;
-
-// export const generateMetadata = async () => {
-//   console.log('metaMAIN');
-//   return meta;
-// };
+export const metadata: Metadata = {
+  ...meta,
+  title: 'Автозапчастини купити в магазині avto-magaz.com.ua',
+};
 
 type Category = {
   id: string;

@@ -73,11 +73,12 @@ const meta: Metadata = {
     apple: [
       {
         url: '/meta/apple-touch-icon.png',
+        type: 'image/png',
       },
     ],
     other: [
       {
-        rel: '/meta/apple-touch-icon.png',
+        rel: 'apple-touch-icon',
         url: '/meta/apple-touch-icon.png',
       },
     ],

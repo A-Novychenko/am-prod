@@ -20,5 +20,6 @@ export const getCategory = async (id: number) => {
     return res.category;
   } catch (e) {
     console.log('e.getCategory', e);
+    return null;
   }
 };
