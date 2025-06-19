@@ -4,10 +4,9 @@ import { CategoryList, ProductList } from '@/components/base';
 import { Pagination } from '@/components/ui';
 
 import { getCategories, getCategory, getProducts } from '@/actions/servicesAPI';
-import { cn, getSlugId, makeCatStructuredData } from '@/utils';
+import { cn, getSlugId, makeCatMetaData, makeCatStructuredData } from '@/utils';
 
 import staticData from '@/data/common.json';
-import { makeCatMetaData } from '@/data/makeCatMetaData';
 
 export const generateMetadata = async ({
   params,

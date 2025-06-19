@@ -7,8 +7,7 @@ import { CartModalSlot } from '@/components/ui';
 
 import { getMainCategories } from '@/actions/servicesAPI';
 import { CartProvider } from '@/context';
-
-import meta from '@/data/meta';
+import { generateStaticMetadata } from '@/utils';
 
 import './globals.css';
 
@@ -35,10 +34,7 @@ const lora = Lora({
   adjustFontFallback: false,
 });
 
-export const metadata: Metadata = {
-  ...meta,
-  title: 'Автозапчастини купити в магазині avto-magaz.com.ua',
-};
+export const metadata: Metadata = generateStaticMetadata('home');
 
 type Category = {
   id: string;

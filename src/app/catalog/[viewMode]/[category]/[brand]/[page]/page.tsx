@@ -1,12 +1,12 @@
+import { notFound } from 'next/navigation';
+
 import { CategoryList, ProductList } from '@/components/base';
 import { BackBtn, Pagination } from '@/components/ui';
 
 import { getCategories, getCategory, getProducts } from '@/actions/servicesAPI';
-import { getSlugId, makeCatStructuredData } from '@/utils';
+import { getSlugId, makeCatMetaData, makeCatStructuredData } from '@/utils';
 
 import staticData from '@/data/common.json';
-import { notFound } from 'next/navigation';
-import { makeCatMetaData } from '@/data/makeCatMetaData';
 
 export const generateMetadata = async ({
   params,

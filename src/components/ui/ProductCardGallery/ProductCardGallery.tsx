@@ -50,7 +50,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
     <div className="relative">
       <div
         className={cn(
-          'flex w-full flex-col items-center overflow-hidden rounded-[8px] border  border-solid border-transparent bg-lightBg md:w-[298px]',
+          'flex w-full flex-col items-center overflow-hidden rounded-[8px] border  border-solid border-transparent bg-lightBg xl:w-[298px]',
           {
             'border-saleBg bg-saleBg': price_promo,
           },

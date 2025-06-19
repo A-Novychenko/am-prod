@@ -1,4 +1,10 @@
+import { Metadata } from 'next';
+
 import Cart from '@/components/ui/Cart/Cart';
+
+import { generateStaticMetadata } from '@/utils';
+
+export const metadata: Metadata = generateStaticMetadata('cart');
 
 export default function CartPagePage() {
   return (
