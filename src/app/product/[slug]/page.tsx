@@ -7,15 +7,16 @@ import { notFound } from 'next/navigation';
 import { CastrolSeoSection, SingleProductSection } from '@/sections';
 
 import { getProductData } from '@/actions/servicesAPI';
+import { makeProductMetaData, makeProductStructuredData } from '@/utils';
 
 export const generateMetadata = async ({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) => {
-  const { slug } = await params;
+  const { slug }: { slug: string } = await params;
 
-  return { title: slug };
+  return makeProductMetaData(slug);
 };
 
 export default async function SingleProductPage({
@@ -41,21 +42,43 @@ export default async function SingleProductPage({
   }
 
   if (!product) {
+    return notFound();
+  }
+
+  const structuredData = makeProductStructuredData({
+    name: product.name,
+    brand: product.brand,
+    description: product.description,
+    image: product.img?.[0] || '/meta/og-image.jpg',
+    price: product.price,
+    availability: Number(product.count_warehouse_3) > 0,
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/product/${slug}`,
+  });
+
+  if (!product) {
     return (
-      <section className="flex min-h-[50vh] items-center justify-center bg-gray-50 px-4">
-        <div className="text-center">
-          <h1 className="mb-4 text-3xl font-bold text-gray-800">
-            Товар не знайдено
-          </h1>
-          <p className="text-gray-500">
-            Спробуйте перевірити правильність посилання або поверніться на{' '}
-            <Link href="/" className="text-blue-700">
-              головну сторінку
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
+      <>
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+
+        <section className="flex min-h-[50vh] items-center justify-center bg-gray-50 px-4">
+          <div className="text-center">
+            <h1 className="mb-4 text-3xl font-bold text-gray-800">
+              Товар не знайдено
+            </h1>
+            <p className="text-gray-500">
+              Спробуйте перевірити правильність посилання або поверніться на{' '}
+              <Link href="/" className="text-blue-700">
+                головну сторінку
+              </Link>
+              .
+            </p>
+          </div>
+        </section>
+      </>
     );
   }
 

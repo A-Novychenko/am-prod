@@ -1,6 +1,10 @@
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 
 import { CartResult } from '@/components/ui';
+import { generateStaticMetadata } from '@/utils';
+
+export const metadata: Metadata = generateStaticMetadata('checkoutResult');
 
 export default function CheckoutResultPage() {
   return (

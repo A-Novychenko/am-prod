@@ -205,6 +205,8 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
     }
   };
 
+  // Когда корзина сможет рендерится на сервере добавить сируктурные данные JSON-LD
+
   return (
     <>
       <div className="flex flex-col">
