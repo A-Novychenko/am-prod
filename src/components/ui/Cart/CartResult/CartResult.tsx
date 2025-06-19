@@ -224,12 +224,16 @@ export const CartResult: React.FC = () => {
                   </span>
                 </p>
 
-                <p className="mb-3 text-[18px] font-black text-green-600">
-                  Знижка: {''}
-                  {sumProductPrices(data.products) -
-                    calculateTotalPrice(data.products)}
-                  грн
-                </p>
+                {/* {true && (
+                  <p className="mb-3 text-[18px] font-black text-green-600">
+                    Знижка: {''}
+                    {sumProductPrices(data.products) -
+                      calculateTotalPrice(data.products)}
+                    грн
+                  </p>
+                )} */}
+
+                <Sale products={data.products} />
 
                 <p className="text-[18px] font-extrabold">
                   <span>Сума до сплати: </span>

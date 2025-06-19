@@ -28,8 +28,8 @@ const DEFAULT_STATE = {
   comment: '',
   city: '',
   postOffice: '',
-  deliveryMethod: 'pickup' as DeliveryMethod,
-  paymentMethod: 'card' as PaymentMethod,
+  deliveryMethod: 'post' as DeliveryMethod,
+  paymentMethod: 'prepayment' as PaymentMethod,
 };
 
 const CHECKOUT_STORAGE_KEY = 'CHECKOUT_STATE';

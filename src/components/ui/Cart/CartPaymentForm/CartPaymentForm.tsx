@@ -5,7 +5,8 @@ import React from 'react';
 import { CartPaymentFormProps } from './types';
 
 export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
-  checkoutState: { deliveryMethod, paymentMethod },
+  // checkoutState: { deliveryMethod, paymentMethod },
+  checkoutState: { paymentMethod },
   setCheckoutState,
   className = '',
 }) => {
@@ -20,7 +21,7 @@ export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
           Виберіть спосіб оплати
         </h2>
         <div className="flex flex-col gap-2">
-          {deliveryMethod === 'pickup' ? (
+          {/* {deliveryMethod === 'pickup' ? (
             <>
               <label className="flex cursor-pointer items-center gap-2">
                 <input
@@ -49,22 +50,22 @@ export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
                 </span>
               </label>
             </>
-          ) : (
-            <>
-              <label className="flex cursor-pointer items-center gap-2">
-                <input
-                  type="radio"
-                  name="payment"
-                  value="card"
-                  checked={paymentMethod === 'prepayment'}
-                  onChange={() => handleChange('prepayment')}
-                  className="size-5 text-darkBlueText focus:ring-darkBlueText"
-                />
-                <span className="text-sm text-gray-700">
-                  Передплата по реквізатам
-                </span>
-              </label>
-              {/* <label className="flex cursor-pointer items-center gap-2">
+          ) : ( */}
+          <>
+            <label className="flex cursor-pointer items-center gap-2">
+              <input
+                type="radio"
+                name="payment"
+                value="card"
+                checked={paymentMethod === 'prepayment'}
+                onChange={() => handleChange('prepayment')}
+                className="size-5 text-darkBlueText focus:ring-darkBlueText"
+              />
+              <span className="text-sm text-gray-700">
+                Передплата по реквізатам
+              </span>
+            </label>
+            {/* <label className="flex cursor-pointer items-center gap-2">
                 <input
                   type="radio"
                   name="payment"
@@ -75,17 +76,17 @@ export const CartPaymentForm: React.FC<CartPaymentFormProps> = ({
                 />
                 <span className="text-sm text-gray-700">Післяоплата</span>
               </label> */}
-            </>
-          )}
+          </>
+          {/* )} */}
         </div>
       </div>
 
       <p className="p-4">
         Вибраний спосіб оплати:{' '}
         <strong>
-          {paymentMethod === 'card'
-            ? 'Оплата карткою'
-            : 'Готівка при отриманні'}
+          {paymentMethod === 'prepayment'
+            ? 'Передплата по реквізатам'
+            : 'Оплата карткою'}
         </strong>
       </p>
     </div>
