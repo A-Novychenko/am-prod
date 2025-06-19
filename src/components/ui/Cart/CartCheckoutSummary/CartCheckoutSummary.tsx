@@ -63,7 +63,8 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
         <div className="text-[12px] xl:text-[16px]">
           <p>
             <span className="font-bold">Спосіб доставки: </span>{' '}
-            {deliveryMethod === 'pickup' ? 'Самовивіз' : 'Нова пошта'}
+            {/* {deliveryMethod === 'pickup' ? 'Самовивіз' : 'Нова пошта'} */}
+            Нова пошта
           </p>
           {deliveryMethod === 'post' && (
             <>

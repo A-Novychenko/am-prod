@@ -10,7 +10,7 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
   const handleChange = (method: DeliveryMethod) => {
     setCheckoutState(prev => ({
       ...prev,
-      paymentMethod: method === 'pickup' ? 'card' : 'prepayment',
+      paymentMethod: method === 'post' ? 'prepayment' : 'card',
       deliveryMethod: method,
     }));
   };
@@ -32,7 +32,7 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
           Виберіть спосіб доставки
         </h2>
         <div className="flex flex-col gap-2">
-          <label className="flex cursor-pointer items-center gap-2">
+          {/* <label className="flex cursor-pointer items-center gap-2">
             <input
               type="radio"
               name="delivery"
@@ -42,7 +42,7 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
               className="size-5 text-darkBlueText focus:ring-darkBlueText"
             />
             <span className="text-sm text-gray-700">Самовивіз</span>
-          </label>
+          </label> */}
           <label className="flex cursor-pointer items-center gap-2">
             <input
               type="radio"
@@ -62,7 +62,8 @@ export const CartDeliveryForm: React.FC<DeliveryFormProps> = ({
       <p className="p-4">
         Вибраний спосіб доставки:
         <strong className="block">
-          {deliveryMethod === 'pickup' ? 'Самовивіз' : 'Відправка Новою поштою'}
+          {/* {deliveryMethod === 'pickup' ? 'Самовивіз' : 'Відправка Новою поштою'} */}
+          Відправка Новою поштою
         </strong>
       </p>
 

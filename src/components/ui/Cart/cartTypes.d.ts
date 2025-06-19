@@ -1,6 +1,7 @@
 type CartProps = { isPage: boolean; isCheckoutPage: boolean };
 
-type DeliveryMethod = 'pickup' | 'post';
+// type DeliveryMethod = 'pickup' | 'post';
+type DeliveryMethod = 'post';
 
 type PaymentMethod = 'card' | 'cash' | 'prepayment' | 'cod';
 
