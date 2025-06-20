@@ -9,4 +9,5 @@ export type LoaderProps = {
   color?: string;
   secondaryColor?: string;
   wrapperStyle?: AnyObject;
+  isSearch?: boolean;
 };

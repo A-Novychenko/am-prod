@@ -38,7 +38,7 @@ export const ProductTypeGallerySwitcher: React.FC<
     <div className="mb-6 flex items-center justify-between">
       {children}
 
-      <div className="hidden gap-2 xl:flex">
+      <div className="hidden gap-2 md:flex">
         <button onClick={handleSetGallery}>
           <RiGalleryView2
             size={24}

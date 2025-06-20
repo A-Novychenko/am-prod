@@ -36,7 +36,7 @@ export const VinRequestModalCard: React.FC<VinRequestModalCardProps> = ({
       return (
         <>
           {number && (
-            <p className="mb-8 text-center text-[20px] font-bold text-green-700">
+            <p className="mb-8 text-center text-[20px] font-bold text-green-600">
               VIN-запит №{number}
             </p>
           )}

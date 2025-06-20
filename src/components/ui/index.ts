@@ -29,3 +29,4 @@ export * from './SingleProduct';
 export * from './Recaptcha';
 export * from './BackBtn';
 export * from './LetterAvatar';
+export * from './ScrollToTopButton';

@@ -3,7 +3,7 @@ import { Geologica, Lora, Nunito } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
 
 import { Footer, Header } from '@/layout';
-import { CartModalSlot } from '@/components/ui';
+import { CartModalSlot, ScrollToTopButton } from '@/components/ui';
 
 import { getMainCategories } from '@/actions/servicesAPI';
 import { CartProvider } from '@/context';
@@ -80,6 +80,8 @@ export default async function RootLayout({
             </main>
 
             <Footer />
+
+            <ScrollToTopButton />
           </div>
         </CartProvider>
 

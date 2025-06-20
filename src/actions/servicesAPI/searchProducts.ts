@@ -1,6 +1,6 @@
 const NEXT_PUBLIC_API_URL = process.env.NEXT_PUBLIC_API_URL as string;
 
-export const getProductsByTecDocArticle = async (
+export const searchProducts = async (
   article: string,
   // page?: number,
 ) => {
@@ -25,5 +25,7 @@ export const getProductsByTecDocArticle = async (
     return res;
   } catch (e) {
     console.log('e.getProductsByTecDocArticle', e);
+
+    return null;
   }
 };

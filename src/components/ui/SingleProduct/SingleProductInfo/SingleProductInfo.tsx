@@ -33,7 +33,7 @@ export const SingleProductInfo: React.FC<SingleProductInfoProps> = ({
       </p>
 
       <p className="mb-4 overflow-hidden text-ellipsis text-[16px] font-bold uppercase leading-[1.6]">
-        <span className={isAvailable ? 'text-green-500' : 'text-rose-800'}>
+        <span className={isAvailable ? 'text-green-600' : 'text-rose-800'}>
           {isAvailable
             ? ` В наявності ${count_warehouse_3} шт`
             : 'Немає в наявності'}
