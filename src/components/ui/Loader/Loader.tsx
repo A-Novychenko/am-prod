@@ -1,6 +1,7 @@
 'use client';
 
 import { MagnifyingGlass, Oval } from 'react-loader-spinner';
+
 import { LoaderProps } from './types';
 
 const pageWrapStyle = {
@@ -17,7 +18,7 @@ export const Loader: React.FC<LoaderProps> = ({
   color = '#101340',
   secondaryColor = '#101340',
   wrapperStyle = pageWrapStyle,
-  isSearch,
+  isSearch = false,
 }) => {
   return (
     <>

@@ -8,8 +8,8 @@ export const getBannerProducts = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      // next: { revalidate: 0 },
-      cache: 'no-store',
+      next: { revalidate: 3600 },
+      // cache: 'no-store',
     });
 
     const res = await result.json();
@@ -19,5 +19,6 @@ export const getBannerProducts = async () => {
     return res;
   } catch (e) {
     console.log('e.getBannerProducts', e);
+    return { products: [] }; // 👈 добавь fallback
   }
 };

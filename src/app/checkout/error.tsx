@@ -13,11 +13,5 @@ export default function Error({
     console.error(error);
   }, [error]);
 
-  return (
-    <ErrorSection
-      description={
-        'Під час обробки Вашого пошукового запиту сталася помилка. Ми вже працюємо над тим, щоб усе виправити.'
-      }
-    />
-  );
+  return <ErrorSection />;
 }

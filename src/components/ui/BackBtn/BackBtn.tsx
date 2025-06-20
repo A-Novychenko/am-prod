@@ -5,7 +5,11 @@ import { useRouter } from 'next/navigation';
 
 import { RiArrowGoBackFill } from 'react-icons/ri';
 
-export const BackBtn: React.FC<{ className?: string }> = ({ className }) => {
+export const BackBtn: React.FC<{
+  className?: string;
+  text?: string;
+  showIcon?: boolean;
+}> = ({ className, text, showIcon = true }) => {
   const router = useRouter();
 
   return (
@@ -18,7 +22,8 @@ export const BackBtn: React.FC<{ className?: string }> = ({ className }) => {
       )}
       aria-label="Повернутись на попередню сторінку"
     >
-      <RiArrowGoBackFill size={16} />
+      {showIcon && <RiArrowGoBackFill size={16} />}{' '}
+      {text && <span>{text}</span>}
     </button>
   );
 };

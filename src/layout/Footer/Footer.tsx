@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import {
   Contacts,
   FooterLinks,
@@ -7,7 +9,6 @@ import {
 } from '@/components/ui';
 
 import staticData from '@/data/common.json';
-import Link from 'next/link';
 
 export const Footer = () => {
   const { mail, site, siteName } = staticData;

@@ -7,10 +7,14 @@ export const ErrorSection: React.FC<{
   children?: React.ReactNode;
   title?: string;
   description?: string;
+  subDescription?: string;
+  showHomeLink?: boolean;
 }> = ({
   children,
   title = 'Щось пішло не так! 🤔',
-  description = '  Під час обробки сторінки сталася помилка. Ми вжепрацюємо над тим, щоб усе виправити.',
+  description = '  Під час обробки сторінки сталася помилка. Ми вже працюємо над тим, щоб усе виправити.',
+  subDescription = 'Будь ласка, спробуйте ще раз пізніше або поверніться на головну сторінку. Якщо проблема повторюється, напишіть нам — ми обов’язково допоможемо.',
+  showHomeLink = true,
 }) => {
   return (
     <section className={cn('section grow')}>
@@ -24,24 +28,22 @@ export const ErrorSection: React.FC<{
               {title}
             </h2>
             <p className="mb-6 text-gray-600">{description}</p>
-            <p className="mb-6 text-gray-600">
-              Будь ласка, спробуйте ще раз пізніше або поверніться на головну
-              сторінку. Якщо проблема повторюється, напишіть нам — ми
-              обов’язково допоможемо.
-            </p>
-            <div className="flex flex-col gap-4">
+            <p className="mb-6 text-gray-600">{subDescription}</p>
+            <div className="flex flex-wrap justify-center gap-4">
               {children}
 
-              <Link
-                href="/"
-                className="mx-auto block max-w-fit rounded bg-darkBg  p-2 text-center font-medium text-primaryText  transition-colors hover:bg-accent hover:text-secondaryText focus:bg-accent focus:text-secondaryText"
-              >
-                Повернутись на головну
-              </Link>
+              {showHomeLink && (
+                <Link
+                  href="/"
+                  className="block max-w-fit rounded bg-darkBg  p-2 text-center font-medium text-primaryText  transition-colors hover:bg-accent hover:text-secondaryText focus:bg-accent focus:text-secondaryText"
+                >
+                  Повернутись на головну
+                </Link>
+              )}
             </div>
           </div>
 
-          <div className="mt-10 md:h-[40vh] xl:h-[50vh]">
+          <div className="mt-10 md:h-[40vh]">
             <Image
               src="/images/image-404.png"
               alt="Машина не знайдена"

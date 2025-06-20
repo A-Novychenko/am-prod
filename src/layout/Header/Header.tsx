@@ -8,7 +8,7 @@ import {
   WorkSchedule,
 } from '@/components/ui';
 
-export const Header = () => {
+export const Header: React.FC = () => {
   return (
     <header className=" bg-darkBg text-primaryText">
       <div className="container">
@@ -27,7 +27,6 @@ export const Header = () => {
 
           <div className="flex items-center justify-between xl:gap-12 smOnly:order-2 smOnly:mb-4">
             <WorkSchedule />
-
             <CartWidget />
           </div>
         </div>

@@ -74,7 +74,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
           <Link href={generateProductPath({ name, _id, brand })}>
             <p>{brand}</p>
 
-            <h3 className="mb-2 line-clamp-2 h-[42px] overflow-hidden text-ellipsis text-[14px]/normal font-semibold uppercase leading-[1.5] text-secondaryText">
+            <h3 className="mb-2 line-clamp-2 h-[42px] overflow-hidden text-ellipsis break-all text-[14px]/normal font-semibold uppercase leading-[1.5] text-secondaryText">
               {name}
             </h3>
 

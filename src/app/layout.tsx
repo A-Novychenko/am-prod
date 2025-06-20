@@ -43,15 +43,18 @@ type Category = {
 };
 
 export async function generateStaticParams() {
-  const categories = await getMainCategories();
+  try {
+    const categories = await getMainCategories();
 
-  return (
-    categories?.map((category: Category) => {
-      return {
+    return (
+      categories?.map((category: Category) => ({
         category: category.id.toString(),
-      };
-    }) || []
-  );
+      })) || []
+    );
+  } catch (error) {
+    console.error('generateStaticParams error:', error);
+    return [];
+  }
 }
 
 export default async function RootLayout({
