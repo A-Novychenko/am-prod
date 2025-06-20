@@ -7,10 +7,10 @@ export const getMainCategories = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      // next: {
-      //   revalidate: 0,
-      // },
-      cache: 'no-store',
+      next: {
+        revalidate: 3600,
+      },
+      // cache: 'no-store',
     });
 
     const res = await result.json();
