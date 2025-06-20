@@ -1,6 +1,6 @@
 'use client';
 
-import { Oval } from 'react-loader-spinner';
+import { MagnifyingGlass, Oval } from 'react-loader-spinner';
 import { LoaderProps } from './types';
 
 const pageWrapStyle = {
@@ -17,17 +17,31 @@ export const Loader: React.FC<LoaderProps> = ({
   color = '#101340',
   secondaryColor = '#101340',
   wrapperStyle = pageWrapStyle,
+  isSearch,
 }) => {
   return (
-    <Oval
-      visible={true}
-      height={height}
-      width={width}
-      color={color}
-      secondaryColor={secondaryColor}
-      ariaLabel="oval-loading"
-      wrapperStyle={wrapperStyle}
-      wrapperClass=""
-    />
+    <>
+      <Oval
+        visible={!isSearch}
+        height={height}
+        width={width}
+        color={color}
+        secondaryColor={secondaryColor}
+        ariaLabel="oval-loading"
+        wrapperStyle={wrapperStyle}
+        wrapperClass=""
+      />
+
+      <MagnifyingGlass
+        visible={isSearch}
+        height={height}
+        width={width}
+        color={color}
+        glassColor={secondaryColor}
+        ariaLabel="magnifying-glass-loading"
+        wrapperStyle={wrapperStyle}
+        wrapperClass="magnifying-glass-wrapper"
+      />
+    </>
   );
 };

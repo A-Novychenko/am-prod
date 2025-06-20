@@ -1,7 +1,3 @@
-// import Link from 'next/link';
-
-// import { RiArrowGoBackFill } from 'react-icons/ri';
-
 import {
   BackBtn,
   ProductCardGallery,
@@ -13,23 +9,28 @@ import { cn } from '@/utils';
 
 import { ProductListProps } from './types';
 
+import styles from './ProductList.module.css';
+
 export const ProductList: React.FC<ProductListProps> = ({
   products,
   viewMode,
+  isControlsOff = true,
 }) => {
   return (
     <div className="h-full">
-      <div>
-        <ProductTypeGallerySwitcher viewMode={viewMode}>
-          <BackBtn />
-        </ProductTypeGallerySwitcher>
-      </div>
+      {isControlsOff && (
+        <div>
+          <ProductTypeGallerySwitcher viewMode={viewMode}>
+            <BackBtn />
+          </ProductTypeGallerySwitcher>
+        </div>
+      )}
 
       <ul
         className={cn(
           'flex flex-col',
           {
-            ' flex-wrap gap-2 xl:flex-row smOnly:justify-center':
+            ' flex-wrap gap-2 md:flex-row smOnly:justify-center':
               viewMode === 'grid',
           },
           { ' gap-3': viewMode === 'list' },
@@ -37,7 +38,10 @@ export const ProductList: React.FC<ProductListProps> = ({
       >
         {products &&
           products?.map((product: IASGProduct) => (
-            <li key={product._id}>
+            <li
+              key={product._id}
+              className={viewMode === 'grid' ? styles.gridItem : ''}
+            >
               {viewMode === 'list' ? (
                 <>
                   <div className="block xl:hidden">

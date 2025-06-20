@@ -21,7 +21,7 @@ export const SearchBar = () => {
     e.preventDefault();
 
     router.push(
-      `/search-products?searchQuery=${searchQuery.trim().toUpperCase()}&typeGallery=${defaultTypeGallery}`,
+      `/search-products/${defaultTypeGallery}/${encodeURIComponent(searchQuery.trim().toUpperCase())}`,
     );
 
     setSearchQuery('');
@@ -34,6 +34,7 @@ export const SearchBar = () => {
         placeholder={placeholder}
         value={searchQuery}
         onChange={handleInputChange}
+        id="global-search"
       />
 
       <button type="submit" aria-label={ariaLabelBtn}>

@@ -24,7 +24,11 @@ import staticData from '@/data/common.json';
 import { VinRequestFormInputs } from './types';
 import useFormPersist from 'react-hook-form-persist';
 
-export const VinRequestForm: React.FC = () => {
+export const VinRequestForm: React.FC<{
+  isPage?: boolean;
+  hideTitle?: boolean;
+  formClassName?: string;
+}> = ({ isPage, hideTitle, formClassName }) => {
   const {
     register,
     handleSubmit,
@@ -100,10 +104,17 @@ export const VinRequestForm: React.FC = () => {
     <>
       {(status === '' || status === 'pending') && (
         <>
-          <h2 className="mb-6 text-center text-2xl font-bold">
-            Підбір запчастин по VIN-коду
-          </h2>
-          <p className="mx-auto mb-4 max-w-[580px] text-center">
+          {!hideTitle && (
+            <h2 className="mb-6 text-center text-2xl font-bold">
+              Підбір запчастин по VIN-коду
+            </h2>
+          )}
+
+          <p
+            className={cn('mx-auto mb-4 max-w-[580px] text-center', {
+              'w-full max-w-full text-left': isPage,
+            })}
+          >
             Вкажіть VIN-код Вашого автомобіля — це дозволить точно і коректно
             підібрати запчастини. Якщо VIN-код наразі недоступний, заповніть,
             будь ласка, форму — наші фахівці зв’яжуться з Вами для уточнення
@@ -112,7 +123,10 @@ export const VinRequestForm: React.FC = () => {
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="mx-auto flex max-w-[580px] flex-col gap-2  p-3 text-[16px] md:px-8 md:py-6 smOnly:mb-10 mdOnly:mb-10 mdOnly:w-full"
+            className={cn(
+              'mx-auto flex max-w-[580px] flex-col gap-2 rounded-[12px] p-3 text-[16px] md:px-8 md:py-6 smOnly:mb-10 mdOnly:mb-10 mdOnly:w-full',
+              formClassName,
+            )}
           >
             <div className="flex flex-col gap-2">
               <div className="flex flex-col justify-between gap-4 md:flex-row">

@@ -71,7 +71,7 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
                 {count_warehouse_3 === '0' ? (
                   <span className="text-rose-800">Немає в наявності</span>
                 ) : (
-                  <span className="text-[14px] text-green-500 ">
+                  <span className="text-[14px] text-green-600 ">
                     В наявності {count_warehouse_3}шт
                   </span>
                 )}
@@ -97,7 +97,7 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
                 </>
               ) : (
                 <>
-                  <p className="mb-1 text-[28px] font-bold text-green-700 smOnly:text-[20px]">
+                  <p className="mb-1 text-[28px] font-bold text-green-600 smOnly:text-[20px]">
                     {price} грн
                   </p>
                 </>

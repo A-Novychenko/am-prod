@@ -5,5 +5,5 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="grow bg-mediumBg">{children}</div>;
+  return <div className="grow">{children}</div>;
 }

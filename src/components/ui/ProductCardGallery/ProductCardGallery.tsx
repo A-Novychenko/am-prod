@@ -50,7 +50,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
     <div className="relative">
       <div
         className={cn(
-          'flex w-full flex-col items-center overflow-hidden rounded-[8px] border  border-solid border-transparent bg-lightBg xl:w-[298px]',
+          'flex w-full flex-col items-center overflow-hidden rounded-[8px] border border-solid border-transparent bg-lightBg',
           {
             'border-saleBg bg-saleBg': price_promo,
           },
@@ -78,7 +78,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
               {name}
             </h3>
 
-            <p className="mb-4 line-clamp-3  h-[63px] overflow-hidden text-ellipsis  font-normal  text-secondaryText">
+            <p className="mb-4 line-clamp-3  h-[63px] overflow-hidden text-ellipsis break-all font-normal text-secondaryText">
               {description}
             </p>
           </Link>
@@ -109,7 +109,7 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
             {count_warehouse_3 === '0' ? (
               <span className="text-rose-800">Немає в наявності</span>
             ) : (
-              <span className="text-[14px] text-green-500">
+              <span className="text-[14px] leading-[0.5] text-green-600">
                 В наявності {countWarehouse}шт
               </span>
             )}

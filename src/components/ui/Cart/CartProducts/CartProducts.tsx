@@ -120,7 +120,7 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                             </span>
                           ) : (
                             <span
-                              className={cn('text-[14px] text-green-500', {
+                              className={cn('text-[14px] text-green-600', {
                                 'text-[12px]': isCheckoutPage,
                               })}
                             >

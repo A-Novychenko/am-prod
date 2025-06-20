@@ -124,7 +124,7 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
             {count_warehouse_3 === '0' ? (
               <span className="text-rose-800">Немає в наявності</span>
             ) : (
-              <span className="text-[14px] text-green-500">
+              <span className="text-[14px] text-green-600">
                 В наявності {countWarehouse}шт
               </span>
             )}
