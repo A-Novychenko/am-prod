@@ -7,10 +7,11 @@ export const SingleProductInfo: React.FC<SingleProductInfoProps> = ({
     article,
     tecdoc_article,
     count_warehouse_3,
+    count_warehouse_4,
     category,
     description,
   },
-  isAvailable,
+  isOutOfStock,
 }) => {
   return (
     <div className="mb-6 space-y-4 text-base text-gray-800">
@@ -33,11 +34,21 @@ export const SingleProductInfo: React.FC<SingleProductInfoProps> = ({
       </p>
 
       <p className="mb-4 overflow-hidden text-ellipsis text-[16px] font-bold uppercase leading-[1.6]">
-        <span className={isAvailable ? 'text-green-600' : 'text-rose-800'}>
-          {isAvailable
-            ? ` В наявності ${count_warehouse_3} шт`
-            : 'Немає в наявності'}
-        </span>
+        {isOutOfStock && (
+          <span className="text-rose-800">Немає в наявності</span>
+        )}
+
+        {!isOutOfStock && (
+          <span
+            className={
+              count_warehouse_3 !== '0' ? 'text-green-600' : 'text-orange-600'
+            }
+          >
+            {count_warehouse_3 !== '0'
+              ? ` В наявності ${count_warehouse_3} шт`
+              : ` Поставка 7днів, на складі ${count_warehouse_4}шт`}
+          </span>
+        )}
       </p>
     </div>
   );

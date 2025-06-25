@@ -51,7 +51,7 @@ export default async function SingleProductPage({
     description: product.description,
     image: product.img?.[0] || '/meta/og-image.jpg',
     price: product.price,
-    availability: Number(product.count_warehouse_3) > 0,
+    availability: product.count_warehouse_3 !== '0',
     url: `${process.env.NEXT_PUBLIC_BASE_URL}/product/${slug}`,
   });
 

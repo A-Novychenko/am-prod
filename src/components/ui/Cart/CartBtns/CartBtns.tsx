@@ -16,11 +16,11 @@ export const CartBtns: React.FC<CartBtnsProps> = ({
       <div className="text-center">
         {hasUnavailableItem && (
           <p className="mb-4  text-red">
-            Для того щоб продовжити приберіть товар якого немає в наявності
+            Щоб продовжити оформлення, видаліть товар, якого немає в наявності.
           </p>
         )}
 
-        <ul className="flex gap-4">
+        <ul className="flex justify-center gap-4">
           {!isPage && (
             <li>
               <Btn

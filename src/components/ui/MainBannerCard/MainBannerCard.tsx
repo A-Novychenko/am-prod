@@ -18,6 +18,7 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
   price,
   price_promo,
   count_warehouse_3,
+  count_warehouse_4,
   img,
   article,
 }) => {
@@ -36,14 +37,17 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
     img: image,
     article,
     availability: count_warehouse_3,
+    availabilityLviv: count_warehouse_4,
   };
 
   return (
     <div className="relative">
       <div
         className={cn(
-          'flex size-full h-[480px] flex-col items-center justify-between rounded-2xl bg-lightBg p-4 xl:p-10 smOnly:h-[400px]',
+          'flex size-full h-[480px] flex-col items-center justify-between rounded-2xl bg-mediumBg p-4 xl:p-10 smOnly:h-[400px]',
           { 'bg-saleBg': price_promo },
+          // 'flex size-full h-[480px] flex-col items-center justify-between rounded-2xl bg-lightBg p-4 xl:p-10 smOnly:h-[400px]',
+          // { 'bg-saleBg': price_promo },
         )}
       >
         <div className="mb-2 h-[150px] xl:h-[250px] smOnly:mb-6 smOnly:mt-10">
@@ -68,12 +72,21 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
 
             <div className="mb-2 flex justify-between smOnly:flex-wrap">
               <p className="flex items-center overflow-hidden text-ellipsis text-right text-[12px] font-bold uppercase leading-[1.2]">
-                {count_warehouse_3 === '0' ? (
+                {count_warehouse_3 === '0' && count_warehouse_4 === '0' ? (
                   <span className="text-rose-800">Немає в наявності</span>
                 ) : (
-                  <span className="text-[14px] text-green-600 ">
-                    В наявності {count_warehouse_3}шт
-                  </span>
+                  <>
+                    {count_warehouse_3 !== '0' && (
+                      <span className="text-[14px] text-green-600 ">
+                        В наявності {count_warehouse_3}шт
+                      </span>
+                    )}
+                    {count_warehouse_3 === '0' && count_warehouse_4 !== '0' && (
+                      <span className="text-[14px] text-orange-600 ">
+                        Поставка 7днів, на складі {count_warehouse_4}шт
+                      </span>
+                    )}
+                  </>
                 )}
               </p>
 
@@ -97,7 +110,17 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
                 </>
               ) : (
                 <>
-                  <p className="mb-1 text-[28px] font-bold text-green-600 smOnly:text-[20px]">
+                  <p
+                    className={cn(
+                      'mb-1 text-[28px] font-bold text-green-600 smOnly:text-[20px]',
+                      { 'text-green-600': count_warehouse_3 !== '0' },
+                      {
+                        'text-orange-600':
+                          count_warehouse_3 === '0' &&
+                          count_warehouse_4 !== '0',
+                      },
+                    )}
+                  >
                     {price} грн
                   </p>
                 </>
@@ -105,7 +128,7 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
             </div>
 
             <BuyBtn
-              disabled={count_warehouse_3 === '0'}
+              disabled={count_warehouse_3 === '0' && count_warehouse_4 === '0'}
               cartItem={cartItem}
               className="mx-0"
             />

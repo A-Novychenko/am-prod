@@ -92,7 +92,9 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
     return <CartEmptyNotice />;
   }
 
-  const hasUnavailableItem = items.some(item => item.availability === '0');
+  const hasUnavailableItem = items.some(
+    item => item.availability === '0' && item.availabilityLviv === '0',
+  );
 
   const hasContactsData = [name, phone, email, comment].some(
     value => value?.trim() !== '',

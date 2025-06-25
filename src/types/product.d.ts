@@ -1,7 +1,6 @@
 interface IASGProduct {
   _id: string;
   id: number;
-  cid: string;
 
   category: string;
   category_id: number;
@@ -17,6 +16,7 @@ interface IASGProduct {
   updatedAt: string;
 
   count_warehouse_3: string;
+  count_warehouse_4: string;
   price: number;
   price_promo: number | null;
   banner: boolean;

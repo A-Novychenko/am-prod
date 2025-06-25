@@ -3,7 +3,7 @@ import { BuyBtn } from '@/components/ui';
 import { SingleProductPriceProps } from './types';
 
 export const SingleProductPrice: React.FC<SingleProductPriceProps> = ({
-  isAvailable,
+  isOutOfStock,
   hasPromo,
   pricePromo,
   price,
@@ -33,7 +33,7 @@ export const SingleProductPrice: React.FC<SingleProductPriceProps> = ({
         </div>
       )}
 
-      <BuyBtn cartItem={cartItem} disabled={!isAvailable} />
+      <BuyBtn cartItem={cartItem} disabled={isOutOfStock} />
     </div>
   );
 };
