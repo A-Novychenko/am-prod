@@ -33,7 +33,9 @@ export const SliderArrow: React.FC<SliderArrowProps> = ({
         <ControlIcon
           width={40}
           height={40}
-          className={`size-[20px] rotate-180 md:size-[24px] xl:size-[40px]`}
+          className={
+            'size-[20px] rotate-180 text-darkBlueText/50 md:size-[24px] xl:size-[40px]'
+          }
           aria-label={'Стрілка вліво'}
         />
       </button>
@@ -50,7 +52,7 @@ export const SliderArrow: React.FC<SliderArrowProps> = ({
         <ControlIcon
           width={40}
           height={40}
-          className="size-[20px] md:size-[24px] xl:size-[40px]"
+          className="size-[20px] text-darkBlueText/50 md:size-[24px] xl:size-[40px]"
           aria-label={'Стрілка вправо'}
         />
       </button>

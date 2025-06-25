@@ -17,12 +17,13 @@ export const SingleProductSection: React.FC<{ product: IASGProduct }> = ({
     name,
     img,
     count_warehouse_3,
+    count_warehouse_4,
     price_promo,
     price,
     article,
   } = product;
 
-  const isAvailable = count_warehouse_3 !== '0';
+  const isOutOfStock = count_warehouse_3 === '0' && count_warehouse_4 === '0';
   const hasPromo = price_promo !== null && price_promo > 0;
 
   const cartItem: CartItem = {
@@ -35,14 +36,29 @@ export const SingleProductSection: React.FC<{ product: IASGProduct }> = ({
     quantity: 1,
     img: img[0],
     availability: count_warehouse_3,
+    availabilityLviv: count_warehouse_4,
     article,
+  };
+
+  const makeName = ({
+    name,
+    brand,
+  }: {
+    name: string;
+    brand: string;
+  }): string => {
+    const nameHasBrand = name
+      .trim()
+      .toLowerCase()
+      .includes(brand.trim().toLowerCase());
+    return nameHasBrand ? name : `${brand} ${name}`;
   };
 
   return (
     <section className="section flex grow bg-mediumBg py-10 sm:py-14">
       <div className="container">
         <h2 className="mb-6 text-2xl font-bold text-gray-900 sm:text-3xl">
-          {brand} {name}
+          {makeName({ brand, name })}
         </h2>
 
         <BackBtn className="mb-6" />
@@ -51,10 +67,10 @@ export const SingleProductSection: React.FC<{ product: IASGProduct }> = ({
           <SingleProductImgBox img={img} name={name} />
 
           <div className="flex flex-col justify-between">
-            <SingleProductInfo product={product} isAvailable={isAvailable} />
+            <SingleProductInfo product={product} isOutOfStock={isOutOfStock} />
 
             <SingleProductPrice
-              isAvailable={isAvailable}
+              isOutOfStock={isOutOfStock}
               hasPromo={hasPromo}
               price={price}
               pricePromo={price_promo}

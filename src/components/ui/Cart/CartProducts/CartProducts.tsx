@@ -52,6 +52,7 @@ export const CartProducts: React.FC<CartProductsProps> = ({
               img,
               article,
               availability,
+              availabilityLviv,
             } = item;
 
             const finalPrice = price_promo ? price_promo : price;
@@ -62,7 +63,7 @@ export const CartProducts: React.FC<CartProductsProps> = ({
               finalPrice * quantity,
             );
 
-            const outOfStock = availability === '0';
+            const outOfStock = availability === '0' && availabilityLviv === '0';
 
             return (
               <li
@@ -89,8 +90,9 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                     </div>
 
                     <p
-                      className={cn('grow text-center xl:text-left', {
+                      className={cn('grow text-center  xl:text-left', {
                         'xl:max-w-[180px]': isCheckoutPage,
+                        'xl:w-[340px]': !isCheckoutPage,
                       })}
                     >
                       {name}
@@ -114,7 +116,7 @@ export const CartProducts: React.FC<CartProductsProps> = ({
 
                       {!isCheckoutResultPage && (
                         <p className="mb-4 overflow-hidden text-ellipsis text-[12px] font-bold uppercase leading-[1.6]">
-                          {availability === '0' ? (
+                          {outOfStock ? (
                             <span className="text-rose-800">
                               Немає в наявності
                             </span>
@@ -122,9 +124,17 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                             <span
                               className={cn('text-[14px] text-green-600', {
                                 'text-[12px]': isCheckoutPage,
+                                'text-green-600': availability !== '0',
+                                'text-orange-600':
+                                  availability === '0' &&
+                                  availabilityLviv !== '0',
                               })}
                             >
-                              В наявності {availability}шт
+                              {' '}
+                              {availability !== '0'
+                                ? `В наявності ${availability}`
+                                : `Під замовлення - ${availabilityLviv}`}
+                              шт
                             </span>
                           )}
                         </p>

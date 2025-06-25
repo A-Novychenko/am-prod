@@ -1,7 +1,7 @@
 import { CartItem } from '@/context/CartProvider/types';
 
 export type SingleProductPriceProps = {
-  isAvailable: boolean;
+  isOutOfStock: boolean;
   hasPromo: boolean;
   pricePromo: number | null;
   price: number;
