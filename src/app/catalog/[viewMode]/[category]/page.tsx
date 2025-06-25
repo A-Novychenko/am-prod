@@ -8,7 +8,7 @@ import { cn, getSlugId, makeCatMetaData, makeCatStructuredData } from '@/utils';
 
 import staticData from '@/data/common.json';
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
 export const generateMetadata = async ({
   params,

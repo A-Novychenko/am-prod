@@ -8,6 +8,7 @@ export const CatalogSection: React.FC = async () => {
   return (
     mainCategories && (
       <section className="section" id="main-cat">
+        <h2 className="visually-hidden">Каталог. Основні категорії товарів</h2>
         <div className="container">
           {mainCategories && (
             <CategoryList
