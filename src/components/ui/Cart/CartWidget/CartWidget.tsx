@@ -19,9 +19,9 @@ export const CartWidget: React.FC = () => {
   const qty = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
-    <button onClick={() => router.push('/cart')}>
-      <div className="relative">
-        <CartIcon width={60} height={60} alt={alt} />
+    <button onClick={() => router.push('/cart')} aria-label={alt}>
+      <span className="relative block">
+        <CartIcon width={60} height={60} />
 
         <span
           className={cn(
@@ -31,7 +31,7 @@ export const CartWidget: React.FC = () => {
         >
           {qty}
         </span>
-      </div>
+      </span>
     </button>
   );
 };
