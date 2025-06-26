@@ -25,8 +25,10 @@ export const generateMetadata = async ({
   const mainCatId = getSlugId(category);
   const brandId = getSlugId(brand);
 
-  const mainCat = await getCategory(mainCatId);
-  const brandCat = await getCategory(brandId);
+  const [mainCat, brandCat] = await Promise.all([
+    getCategory(mainCatId),
+    getCategory(brandId),
+  ]);
 
   const pageMatch = page.match(/^page-(\d+)$/);
   const pageNumber = pageMatch ? parseInt(pageMatch[1], 10) : 1;
@@ -60,7 +62,7 @@ export default async function ProductPage({
 
   const defaultTypeGallery: GalleryViewMode =
     staticData.defaultTypeGallery as GalleryViewMode;
-  const initialViewMode = viewMode ? viewMode : defaultTypeGallery;
+  const initialViewMode = viewMode || defaultTypeGallery;
 
   const mainCatId = getSlugId(category);
   const id = getSlugId(brand);
@@ -70,14 +72,17 @@ export default async function ProductPage({
   let products = [];
   let categories = [];
 
-  const res = await getProducts(id, pageNumber);
-  products = res.products;
-  const totalPages = res.totalPages;
+  const [res, mainCatRes] = await Promise.all([
+    getProducts(id, pageNumber),
+    getCategory(mainCatId),
+  ]);
+
+  products = res?.products || [];
+  const totalPages = res?.totalPages || 1;
 
   const isProductPage = products.length;
   const categoryName = products[0]?.category;
 
-  const mainCatRes = await getCategory(mainCatId);
   const mainCatName = mainCatRes?.name || 'Автотовари';
 
   const structuredData = makeCatStructuredData({

@@ -36,14 +36,15 @@ export const CartResult: React.FC = () => {
     if (!str) return null;
 
     try {
-      return JSON.parse(str) as CheckoutResult;
+      return JSON.parse(decodeURIComponent(str)) as CheckoutResult;
     } catch {
       return null;
     }
   })();
 
   const id = data?._id;
-  const orderLink = `${BASE_URL}${PATH}?data=${dataStr}`;
+
+  const orderLink = `${BASE_URL}${PATH}?data=${encodeURIComponent(dataStr ?? '')}`;
 
   useEffect(() => {
     if (!id) return;
@@ -223,15 +224,6 @@ export const CartResult: React.FC = () => {
                     {sumProductPrices(data.products)}грн
                   </span>
                 </p>
-
-                {/* {true && (
-                  <p className="mb-3 text-[18px] font-black text-green-600">
-                    Знижка: {''}
-                    {sumProductPrices(data.products) -
-                      calculateTotalPrice(data.products)}
-                    грн
-                  </p>
-                )} */}
 
                 <Sale products={data.products} />
 

@@ -41,13 +41,14 @@ export default async function CategoryPage({
 
   const defaultTypeGallery: GalleryViewMode =
     staticData.defaultTypeGallery as GalleryViewMode;
-  const initialViewMode = viewMode ? viewMode : defaultTypeGallery;
+  const initialViewMode = viewMode || defaultTypeGallery;
 
   const id = getSlugId(category);
 
-  const categories = await getCategories(id);
-
-  const res = await getCategory(id);
+  const [categories, res] = await Promise.all([
+    getCategories(id),
+    getCategory(id),
+  ]);
   const prevCategoryName = res?.name ? res?.name : '';
 
   let products = [];
@@ -60,8 +61,8 @@ export default async function CategoryPage({
       return <div>Помилка завантаження товарів. Спробуйте пізніше.</div>;
     }
 
-    products = res?.products;
-    totalPages = res?.totalPages;
+    products = res?.products || [];
+    totalPages = res?.totalPages || 1;
   }
 
   const structuredData = makeCatStructuredData({
