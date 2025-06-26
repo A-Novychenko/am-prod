@@ -8,8 +8,8 @@ export const getCategory = async (id: number) => {
         'Content-Type': 'application/json',
       },
 
-      cache: 'no-store',
-      // next: { revalidate: 0 },
+      // cache: 'no-store',
+      next: { revalidate: 3600 },
       // body: JSON.stringify({ id }),
     });
 

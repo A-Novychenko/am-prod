@@ -12,7 +12,7 @@ export const VinRequestFormSelect: React.FC<VinRequestFormSelectProps> = ({
 }) => {
   return (
     <label className="relative text-secondaryText">
-      <p className="mb-1">{label}</p>
+      <span className="mb-1 block">{label}</span>
 
       <select
         {...register(name)}

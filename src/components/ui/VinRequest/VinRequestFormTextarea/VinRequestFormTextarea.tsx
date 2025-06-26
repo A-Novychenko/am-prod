@@ -7,7 +7,7 @@ export const VinRequestFormTextarea: React.FC<VinRequestFormInputProps> = ({
   register,
   errors,
   trigger,
-  // inputType = 'text',
+
   inputClassName,
   wrapClassName,
 }) => {
@@ -15,22 +15,9 @@ export const VinRequestFormTextarea: React.FC<VinRequestFormInputProps> = ({
 
   const errorMessage = errors?.[name]?.message;
 
-  // const registerOptions = () => {
-  //   return {
-  //     ...validationOptions,
-
-  //     onChange: () => {
-  //       trigger(name);
-  //     },
-  //     onBlur: () => {
-  //       trigger(name);
-  //     },
-  //   };
-  // };
-
   return (
     <label className={cn('relative text-secondaryText', wrapClassName)}>
-      <p className="mb-1">{label}</p>
+      <span className="mb-1 block">{label}</span>
 
       <textarea
         className={cn(

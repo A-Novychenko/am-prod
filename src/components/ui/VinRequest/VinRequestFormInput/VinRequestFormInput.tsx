@@ -68,7 +68,7 @@ export const VinRequestFormInput: React.FC<VinRequestFormInputProps> = ({
 
   return (
     <label className={cn('relative text-secondaryText', wrapClassName)}>
-      <p className="mb-1">{label}</p>
+      <span className="mb-1 block">{label}</span>
 
       <input
         aria-required={false}

@@ -209,7 +209,6 @@ export const VinRequestForm: React.FC<{
                 ref={recaptchaRef}
                 formId="vin"
                 siteKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
-                // onChange={setCaptchaToken}
                 onChange={token => {
                   setCaptchaToken(token);
                   setRecaptchaError(null);

@@ -45,14 +45,14 @@ export const VinRequestFormRequiredInput: React.FC<
 
   return (
     <label className="relative w-full text-secondaryText">
-      <p className="mb-1 flex">
+      <span className="mb-1 flex">
         {isRequiredField ? (
           <span className="mr-1 block  leading-none text-red">*</span>
         ) : (
           ''
         )}
         {label}
-      </p>
+      </span>
 
       <input
         aria-required={isRequiredField ? true : false}
@@ -76,8 +76,6 @@ export const VinRequestFormRequiredInput: React.FC<
           }
         }}
       />
-
-      <p style={{ color: 'rgba(255, 148, 148, 0.2)' }}></p>
 
       {isError ? (
         <span

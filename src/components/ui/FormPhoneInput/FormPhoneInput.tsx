@@ -35,14 +35,14 @@ export const FormPhoneInput: React.FC<FormPhoneInputProps> = ({
       render={({ field }) => {
         return (
           <label className="relative w-full text-secondaryText">
-            <p className="mb-1 flex">
+            <span className="mb-1 flex">
               {isRequiredField ? (
                 <span className="mr-1 block leading-none text-red">*</span>
               ) : (
                 ''
               )}
               {label}
-            </p>
+            </span>
 
             <span className="relative block">
               <PatternFormat
