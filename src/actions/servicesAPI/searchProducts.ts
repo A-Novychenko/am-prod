@@ -24,7 +24,7 @@ export const searchProducts = async (
 
     return res;
   } catch (e) {
-    console.log('e.getProductsByTecDocArticle', e);
+    console.log('e.searchProducts', e);
 
     return null;
   }
