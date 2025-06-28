@@ -21,6 +21,6 @@ export const getProductData = async (id: string) => {
 
     return res.data;
   } catch (e) {
-    console.log('e.getProducts', e);
+    console.log('e.getProductsData', e);
   }
 };
