@@ -158,12 +158,14 @@ export const CartResult: React.FC = () => {
                         <td className="w-1/2 font-bold">Імʼя:</td>
                         <td>{data.name}</td>
                       </tr>
+
                       <tr>
                         <td className="font-bold">Телефон:</td>
                         <td className="break-all tracking-[-1px]">
                           {data.phone}
                         </td>
                       </tr>
+
                       {data.email && (
                         <tr>
                           <td className="font-bold">Email:</td>
