@@ -2,6 +2,18 @@
 const nextConfig = {
   reactStrictMode: true,
   staticPageGenerationTimeout: 1000,
+
+  async redirects() {
+    return [
+      {
+        source: '/index.php',
+        has: [{ type: 'query', key: 'route' }],
+        destination: '/404',
+        permanent: false,
+      },
+    ];
+  },
+
   webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,
