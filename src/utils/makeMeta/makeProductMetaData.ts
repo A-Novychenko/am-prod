@@ -27,7 +27,7 @@ export const makeProductMetaData = async (slug: string) => {
   const brand = product.brand.toUpperCase();
 
   const title = `${capitalizedName} — купити ${brand} за вигідною ціною | Avto-magaz`;
-  const description = `${brand} ${product.name} — оригінальна олива з допусками: ${product.description}. Доставка по Україні, гарантія якості. Замовляйте онлайн на Avto-magaz.`;
+  const description = `${brand} ${product.name} — оригінальна продукція: ${product.description}. Доставка по Україні, гарантія якості. Замовляйте онлайн на Avto-magaz.`;
   const keywords = [
     product.name,
     brand,
