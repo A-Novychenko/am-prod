@@ -5,8 +5,7 @@ import staticData from '@/data/common.json';
 export const WorkSchedule: React.FC<{ labelClassName?: string }> = ({
   labelClassName,
 }) => {
-  const { label, businessDays, saturday, weekends, address } =
-    staticData.workSchedule;
+  const { label, businessDays, weekends, address } = staticData.workSchedule;
   return (
     <div className="smOnly:mb-4">
       <p
@@ -19,9 +18,7 @@ export const WorkSchedule: React.FC<{ labelClassName?: string }> = ({
         <li>
           <p>{businessDays}</p>
         </li>
-        <li>
-          <p>{saturday}</p>
-        </li>
+
         <li>
           <p>{weekends}</p>
         </li>
