@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geologica, Lora, Nunito } from 'next/font/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { ToastContainer } from 'react-toastify';
 
 import { Footer, Header } from '@/layout';
@@ -68,6 +69,8 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="uk" className="scroll-smooth">
+      <GoogleTagManager gtmId="GTM-PKGTCK5F" />
+
       <body
         className={`${nunito.variable} ${geologica.variable} ${lora.variable}`}
       >
