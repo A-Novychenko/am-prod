@@ -70,7 +70,6 @@ export default async function RootLayout({
   return (
     <html lang="uk" className="scroll-smooth">
       <GoogleTagManager gtmId="GTM-PKGTCK5F" />
-      <GoogleTagManager gtmId="G-JH1PJCRTT3" />
 
       <body
         className={`${nunito.variable} ${geologica.variable} ${lora.variable}`}
