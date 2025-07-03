@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import { cn } from '@/utils';
@@ -44,12 +44,22 @@ export const ErrorSection: React.FC<{
           </div>
 
           <div className="mt-10 md:h-[40vh]">
-            <Image
+            {/* <Image
               src="/images/image-404.png"
               alt="Машина не знайдена"
               className="mx-auto size-full object-cover"
               width={1536}
               height={1024}
+            /> */}
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/image-404.png"
+              alt="Машина не знайдена"
+              className="mx-auto size-full object-cover"
+              width={1536}
+              height={1024}
+              loading="lazy"
             />
           </div>
         </div>

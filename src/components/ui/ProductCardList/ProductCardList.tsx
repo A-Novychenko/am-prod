@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import { BuyBtn } from '@/components/ui';
@@ -53,7 +53,7 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
     >
       <Link href={generateProductPath({ name, _id, brand })}>
         <div className="h-[200px] shrink-0 p-2 md:h-[298px]">
-          <Image
+          {/* <Image
             src={image}
             width={298}
             height={298}
@@ -61,6 +61,15 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
             className="block size-full object-contain"
             placeholder="blur"
             blurDataURL={noImage}
+          /> */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image}
+            width={298}
+            height={298}
+            alt={name}
+            className="block size-full object-contain"
+            loading="lazy"
           />
         </div>
       </Link>
@@ -95,7 +104,15 @@ export const ProductCardList: React.FC<ProductCardListProps> = ({
               block: price_promo,
             })}
           >
-            <Image
+            {/* <Image
+              src="/images/sale.webp"
+              width={500}
+              height={218}
+              alt="Акція"
+              className="size-full object-contain"
+            /> */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/sale.webp"
               width={500}
               height={218}

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import React from 'react';
 import { ShowCaseCardProps } from './types';
 
@@ -15,12 +15,21 @@ export const ShowCaseCard: React.FC<ShowCaseCardProps> = async ({
   return (
     <div className="flex h-[546px] flex-col items-center overflow-hidden rounded-[16px] bg-lightBg md:w-[286px] smOnly:w-full">
       <div className="mt-6 size-[234px] p-6">
-        <Image
+        {/* <Image
           src={image}
           width={1064}
           height={1064}
           alt={name}
           className="block size-full object-contain"
+        /> */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          width={1064}
+          height={1064}
+          alt={name}
+          className="block size-full object-contain"
+          loading="lazy"
         />
       </div>
 
