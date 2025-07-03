@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 
 import { BuyBtn } from '@/components/ui';
 
@@ -46,13 +46,11 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
         className={cn(
           'flex size-full h-[480px] flex-col items-center justify-between rounded-2xl bg-mediumBg p-4 xl:p-10 smOnly:h-[400px]',
           { 'bg-saleBg': price_promo },
-          // 'flex size-full h-[480px] flex-col items-center justify-between rounded-2xl bg-lightBg p-4 xl:p-10 smOnly:h-[400px]',
-          // { 'bg-saleBg': price_promo },
         )}
       >
         <div className="mb-2 h-[150px] xl:h-[250px] smOnly:mb-6 smOnly:mt-10">
           <div className="h-[180px] overflow-hidden rounded-[32px] xl:size-[250px] mdOnly:size-[300px] ">
-            <Image
+            {/* <Image
               src={image}
               width={300}
               height={250}
@@ -60,6 +58,14 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
               priority
               className="block size-full shrink-0 object-contain"
               blurDataURL={noImage}
+            /> */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={image}
+              width={300}
+              height={250}
+              alt={name}
+              className="block size-full shrink-0 object-contain"
             />
           </div>
         </div>
@@ -144,12 +150,21 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
           },
         )}
       >
-        <Image
+        {/* <Image
           src="/images/sale.webp"
           width={500}
           height={218}
           alt="Акція"
           className="size-full object-contain"
+        /> */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/sale.webp"
+          width={500}
+          height={218}
+          alt="Акція"
+          className="size-full object-contain"
+          loading="lazy"
         />
       </div>
     </div>

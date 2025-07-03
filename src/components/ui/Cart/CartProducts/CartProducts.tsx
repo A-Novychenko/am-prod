@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import { TiDelete } from 'react-icons/ti';
@@ -80,12 +80,21 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                 <Link href={generateProductPath({ name, _id, brand })}>
                   <div className="w-full gap-4 pt-2 md:flex md:flex-col md:items-center xl:flex-row xl:justify-between xl:pt-0">
                     <div className="size-[80px] shrink-0 smOnly:mx-auto">
-                      <Image
+                      {/* <Image
                         src={img}
                         alt={name}
                         width={100}
                         height={100}
                         className="size-full object-contain"
+                      /> */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img}
+                        alt={name}
+                        width={100}
+                        height={100}
+                        className="size-full object-contain"
+                        loading="lazy"
                       />
                     </div>
 
@@ -235,12 +244,21 @@ export const CartProducts: React.FC<CartProductsProps> = ({
                     },
                   )}
                 >
-                  <Image
+                  {/* <Image
                     src="/images/sale.webp"
                     width={500}
                     height={218}
                     alt="Акція"
                     className="size-full rotate-[10deg] object-contain"
+                  /> */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/sale.webp"
+                    width={500}
+                    height={218}
+                    alt="Акція"
+                    className="size-full rotate-[10deg] object-contain"
+                    loading="lazy"
                   />
                 </div>
               </li>
