@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import { BuyBtn } from '@/components/ui';
@@ -57,8 +57,8 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
         )}
       >
         <Link href={generateProductPath({ name, _id, brand })}>
-          <div className="h-[200px] p-2  md:h-[298px]">
-            <Image
+          <div className="h-[200px] p-2 md:size-[282px]">
+            {/* <Image
               src={image}
               width={298}
               height={298}
@@ -66,6 +66,15 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
               className="block size-full object-contain"
               placeholder="blur"
               blurDataURL={noImage}
+            /> */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={image}
+              width={298}
+              height={298}
+              alt={name}
+              className="block size-full object-contain"
+              loading="lazy"
             />
           </div>
         </Link>
@@ -136,12 +145,21 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
           block: price_promo,
         })}
       >
-        <Image
+        {/* <Image
           src="/images/sale.webp"
           width={500}
           height={218}
           alt="Акція"
           className="size-full object-contain"
+        /> */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/sale.webp"
+          width={500}
+          height={218}
+          alt="Акція"
+          className="size-full object-contain"
+          loading="lazy"
         />
       </div>
     </div>

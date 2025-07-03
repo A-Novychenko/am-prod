@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 import staticData from '@/data/common.json';
 
@@ -59,13 +59,22 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
             {img ? (
               <div className="size-full">
                 <div className="h-[150px]">
-                  <Image
+                  {/* <Image
                     src={image}
                     width={200}
                     height={200}
                     alt={name ? name : link}
                     placeholder="blur"
                     blurDataURL={noImage}
+                    className="size-full object-contain"
+                  /> */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={image}
+                    width={200}
+                    height={200}
+                    alt={name ? name : link}
+                    loading="lazy"
                     className="size-full object-contain"
                   />
                 </div>

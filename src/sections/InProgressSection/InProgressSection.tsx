@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import { cn } from '@/utils';
@@ -26,13 +26,21 @@ export const InProgressSection = () => {
           </div>
 
           <div className="mt-10 md:h-[40vh] xl:h-[50vh]">
-            <Image
+            {/* <Image
               src="/images/in-progress.png"
               alt="Сторінка в розробці"
               className="mx-auto size-full object-contain"
               width={1536}
               height={1024}
               priority
+            /> */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/in-progress.png"
+              alt="Сторінка в розробці"
+              className="mx-auto size-full object-contain"
+              width={1536}
+              height={1024}
             />
           </div>
         </div>
