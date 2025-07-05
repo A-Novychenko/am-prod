@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 import { RiGalleryView2, RiListCheck2 } from 'react-icons/ri';
 
@@ -11,6 +11,7 @@ export const ProductTypeGallerySwitcher: React.FC<
 > = ({ children, viewMode }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const updateViewSegment = (newView: GalleryViewMode) => {
     const segments = pathname.split('/');
@@ -23,7 +24,12 @@ export const ProductTypeGallerySwitcher: React.FC<
     // Змінюємо лише третій сегмент (індекс 2)
     segments[2] = newView;
     const newPath = segments.join('/');
-    router.replace(newPath);
+
+    if (searchParams) {
+      router.replace(`${newPath}?${searchParams}`);
+    } else {
+      router.replace(newPath);
+    }
   };
 
   const handleSetGallery = () => {

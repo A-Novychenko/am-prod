@@ -8,7 +8,7 @@
   "defaultTypeGallery": "grid",
   "navLinks": [
     {
-      "href": "catalog/grid/avtokhimiya--1",
+      "href": "catalog/grid/mastylni-materialy--1",
       "name": "Мастила"
     },
     {
@@ -76,6 +76,11 @@
     "telegram": "@avtomagazcomua",
     "viber": " %2B380936259999"
   },
+  "socialsArr": [
+    "https://t.me/avto_magaz_com_ua",
+    "https://www.facebook.com/profile.php?id=100060918610122",
+    "https://www.instagram.com/avtomagazcomua"
+  ],
   "socials": {
     "title": "Ми в соцмережах",
     "links": [
