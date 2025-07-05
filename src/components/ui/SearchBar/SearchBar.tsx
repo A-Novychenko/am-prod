@@ -21,7 +21,7 @@ export const SearchBar = () => {
     e.preventDefault();
 
     router.push(
-      `/search-products/${defaultTypeGallery}/${encodeURIComponent(searchQuery.trim().toUpperCase())}`,
+      `/search-products/${defaultTypeGallery}?searchQuery=${encodeURIComponent(searchQuery.trim().toUpperCase())}`,
     );
 
     setSearchQuery('');
