@@ -12,10 +12,13 @@ export const metadata: Metadata = generateStaticMetadata('searchProducts');
 
 export default async function SearchProductPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ searchQuery: string; viewMode: GalleryViewMode }>;
+  searchParams: Promise<{ searchQuery: string }>;
 }) {
-  const { searchQuery, viewMode } = await params;
+  const { viewMode } = await params;
+  const { searchQuery } = await searchParams;
 
   const defaultTypeGallery: GalleryViewMode =
     staticData.defaultTypeGallery as GalleryViewMode;
@@ -99,7 +102,7 @@ export default async function SearchProductPage({
               products={exactProducts}
               viewMode={initialViewMode}
               isControlsOff={true}
-              className="rounded-[12px] p-10"
+              className="rounded-[12px]"
             />
           </div>
         </section>
@@ -117,7 +120,7 @@ export default async function SearchProductPage({
               products={relatedProducts}
               viewMode={initialViewMode}
               isControlsOff={hasExactProducts ? false : true}
-              className="rounded-[12px]  p-10"
+              className="rounded-[12px]"
             />
           </div>
         </section>
