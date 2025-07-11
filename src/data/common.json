@@ -1,6 +1,6 @@
 {
   "logoName": "AM",
-  "mail": "avto-magaz@i.ua",
+  "mail": "info@avto-magaz.com.ua",
   "site": "http://avto-magaz.com.ua",
   "siteName": "avto-magaz.com.ua",
   "noImage": "/images/no-photo.png",
@@ -30,15 +30,15 @@
   ],
   "footerLinks": [
     {
-      "href": "in-progress",
+      "href": "about",
       "name": "Про нас"
     },
     {
-      "href": "in-progress",
+      "href": "delivery",
       "name": "Доставка"
     },
     {
-      "href": "in-progress",
+      "href": "payment",
       "name": "Оплата"
     },
     {

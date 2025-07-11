@@ -58,38 +58,6 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* <div className="border-t border-white/10 pb-4 pt-6 text-sm text-primaryText/70">
-          <div className="flex flex-col items-center justify-between gap-3 text-center sm:flex-row sm:gap-6 sm:text-left">
-            <div>
-              <span className="text-primaryText/80">
-                © 2012–{new Date().getFullYear()} Avto-Magaz.com.ua
-              </span>
-              <span className="ml-1 align-super text-xs text-primaryText/50">
-                ®
-              </span>
-              . Усі права захищено.
-            </div>
-
-            <div className="flex flex-col items-center sm:flex-row sm:gap-2">
-              <span className="mb-1 sm:mb-0">Розроблено студією</span>
-              <Link
-                href="https://www.webdevsynergy.com.ua/uk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 hover:opacity-90"
-              >
-                <Image
-                  src="/images/wds-logo.png"
-                  alt="WebDevSynergy logo"
-                  width={150}
-                  height={36}
-                  className="size-auto"
-                />
-              </Link>
-            </div>
-          </div>
-        </div> */}
-
         <div className="border-t border-white/10 pb-4 pt-6 text-sm text-primaryText/70">
           <div
             className="
