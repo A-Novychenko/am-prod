@@ -6,12 +6,17 @@ import FacebookIcon from '~/icons/facebook.svg';
 import InstagramIcon from '~/icons/instagram.svg';
 import TelegramIcon from '~/icons/telegram-icon.svg';
 
-export const Socials: React.FC = () => {
+export const Socials: React.FC<{
+  showTitle?: boolean;
+  color?: string;
+}> = ({ showTitle = true, color = '' }) => {
   const { title, links } = staticData.socials;
 
   return (
     <div className="smOnly:mb-4">
-      <p className="text-[22px] font-semibold smOnly:mb-2">{title}</p>
+      {showTitle && (
+        <p className="text-[22px] font-semibold smOnly:mb-2">{title}</p>
+      )}
 
       <ul className="gap-2 smOnly:flex smOnly:flex-col smOnly:items-center">
         {links &&
@@ -20,6 +25,7 @@ export const Socials: React.FC = () => {
               <Link
                 href={path}
                 className="flex cursor-pointer gap-2 py-2 transition-all hover:stroke-accent hover:text-accent focus:stroke-accent focus:text-accent smOnly:mb-2"
+                style={{ color }}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
               >
