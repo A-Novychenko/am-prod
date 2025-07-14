@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import commonData from '@/data/common.json';
@@ -47,7 +47,15 @@ export default function DeliveryPage() {
         </p>
 
         <div className="mb-10">
-          <Image
+          {/* <Image
+            src="/images/delivery-1.png"
+            alt="Служба доставки"
+            width={800}
+            height={450}
+            className="mx-auto rounded-xl shadow-md"
+          /> */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/delivery-1.png"
             alt="Служба доставки"
             width={800}
@@ -82,7 +90,15 @@ export default function DeliveryPage() {
         </p>
 
         <div className="mb-10">
-          <Image
+          {/* <Image
+            src="/images/delivery-2.png"
+            alt="Упаковка замовлення на складі"
+            width={800}
+            height={450}
+            className="mx-auto rounded-xl shadow-md"
+          /> */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/delivery-2.png"
             alt="Упаковка замовлення на складі"
             width={800}

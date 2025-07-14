@@ -46,23 +46,19 @@
       "name": "Повернення"
     },
     {
-      "href": "in-progress",
-      "name": "СТО"
-    },
-    {
-      "href": "in-progress",
+      "href": "news",
       "name": "Акції/Новини"
     },
     {
-      "href": "in-progress",
+      "href": "user-agreement",
       "name": "Угода користувача"
     },
     {
-      "href": "in-progress",
+      "href": "brands",
       "name": "Бренди"
     },
     {
-      "href": "in-progress",
+      "href": "contacts",
       "name": "Контакти"
     }
   ],
