@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import commonData from '@/data/common.json';
-import logo from '~/images/logo-about.png';
+// import logo from '~/images/logo-about.png';
 
 export default function AboutPage() {
   const { mail } = commonData;
@@ -19,8 +19,16 @@ export default function AboutPage() {
             href="/"
             className="mx-auto block transition-transform hover:scale-110 focus:scale-110 md:size-[400px]"
           >
-            <Image
+            {/* <Image
               src={logo}
+              alt="Логотип Avto-Magaz"
+              width={1340}
+              height={1340}
+              className="size-full object-contain"
+            /> */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo-about.png"
               alt="Логотип Avto-Magaz"
               width={1340}
               height={1340}
@@ -29,8 +37,13 @@ export default function AboutPage() {
           </Link>
 
           <p className="mx-auto max-w-4xl text-xl text-primaryText">
-            Avto-Magaz — надійний інтернет-магазин автозапчастин, автохімії та
-            аксесуарів.
+            <Link
+              href="/"
+              className="font-medium transition-colors hover:text-accent"
+            >
+              avto-magaz.com.ua
+            </Link>{' '}
+            — надійний інтернет-магазин автозапчастин, автохімії та аксесуарів.
             <span className="block">
               Працюємо з 2012 року, щоб Ви завжди мали доступ до якісних товарів
               для свого авто.
@@ -51,12 +64,19 @@ export default function AboutPage() {
                 <p className="mb-4 text-lg ">
                   Ми розпочали шлях у 2012 році з невеликого офлайн-магазину
                   автотоварів. Завдяки постійній роботі, чесному сервісу та
-                  любові до справи, Avto-Magaz поступово виріс у стабільний та
-                  надійний інтернет-магазин, якому довіряють. Сьогодні ми
-                  співпрацюємо з перевіреними постачальниками автозапчастин,
-                  автохімії та аксесуарів, ретельно добираючи кожну позицію в
-                  асортименті. Ми постійно оновлюємо наш каталог, щоб Ви мали
-                  доступ до актуальних і якісних товарів для свого авто.
+                  любові до справи,{' '}
+                  <Link
+                    href="/"
+                    className="font-medium transition-colors hover:text-accent"
+                  >
+                    avto-magaz.com.ua
+                  </Link>{' '}
+                  поступово виріс у стабільний та надійний інтернет-магазин,
+                  якому довіряють. Сьогодні ми співпрацюємо з перевіреними
+                  постачальниками автозапчастин, автохімії та аксесуарів,
+                  ретельно добираючи кожну позицію в асортименті. Ми постійно
+                  оновлюємо наш каталог, щоб Ви мали доступ до актуальних і
+                  якісних товарів для свого авто.
                 </p>
                 <p className="text-lg">
                   Ми розуміємо потреби наших клієнтів і прагнемо бути
@@ -68,7 +88,15 @@ export default function AboutPage() {
               </div>
 
               <div className="shrink-0 overflow-hidden rounded-xl shadow-md xl:h-[400px] xl:w-[600px]">
-                <Image
+                {/* <Image
+                  src="/images/about-warehouse.png"
+                  alt="Фото магазину"
+                  width={600}
+                  height={400}
+                  className="size-full shrink-0 object-cover"
+                /> */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/about-warehouse.png"
                   alt="Фото магазину"
                   width={600}

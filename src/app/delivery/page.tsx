@@ -1,4 +1,4 @@
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import commonData from '@/data/common.json';
@@ -12,16 +12,16 @@ export default function DeliveryPage() {
         <h1 className="mb-10 text-center text-4xl font-bold">Доставка</h1>
 
         <p className="mb-6">
-          У{' '}
+          Ми прагнемо, щоб кожне замовлення доставлялось швидко, зручно та
+          безпечно. Інтернет-магазин{' '}
           <Link
             href="/"
             className="font-medium transition-colors hover:text-accent"
           >
-            Avto-Magaz
+            avto-magaz.com.ua
           </Link>{' '}
-          ми прагнемо, щоб кожне замовлення доставлялось швидко, зручно та
-          безпечно. Ми співпрацюємо з провідними перевізниками, забезпечуючи
-          доставку автотоварів по всій Україні.
+          співпрацює з провідними перевізниками, забезпечуючи доставку
+          автотоварів по всій Україні.
         </p>
 
         <h2 className="mb-4 text-2xl font-semibold">Умови доставки</h2>
@@ -41,13 +41,21 @@ export default function DeliveryPage() {
 
         <h2 className="mb-4 text-2xl font-semibold">Спосіб доставки</h2>
         <p className="mb-6">
-          Ми здійснюємо доставку за допомогою надійної логістичної компанії, що
-          забезпечує високу швидкість перевезення та зручні умови отримання
-          товару у відділеннях або через кур’єра.
+          Доставка здійснюється логістичними компаніями, що забезпечує високу
+          швидкість перевезення та зручні умови отримання товару у відділеннях
+          або через кур’єра.
         </p>
 
         <div className="mb-10">
-          <Image
+          {/* <Image
+            src="/images/delivery-1.png"
+            alt="Служба доставки"
+            width={800}
+            height={450}
+            className="mx-auto rounded-xl shadow-md"
+          /> */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/delivery-1.png"
             alt="Служба доставки"
             width={800}
@@ -65,24 +73,28 @@ export default function DeliveryPage() {
           <li>
             Оплата доставки здійснюється клієнтом при отриманні замовлення.
           </li>
-          <li>
-            При великих замовленнях можлива індивідуальна компенсація витрат на
-            доставку.
-          </li>
         </ul>
 
         <h2 className="mb-4 text-2xl font-semibold">
           Інформація про відправку
         </h2>
         <p className="mb-6">
-          Після відправлення замовлення Ви отримаєте SMS або email з номером
+          Після відправлення замовлення Ви отримаєте повідомлення з номером
           експрес-накладної для відстеження доставки. У разі потреби наші
           менеджери завжди готові надати додаткову інформацію про статус Вашого
           замовлення.
         </p>
 
         <div className="mb-10">
-          <Image
+          {/* <Image
+            src="/images/delivery-2.png"
+            alt="Упаковка замовлення на складі"
+            width={800}
+            height={450}
+            className="mx-auto rounded-xl shadow-md"
+          /> */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/delivery-2.png"
             alt="Упаковка замовлення на складі"
             width={800}
@@ -93,7 +105,7 @@ export default function DeliveryPage() {
 
         <h2 className="mb-4 text-2xl font-semibold">Поради для покупців</h2>
         <ul className="mb-8 list-inside list-disc space-y-2">
-          <li>Перевіряйте цілісність упаковки при отриманні.</li>
+          <li>Перевіряйте цілісність упаковки та товару при отриманні.</li>
           <li>Не забувайте зберігати квитанцію або номер накладної.</li>
           <li>
             У разі пошкодження товару при транспортуванні одразу звертайтесь до
