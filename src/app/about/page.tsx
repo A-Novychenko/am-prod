@@ -1,5 +1,5 @@
 import { Contacts, Socials } from '@/components/ui';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
 
 import commonData from '@/data/common.json';
@@ -186,7 +186,16 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <Image
+            {/* <Image
+              src="/images/about-trust.png"
+              width={1024}
+              height={1024}
+              alt=""
+              className="hidden size-[400px] shrink-0 object-contain xl:block"
+            /> */}
+
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/about-trust.png"
               width={1024}
               height={1024}
