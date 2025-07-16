@@ -96,7 +96,7 @@
   },
   "workSchedule": {
     "label": "Режим роботи",
-    "businessDays": "Пн-Пт: 10:00-20:00",
+    "businessDays": "Пн-Пт: 10:00-19:00",
     "weekends": "Сб, Нд - вихідний",
     "address": "Київ"
   },
