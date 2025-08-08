@@ -6,10 +6,18 @@ export default async function TDCatPage() {
   const options = {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': '03f5ef5b2emsh53680763660335cp1092e4jsn6f54f5624c74',
+      'x-rapidapi-key': '09eda766d0msh777dfaa1251bf96p1e10a4jsn0d5f7b881a00',
       'x-rapidapi-host': 'tec-doc-database.p.rapidapi.com',
     },
   };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.text();
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
 
   try {
     const response = await fetch(url, options);
@@ -19,5 +27,6 @@ export default async function TDCatPage() {
   } catch (error) {
     console.error(error);
   }
+
   return <></>;
 }

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { BuyBtn } from '@/components/ui';
 
-import { cn, generateProductPath } from '@/utils';
+import { cn, generateDeliveryTime, generateProductPath } from '@/utils';
 
 import staticData from '@/data/common.json';
 
@@ -81,7 +81,9 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
 
         <div className="w-full p-4 pt-0 text-[14px]/normal">
           <Link href={generateProductPath({ name, _id, brand })}>
-            <p>{brand}</p>
+            <p className="h-[40px]">
+              {brand ? brand : <span className="visually-hidden">{name}</span>}
+            </p>
 
             <h3 className="mb-2 line-clamp-2 h-[42px] overflow-hidden text-ellipsis break-all text-[14px]/normal font-semibold uppercase leading-[1.5] text-secondaryText">
               {name}
@@ -126,7 +128,8 @@ export const ProductCardGallery: React.FC<ProductCardGalleryProps> = async ({
                 )}
                 {count_warehouse_3 === '0' && count_warehouse_4 !== '0' && (
                   <span className="leading-[0.5] tracking-[-0.3px] text-orange-600 ">
-                    Поставка 7днів, на складі {count_warehouse_4}шт
+                    Поставка {generateDeliveryTime()}, на складі{' '}
+                    {count_warehouse_4}шт
                   </span>
                 )}
               </>

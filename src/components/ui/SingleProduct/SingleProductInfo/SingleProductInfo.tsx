@@ -1,3 +1,4 @@
+import { generateDeliveryTime } from '@/utils';
 import { SingleProductInfoProps } from './types';
 
 export const SingleProductInfo: React.FC<SingleProductInfoProps> = ({
@@ -46,7 +47,7 @@ export const SingleProductInfo: React.FC<SingleProductInfoProps> = ({
           >
             {count_warehouse_3 !== '0'
               ? ` В наявності ${count_warehouse_3} шт`
-              : ` Поставка 7днів, на складі ${count_warehouse_4}шт`}
+              : ` Поставка ${generateDeliveryTime()}, на складі ${count_warehouse_4}шт`}
           </span>
         )}
       </p>
