@@ -10,3 +10,4 @@ export * from './generateSlugName';
 export * from './getSlugId';
 export * from './generateProductPath';
 export * from './makeMeta';
+export * from './generateDeliveryTime';

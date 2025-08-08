@@ -2,7 +2,7 @@
 
 import { BuyBtn } from '@/components/ui';
 
-import { cn } from '@/utils';
+import { cn, generateDeliveryTime } from '@/utils';
 
 import staticData from '@/data/common.json';
 
@@ -89,7 +89,8 @@ export const MainBannerCard: React.FC<IASGProduct> = ({
                     )}
                     {count_warehouse_3 === '0' && count_warehouse_4 !== '0' && (
                       <span className="text-[14px] text-orange-600 ">
-                        Поставка 7днів, на складі {count_warehouse_4}шт
+                        Поставка {generateDeliveryTime()}, на складі{' '}
+                        {count_warehouse_4}шт
                       </span>
                     )}
                   </>
