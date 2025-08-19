@@ -1,8 +1,4 @@
-// export const dynamic = 'force-dynamic';
-
 const API_URL = process.env.API_URL as string;
-
-export const revalidate = 0;
 
 export const getProductData = async (id: string) => {
   try {
@@ -11,8 +7,8 @@ export const getProductData = async (id: string) => {
       headers: {
         'Content-Type': 'application/json',
       },
+
       next: { revalidate: 3600 },
-      // cache: 'no-store',
     });
 
     const res = await result.json();
