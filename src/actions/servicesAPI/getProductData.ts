@@ -2,8 +2,6 @@
 
 const API_URL = process.env.API_URL as string;
 
-export const revalidate = 0;
-
 export const getProductData = async (id: string) => {
   try {
     const result = await fetch(`${API_URL}/catalog/single-product/${id}`, {
