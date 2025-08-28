@@ -6,6 +6,7 @@ export type CartCheckoutSummaryProps = {
   hasContactsData: HasContactsData;
   checkoutState: CheckoutState;
   hasUnavailableItem: HasUnavailableItem;
+  isOrderAmountValid: IsOrderAmountValid;
   handleSubmitCart: () => void;
   errors: CartErrors;
   setCaptchaToken: React.Dispatch<SetStateAction<string | null>>;

@@ -12,3 +12,4 @@ export * from './addCallback';
 export * from './getProductData';
 export * from './getTotalProducts';
 export * from './getBrandsCategories';
+export * from './getTopProducts';
