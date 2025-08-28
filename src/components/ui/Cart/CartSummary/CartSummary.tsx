@@ -22,7 +22,8 @@ export const CartSummary: React.FC<CartSummaryProps> = ({ className = '' }) => {
 
       <p
         className={cn({
-          ' font-normal': totalDiscount > 0,
+          'font-normal': totalDiscount > 0,
+          'text-xl font-bold text-red': totalAmount < 500,
         })}
       >
         Сума: {totalAmountFormatted}

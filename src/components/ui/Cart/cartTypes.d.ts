@@ -9,6 +9,8 @@ type HasContactsData = boolean;
 
 type HasUnavailableItem = boolean;
 
+type IsOrderAmountValid = boolean;
+
 type CheckoutState = {
   name: string;
   phone: string;

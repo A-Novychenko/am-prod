@@ -23,6 +23,7 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
   errors,
   recaptchaError,
   setRecaptchaError,
+  isOrderAmountValid,
 }) => {
   return (
     <div className="sticky bottom-0 top-[initial] flex gap-2 xl:relative xl:w-[300px] xl:gap-6">
@@ -114,6 +115,7 @@ export const CartCheckoutSummary: React.FC<CartCheckoutSummaryProps> = ({
           hasUnavailableItem={hasUnavailableItem}
           handleSubmitCart={handleSubmitCart}
           errors={errors}
+          isOrderAmountValid={isOrderAmountValid}
         />
       </div>
     </div>
