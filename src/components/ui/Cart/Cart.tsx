@@ -35,7 +35,7 @@ const DEFAULT_STATE = {
 const CHECKOUT_STORAGE_KEY = 'CHECKOUT_STATE';
 
 const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
-  const { items, syncCart, clearCart } = useCart();
+  const { items, syncCart, clearCart, totalAmount } = useCart();
 
   const router = useRouter();
 
@@ -95,6 +95,8 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
   const hasUnavailableItem = items.some(
     item => item.availability === '0' && item.availabilityLviv === '0',
   );
+
+  const isOrderAmountValid = totalAmount >= 500;
 
   const hasContactsData = [name, phone, email, comment].some(
     value => value?.trim() !== '',
@@ -249,6 +251,7 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
                 errors={errors}
                 recaptchaError={recaptchaError}
                 setRecaptchaError={setRecaptchaError}
+                isOrderAmountValid={isOrderAmountValid}
               />
             </div>
 

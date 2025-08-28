@@ -10,6 +10,7 @@ export const CartCheckoutBtns: React.FC<CartCheckoutBtnsProps> = ({
   hasUnavailableItem,
   handleSubmitCart,
   errors,
+  isOrderAmountValid,
 }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -32,6 +33,9 @@ export const CartCheckoutBtns: React.FC<CartCheckoutBtnsProps> = ({
             Щоб продовжити оформлення, видаліть товар, якого немає в наявності.
           </p>
         )}
+        {!isOrderAmountValid && (
+          <p className="mb-4  text-red">Мінімальна сума замовлення 500грн</p>
+        )}
 
         <div className="flex gap-4">
           <Btn
@@ -41,7 +45,7 @@ export const CartCheckoutBtns: React.FC<CartCheckoutBtnsProps> = ({
 
               setScrollCount(0);
             }}
-            disabled={hasUnavailableItem}
+            disabled={hasUnavailableItem || !isOrderAmountValid}
           >
             Відправити замовлення
           </Btn>

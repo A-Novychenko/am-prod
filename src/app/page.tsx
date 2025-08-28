@@ -1,6 +1,11 @@
 export const revalidate = 3600;
 
-import { AboutSection, CatalogSection, HeroSection } from '@/sections';
+import {
+  AboutSection,
+  CatalogSection,
+  HeroSection,
+  PopularProductsSection,
+} from '@/sections';
 
 import { makeHomeStructuredData } from '@/utils';
 
@@ -18,6 +23,8 @@ export default async function HomePage() {
       <HeroSection />
 
       <CatalogSection />
+
+      <PopularProductsSection />
 
       <AboutSection />
     </>
