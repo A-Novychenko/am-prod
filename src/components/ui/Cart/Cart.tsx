@@ -35,7 +35,14 @@ const DEFAULT_STATE = {
 const CHECKOUT_STORAGE_KEY = 'CHECKOUT_STATE';
 
 const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
-  const { items, syncCart, clearCart, totalAmount } = useCart();
+  const {
+    items,
+    syncCart,
+    clearCart,
+    totalAmount,
+    totalAmountWithDiscount,
+    totalDiscount,
+  } = useCart();
 
   const router = useRouter();
 
@@ -161,6 +168,9 @@ const Cart: React.FC<CartProps> = ({ isPage, isCheckoutPage }) => {
       payment: paymentMethod,
       products: items,
       captchaToken,
+      totalAmount,
+      totalAmountWithDiscount,
+      totalDiscount,
     };
 
     const nameError = handleSubmitValidateName(name);
